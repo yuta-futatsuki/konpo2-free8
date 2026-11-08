@@ -1,0 +1,2158 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e9eddf">
+<meta name="description" content="箱、封筒、包み紙。8便の荷物を開ける、無料の受け取りパズル。">
+<title>梱包中。2 ── 受け取りました。──｜無料公開版・全8便</title>
+<style>
+:root{--ink:#303e3b;--muted:#697769;--blue:#3f707b;--red:#b35d47;--paper:#f6f2e7;--line:#bcc6b3;--app-height:100vh;--board-width:344px;color-scheme:light;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;color:var(--ink);background:#e9eddf}
+@supports(height:100dvh){:root{--app-height:100dvh}}
+*{box-sizing:border-box}body{margin:0;min-height:var(--app-height);background:radial-gradient(ellipse at 50% 0,#f4f5e9,transparent 75%);-webkit-text-size-adjust:100%;text-size-adjust:100%}button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}button,a.button{font:inherit;cursor:pointer;touch-action:manipulation}button,.button{min-height:44px;border:1px solid var(--line);border-radius:7px;background:#f7f6eb;color:var(--ink);padding:10px 14px;font-size:14px;font-weight:700;line-height:1.5}button:hover,.button:hover{filter:brightness(.97)}button:active,.button:active{transform:translateY(1px)}button:disabled{cursor:default;opacity:.4;filter:none}.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.secondary{background:transparent;color:var(--blue);border-color:var(--blue)}.quiet{background:transparent;border-color:transparent;color:var(--muted)}a{color:var(--blue)}.button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;text-align:center}button:focus-visible,a:focus-visible,textarea:focus-visible,.piece:focus-visible{outline:3px solid var(--blue);outline-offset:3px}h1,h2,p{margin:0}[hidden]{display:none!important}.eyebrow{font-size:10px;letter-spacing:.19em;color:var(--muted);font-weight:700}.fine{font-size:12px;color:var(--muted);line-height:1.8}.screen{padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));min-height:var(--app-height)}
+.title-inner{max-width:440px;margin:0 auto;min-height:calc(var(--app-height) - 40px);display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:17px}.title-heading{text-align:center}.title-heading h1{font-size:clamp(41px,12vw,57px);line-height:1.35;letter-spacing:.035em;font-weight:900;margin-top:5px}.title-heading .subtitle{font-size:15px;letter-spacing:.1em;margin-top:5px}.title-art{display:block;width:min(100%,292px);height:auto;margin:0 auto;overflow:visible}.title-copy{text-align:center;font-size:14px;line-height:1.9}.title-actions{display:grid;gap:10px}.title-actions>.primary{min-height:52px}.title-foot{text-align:center}.title-tools{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}#storageNote{margin:8px auto;padding:10px;max-width:440px;background:#f2dfc4;color:#76502e;font-size:12px;line-height:1.7}
+#gameScreen{padding:0 max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));min-height:var(--app-height)}.game-inner{width:100%;max-width:530px;margin:0 auto;padding-top:env(safe-area-inset-top)}.game-head{height:45px;display:flex;align-items:center;justify-content:space-between;gap:9px;border-bottom:1px solid var(--line)}.game-head button{min-width:44px;padding:4px 7px;background:transparent;border:0;font-size:12px;font-weight:500}.stage-heading{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px}.stage-heading small{font:11px ui-monospace,monospace;color:var(--muted);white-space:nowrap}.stage-heading h2{font-size:15px;font-weight:700;white-space:nowrap;outline:none}.live-metrics{display:flex;align-items:center;justify-content:space-between;font-size:10px;line-height:1.4;color:var(--muted);padding:5px 5px 2px;min-height:21px;font-variant-numeric:tabular-nums}#clock{font:12px ui-monospace,monospace;color:var(--ink)}.goal{font-size:12px;line-height:1.6;text-align:center;min-height:30px;display:flex;align-items:center;justify-content:center;padding:3px 4px;letter-spacing:.01em}.work{width:min(var(--board-width),100%);margin:0 auto;border:1px solid #bac5b0;border-radius:9px;box-shadow:0 4px 12px #46533d0a;background:var(--paper);isolation:isolate;overflow:hidden}.board{display:block;width:100%;height:auto;aspect-ratio:420/540;overflow:visible;touch-action:none;user-select:none;-webkit-user-select:none;cursor:default}.piece{cursor:grab;transform-box:view-box;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}.work.dragging .piece{cursor:grabbing}.piece:focus-visible>.hit{stroke:var(--blue);stroke-width:3;stroke-dasharray:5 4}.board text{pointer-events:none}.drag-ghost{pointer-events:none}.dragging{box-shadow:0 6px 18px #35473125}.status{font-size:11px;line-height:1.6;color:var(--muted);min-height:34px;max-width:440px;margin:0 auto;display:flex;align-items:center;justify-content:center;text-align:center;padding:5px 6px}.status.caution{color:#9a533c}.game-tools{display:flex;justify-content:center;gap:5px;max-width:440px;margin:0 auto}.game-tools button{font-size:12px;font-weight:500;padding:7px 10px;min-width:69px}.game-tools #chapters{margin-left:auto}.game-foot{height:5px}.complete .game-inner{padding-bottom:100px}.completion{position:fixed;z-index:12;left:0;right:0;bottom:0;background:#f6f2e7f7;border-top:1px solid #a9b99e;box-shadow:0 -7px 22px #37452f12;padding:8px max(12px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));backdrop-filter:blur(8px)}.completion-inner{max-width:440px;margin:0 auto;display:grid;gap:5px}.completion p{font-size:12px;text-align:center;line-height:1.5;color:#587651}.completion button{min-height:47px;font-size:15px;width:100%;box-shadow:0 2px 0 #254e56}
+.report-inner{max-width:650px;margin:16px auto 0}.report-head{border-top:3px solid var(--ink);border-bottom:1px solid var(--line);padding:18px 0}.report-head h1{font-size:27px;line-height:1.6;outline:none}.report-head p{font-size:13px;line-height:1.9;color:var(--muted)}.report-stamp{display:inline-block;color:var(--red);border:2px solid currentColor;padding:3px 10px;transform:rotate(-5deg);font-weight:700;font-size:13px;letter-spacing:.15em;margin-bottom:15px}.total-time{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding:17px 0 13px;font-size:12px}.total-time strong{font:38px ui-monospace,monospace;letter-spacing:-.05em}.totals{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:12px 0 19px}.totals div{border-left:2px solid var(--line);padding:0 10px}.totals dt{font-size:10px;color:var(--muted)}.totals dd{margin:3px 0 0;font-size:21px;font-variant-numeric:tabular-nums}.table-scroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:5px}table{width:100%;min-width:320px;border-collapse:collapse;font-size:11px;font-variant-numeric:tabular-nums}th,td{padding:10px 5px;border-bottom:1px solid #c7cebf;text-align:right;white-space:nowrap}th:first-child{text-align:left;white-space:normal}thead th{font-weight:500;background:#dce4d4;font-size:10px}tbody th{font-weight:500}tbody th small{color:var(--muted);font:10px ui-monospace,monospace}tfoot th,tfoot td{font-weight:700;border:0;background:#e0e7d7}.report-actions{display:grid;gap:9px;margin:20px 0 12px}.share-text{display:block;width:100%;min-height:122px;resize:vertical;background:#f8f5ea;border:1px solid var(--line);border-radius:5px;font:inherit;font-size:12px;line-height:1.9;color:var(--ink);padding:12px;margin-top:8px}.share-buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:9px 0}.share-status{font-size:12px;line-height:1.8;margin:9px 0;color:var(--blue)}#reportImage{width:100%;height:auto;display:block;border:1px solid var(--line);margin:12px 0}#download{width:100%}.report-bottom{display:flex;gap:9px;justify-content:center;margin:26px 0 12px;flex-wrap:wrap}.field-label{font-size:12px;font-weight:700}dialog{width:calc(100% - 28px);max-width:440px;max-height:calc(var(--app-height) - 32px);overflow:auto;overscroll-behavior:contain;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:21px;box-shadow:0 12px 60px #26382740}dialog::backdrop{background:#293a32a0;backdrop-filter:blur(3px)}dialog h2{font-size:20px;line-height:1.6;margin-bottom:12px}dialog p{font-size:13px;line-height:1.95;margin-bottom:10px}.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:17px}.help-steps{padding:0;margin:0;list-style:none;display:grid;gap:10px}.help-steps li{font-size:13px;line-height:1.9;padding-left:12px;border-left:2px solid var(--line)}.help-steps strong{display:block;font-size:12px;color:var(--blue)}.help-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.chapter-list{display:grid;gap:7px}.chapter{text-align:left;font-size:13px;min-height:48px}.hint-text{min-height:100px}.dialog-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.dialog-top button{padding:5px 9px;min-width:44px;margin-top:-6px}.ending-title{animation:ending 1.15s ease both}.departing{animation:send .95s ease-in both}.feedback{animation:feedback .2s ease}.refused{animation:refused .25s ease}.motion-roll{transform-origin:50% 50%;animation:roll 1s linear infinite}
+@keyframes send{0%,15%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-230px)}}@keyframes ending{0%,45%{opacity:0}100%{opacity:1}}@keyframes feedback{50%{border-color:#668968;box-shadow:0 0 0 2px #66896822}}@keyframes refused{25%,75%{transform:translateX(-2px)}50%{transform:translateX(2px)}}@keyframes roll{to{transform:rotate(360deg)}}
+.current-flow{animation:current .8s linear infinite}.machine-running>rect{animation:conveyor 1.6s ease-in-out infinite}@keyframes current{to{stroke-dashoffset:-32}}@keyframes conveyor{0%,10%{transform:translateX(-30px);opacity:0}20%,80%{opacity:1}95%,100%{transform:translateX(90px);opacity:0}}
+.cap-press{animation:press .2s ease-out}.cap-tap{animation:tap .22s ease}.repel-left{animation:repel-left .36s ease}.repel-middle{animation:repel-middle .36s ease}.repel-right{animation:repel-right .36s ease}@keyframes press{from{transform:translateY(-5px)}to{transform:translateY(0)}}@keyframes tap{50%{transform:translateY(5px)}}@keyframes repel-left{45%{transform:translateX(-10px)}}@keyframes repel-middle{30%{transform:translateX(3px)}60%{transform:translateX(-3px)}}@keyframes repel-right{45%{transform:translateX(10px)}}
+@media(min-width:700px){.screen{padding-top:25px}.title-inner{gap:20px}.game-inner{padding-top:max(10px,env(safe-area-inset-top))}.game-head{height:50px}.stage-heading h2{font-size:17px}.goal{font-size:13px;min-height:33px}.status{font-size:12px}.report-inner{margin-top:30px}.report-head h1{font-size:32px}table{font-size:13px}th,td{padding:12px 9px}}
+@media(max-height:600px){.title-inner{gap:10px}.title-art{width:190px}.title-heading h1{font-size:39px}.title-heading .subtitle{font-size:13px}.title-copy{font-size:12px}.title-foot .fine{font-size:10px}.title-tools button{min-height:44px;padding:5px 10px}.game-head{height:41px}.live-metrics{min-height:18px;padding-top:2px}.goal{min-height:27px;font-size:11px}.status{min-height:30px;padding:3px}.game-tools button{padding:6px 8px}.completion{padding-top:5px}.completion-inner{gap:3px}.completion button{min-height:44px}}
+@media(max-width:359px){.stage-heading{gap:5px}.stage-heading h2{font-size:13px}.stage-heading small{font-size:10px}.game-head button{padding:5px 3px}.game-tools button{min-width:63px;padding:5px}.goal{font-size:11px}}
+@media(max-height:600px){.live-metrics{min-height:16px}.goal{min-height:25px}.status{min-height:22px;padding:2px 6px}.game-foot{height:2px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.departing{display:none}}
+.next-parcel{text-align:center;border-top:1px solid var(--line);padding:25px 0 12px;margin-top:24px}.next-parcel svg{display:block;margin:10px auto}.next-parcel p:not(.eyebrow){font-size:13px;line-height:1.9;color:var(--muted)}.next-parcel .fine{margin-top:14px;font-size:11px!important}/* Grip response: touch belongs to the entire SVG object, not only its uppermost rect. */
+.board .piece,.board .piece *{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.board .piece{cursor:grab}
+.board .piece.gripped{cursor:grabbing;filter:drop-shadow(0 5px 4px #2a39243b)}
+.piece[aria-disabled=true]{cursor:default}.selected>.react{filter:drop-shadow(0 3px 2px #51462d24)}.tug{animation:paper-tug .28s ease}.react.return{animation:paper-tug .28s ease}.react.press,.react.glass-press{animation:button-press .22s ease-out}.react.unfold,.react.wrap,.react.flap{animation:paper-open .24s ease-out}.react.place,.react.extract{animation:land .22s ease-out}.react.release,.react.seal,.react.stamp{animation:land .2s ease-out}.corner-away{animation:corner-away .22s ease-out}.dispatch-box{animation:dispatch .75s ease-in forwards}.chapter-arrival{animation:chapter-arrival .85s ease both}.refused{animation:refused-edge .22s ease}
+@media(max-width:359px){.stage-heading h2{font-size:12px}.game-head{gap:6px}}
+@keyframes paper-tug{20%,65%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}@keyframes button-press{from{transform:translateY(-4px)}to{transform:translateY(0)}}@keyframes paper-open{from{opacity:.65;scale:.95 1}to{opacity:1;scale:1 1}}@keyframes land{from{transform:translateY(-4px);opacity:.65}to{transform:translateY(0);opacity:1}}@keyframes corner-away{from{transform:translateY(-5px);opacity:.5}to{transform:translateY(0);opacity:1}}@keyframes dispatch{0%,18%{transform:translateY(0);opacity:1}100%{transform:translateY(-160px);opacity:0}}@keyframes chapter-arrival{0%,55%{opacity:0}100%{opacity:1}}@keyframes refused-edge{50%{border-color:#b38966}}
+@media(prefers-reduced-motion:reduce){.dispatch-box{display:none}.chapter-arrival{opacity:1}}
+
+/* 04: immediate, unmistakable clear feedback; never intercept game gestures. */
+.clear-toast{position:fixed;z-index:14;top:clamp(110px,30svh,265px);left:50%;width:max-content;max-width:calc(100vw - 28px);display:flex;align-items:center;gap:12px;transform:translateX(-50%);background:#fcf9f2;border:2px solid #426f7a;border-radius:9px;padding:13px 18px;box-shadow:0 10px 34px #303a3b38;pointer-events:none;animation:clearNotice 2.2s ease-out forwards;}
+.clear-toast[hidden]{display:none!important}.clear-check{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:50%;background:#426f7a;color:#fff;font-size:29px;font-weight:800;line-height:1}
+.clear-toast-text{display:flex;flex-direction:column;gap:3px;text-align:left;min-width:0}.clear-toast-text strong{font-size:22px;font-weight:850;white-space:nowrap;color:#303a3b}.clear-toast-text small{font-size:12px;color:#426f7a;white-space:normal}
+@keyframes clearNotice{0%{opacity:0;translate:0 9px;scale:.92}12%,70%{opacity:1;translate:0 0;scale:1}100%{opacity:0;translate:0 -6px;scale:1}}
+.completion{border-top:3px solid #426f7a;padding-top:10px;}.completion-inner{gap:6px}.completion .complete-title{display:block;font-size:19px;line-height:1.35;color:#303a3b;text-align:center;font-weight:850}.completion p{font-size:12px;line-height:1.5;color:#5e7462}.completion button{font-size:16px;min-height:49px}.complete .game-inner{padding-bottom:150px}
+@media(max-width:350px){.clear-toast{gap:8px;padding:10px 12px}.clear-check{width:37px;height:37px;flex-basis:37px;font-size:25px}.clear-toast-text strong{font-size:19px}.completion .complete-title{font-size:17px}}
+@media(prefers-reduced-motion:reduce){.clear-toast{animation:none;top:75px;padding:7px 11px;gap:8px;box-shadow:0 3px 10px #303a3b20}.clear-check{width:30px;height:30px;flex-basis:30px;font-size:19px}.clear-toast-text strong{font-size:16px}.clear-toast-text small{font-size:10px}}
+/* 05: readable stage identity and physical tabs / slots. */
+.game-head{height:auto;min-height:62px;padding:7px 0 6px;align-items:center;gap:8px}
+.stage-heading{flex-direction:column;align-items:flex-start;gap:1px;justify-content:center}
+.stage-heading small{font-size:12px;line-height:1.25;font-weight:700;color:#426f7a}
+.stage-heading h2{font-size:clamp(18px,5.5vw,22px);line-height:1.28;letter-spacing:.005em;white-space:normal;overflow-wrap:anywhere}
+.game-head button{flex:0 0 auto;font-size:12px;min-height:44px}
+.parcel-context{max-width:440px;margin:6px auto 0;display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:7px 10px 8px;border-left:4px solid #426f7a;background:#e5eade;border-radius:3px 6px 6px 3px}
+.parcel-tag{font-size:11px;font-weight:800;letter-spacing:.02em;color:#355c65}
+.parcel-origin{font-size:12px;line-height:1.35;color:#45594e;font-weight:600}
+.parcel-context.continuation{border-left-color:#b35d47;background:#f1e7d9}
+.parcel-context.continuation .parcel-tag{color:#8e4938}
+.task-panel{max-width:440px;margin:3px auto 5px;padding:7px 10px 9px;border:1px solid #b4c4ac;border-radius:7px;background:#fcf9f1}
+.task-label{display:block;font-size:10px;font-weight:800;color:#56785f;letter-spacing:.08em;margin-bottom:2px}
+.task-panel .goal{min-height:0;text-align:left;display:block;padding:0;font-size:14px;line-height:1.5;color:#293b36;font-weight:750}
+.status{font-size:12px;color:#52675b;min-height:28px;line-height:1.5}
+.live-metrics{padding:3px 5px 2px}
+.board .piece{cursor:grab}
+.board .piece.gripped{cursor:grabbing}
+@media(max-width:359px){.stage-heading h2{font-size:18px}.parcel-context{margin-top:4px;padding:5px 8px}.parcel-origin{font-size:11px}.task-panel .goal{font-size:13px}.task-panel{padding:6px 8px 8px}}
+@media(max-height:600px){.game-head{min-height:55px;padding:4px 0}.task-panel{padding:5px 9px 6px}.parcel-context{padding-top:5px;padding-bottom:5px}.task-panel .goal{font-size:13px}.status{font-size:11px}}
+#timerNote{font-size:10px;color:#627761}.live-metrics>span:last-child{white-space:nowrap}.piece[aria-disabled="true"]{cursor:default}@media(max-width:359px){.live-metrics{font-size:9px}#timerNote{font-size:9px}}
+/* 08: one delivered parcel; the shared work UI and clear bar retain their sizes. */
+.title-art{width:min(100%,330px)}.title-copy strong{display:block;font-size:21px;line-height:1.5;color:var(--ink)}
+.parcel-arrival{animation:parcelArrival .35s ease-out both;transform-box:view-box;pointer-events:auto}
+.dispatch-box{animation:dispatch08 .95s ease-in forwards;transform-box:view-box;pointer-events:none}.dispatched-hidden{display:none}
+@keyframes parcelArrival{0%{transform:translateY(-14px)}65%{transform:translateY(2px)}100%{transform:translateY(0)}}
+@keyframes dispatch08{0%,25%{transform:translateX(0);opacity:1}95%{opacity:1}100%{transform:translate(480px,-30px);opacity:0}}
+@media(prefers-reduced-motion:reduce){.parcel-arrival{animation:none}.dispatch-box{display:none}}
+/* 09.5: first arrival of each distinct shipment, never replayed on continued work. */
+.delivered-from-back.delivery-envelope{animation:envelopeArrivesFromRear .76s ease-out both}
+@keyframes envelopeArrivesFromRear{0%{transform:translateY(-195px) scale(.82);opacity:0}18%{opacity:1}72%{transform:translateY(-13px) scale(.98)}90%{transform:translateY(3px) scale(1.005)}100%{transform:translateY(0) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.delivered-from-back.delivery-envelope{animation:none}}
+/* 09: focus on parcel, task and evolving condition; recording remains active. */
+#parcelContext,.live-metrics{display:none}.show-live-metrics .live-metrics{display:flex}
+/* 09.2: title is a delivery notification, NOT a duplicate of the stage-01 parcel. */
+.delivery-front{position:relative;width:min(100%,340px);margin:0 auto;border-radius:14px;padding:12px 12px 3px;background:linear-gradient(155deg,#e8ede3,#f4f1e7 73%);border:1px solid #b9c7b4;box-shadow:0 6px 18px #384d3920;overflow:hidden}
+.delivery-front svg{display:block;width:100%;height:auto}
+.delivery-front .doorbell{animation:doorLight 2.6s ease-in-out infinite}
+.delivery-front .delivery-ticket{transform-box:fill-box;transform-origin:center;animation:ticketArrival .65s .1s ease-out both}
+@keyframes doorLight{0%,50%,100%{opacity:.6}18%,32%{opacity:1}}
+@keyframes ticketArrival{0%{transform:translateY(-10px) rotate(-4deg);opacity:0}100%{transform:translateY(0) rotate(-4deg);opacity:1}}
+.title-inner{gap:14px}.title-copy strong{font-size:23px}.title-actions #startNew{font-size:17px;min-height:57px}
+/* Stage-01 parcel approaches FROM BEYOND the rear edge of the work area. */
+.delivered-from-back{transform-box:fill-box;transform-origin:center center;animation:boxArrivesFromRear .86s ease-out both}
+.arrival-board-caption{animation:arrivalCaption .3s .68s both}@keyframes arrivalCaption{from{opacity:0}to{opacity:1}}
+@keyframes boxArrivesFromRear{0%{transform:translateY(-250px) scale(.74);opacity:0}12%{transform:translateY(-218px) scale(.8);opacity:1}68%{transform:translateY(-22px) scale(.975);opacity:1}88%{transform:translateY(4px) scale(1.01)}100%{transform:translateY(0) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.delivery-front .doorbell,.delivery-front .delivery-ticket,.delivered-from-back,.arrival-board-caption{animation:none!important}}
+@media(max-height:600px){.delivery-front{width:min(100%,242px);padding:7px 7px 0}.title-inner{gap:8px}.title-copy strong{font-size:20px}.title-actions #startNew{min-height:48px}}
+.complete-stats{font-size:11px;font-variant-numeric:tabular-nums;line-height:1.5;margin:0;color:var(--blue)}.chapter{white-space:pre-line;line-height:1.8}
+.task-panel{margin-top:4px}.task-panel .goal{margin-bottom:0}.completion-inner #completeLabel{font-size:11px}
+@media(max-height:600px){.title-parcel{width:220px}.complete-stats{font-size:10px}.completion-inner #completeLabel{display:none}}
+
+
+/* Ending ambience: unobtrusive opt-out control; no background music loop. */
+.ending-kicker-row{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%}
+.ending-kicker-row .ending-kicker{font-size:10px;letter-spacing:.14em;white-space:nowrap}
+.ending-inner .ending-sound-toggle{flex:0 0 auto;min-width:57px;min-height:36px;padding:5px 8px;border:1px solid #bac8b9;border-radius:18px;background:#eaf0e6cc;color:#456b65;font-size:12px;font-weight:750}
+.ending-inner .ending-sound-toggle[aria-pressed="false"]{color:#728078;background:#f3f2e8}
+@media(max-width:359px){.ending-kicker-row .ending-kicker{font-size:9px;letter-spacing:.08em}.ending-inner .ending-sound-toggle{font-size:11px;min-width:49px;padding:5px 6px}}
+/* Eight-delivery recap: presentation-only; never touches the puzzle state or scores. */
+.ending-inner{max-width:470px;gap:12px}
+.ending-recap{width:100%;max-width:432px;display:grid;gap:12px;justify-items:center}
+.ending-recap h1{font-size:clamp(22px,6.3vw,29px);letter-spacing:.025em}
+.recap-topline{display:flex;justify-content:space-between;align-items:center;width:100%;gap:12px;font-size:11px;font-weight:750;color:#526e67;letter-spacing:.05em}
+.recap-topline span:last-child{font-variant-numeric:tabular-nums;font-size:11px;color:#7a8d79}
+.recap-stage{width:100%;border:1px solid #aebfac;border-radius:14px;overflow:hidden;background:linear-gradient(160deg,#f8f5ea,#e5eadc);box-shadow:0 9px 27px #344b3617;position:relative}
+.recap-stage svg{width:100%;height:auto;display:block;aspect-ratio:360/290;max-height:min(43svh,340px)}
+.recap-scene{display:none;pointer-events:none}.recap-scene.is-active{display:inline}
+.recap-scene text{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif}
+.recap-caption{min-height:2.7em;display:flex;align-items:center;justify-content:center;font-size:clamp(17px,4.9vw,22px);font-weight:820;color:#344e4a;text-align:center;line-height:1.45;padding:0 8px}
+.recap-subtitle{font-size:12px;color:#667d6b;line-height:1.7;text-align:center;min-height:3.4em;padding:0 10px}
+.recap-progress{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:100%;max-width:335px;padding:0 4px}
+.recap-progress span{height:4px;background:#cdd6c7;border-radius:5px;overflow:hidden;position:relative}
+.recap-progress span::before{content:"";position:absolute;inset:0;background:#477a79;transform:scaleX(0);transform-origin:left}
+.recap-progress span.is-done::before{transform:scaleX(1)}
+.recap-progress span.is-playing::before{transform:scaleX(var(--fill,0))}
+.recap-skip{background:transparent;border-color:#b2bfb0;color:#4c6763;font-size:13px;min-height:44px;padding:8px 18px}
+.ending-final{width:100%;display:grid;justify-items:center;gap:13px}
+.ending-final h1{max-width:390px}
+.ending-final .ending-prelude{font-size:13px}
+.ending-replay{width:100%;min-height:44px;font-weight:600}
+.ending-final .ending-actions{width:min(100%,340px)}
+.ending-final .ending-actions button{width:100%}
+@keyframes recapOpenLid{0%,13%{transform:translateY(0) scaleY(1)}36%,100%{transform:translateY(-31px) scaleY(.62)}}
+@keyframes recapRiseButton{0%,24%{transform:translateY(16px);opacity:0}58%,100%{transform:translateY(-50px);opacity:1}}
+@keyframes recapTapePeel{0%,17%{transform:translateX(0);opacity:1}45%,100%{transform:translateX(97px);opacity:0}}
+@keyframes recapLiftFlap{0%,25%{transform:translateY(0)}58%,100%{transform:translateY(-55px)}}
+@keyframes recapSheetSlide{0%,30%{transform:translateY(-53px) scale(.65);opacity:0}64%,100%{transform:translateY(0) scale(1);opacity:1}}
+@keyframes recapGlassLand{0%,13%{transform:translateY(-92px);opacity:0}44%,100%{transform:translateY(0);opacity:1}}
+@keyframes recapLightSweep{0%,36%{transform:translateX(-120px);opacity:0}48%{opacity:.95}79%,100%{transform:translateX(170px);opacity:0}}
+@keyframes recapWrapLeft{0%,52%{transform:translateX(0)}85%,100%{transform:translateX(49px)}}
+@keyframes recapWrapRight{0%,61%{transform:translateX(0)}90%,100%{transform:translateX(-49px)}}
+@keyframes recapParcelLid{0%,14%{transform:translateY(0) scaleY(1)}44%,100%{transform:translateY(-36px) scaleY(.48)}}
+@keyframes recapParcelRise{0%,33%{transform:translateY(10px) scale(.84);opacity:0}73%,100%{transform:translateY(-23px) scale(1);opacity:1}}
+@keyframes recapHintAppear{0%,64%{opacity:0}85%,100%{opacity:1}}
+.recap-scene.is-active .recap-box-lid{animation:recapOpenLid 5.25s ease-in-out both;transform-box:fill-box;transform-origin:center top}
+.recap-scene.is-active .recap-button-rise{animation:recapRiseButton 5.25s ease-out both}
+.recap-scene.is-active .recap-seal-peel{animation:recapTapePeel 5.25s ease-out both}
+.recap-scene.is-active .recap-envelope-flap{animation:recapLiftFlap 5.25s ease-out both}
+.recap-scene.is-active .recap-sheet-move{animation:recapSheetSlide 5.25s ease-out both;transform-box:fill-box;transform-origin:center}
+.recap-scene.is-active .recap-glass-land{animation:recapGlassLand 5.25s ease-out both}
+.recap-scene.is-active .recap-light-sweep{animation:recapLightSweep 5.25s ease-in-out both}
+.recap-scene.is-active .recap-wrap-left{animation:recapWrapLeft 5.25s ease-in-out both}
+.recap-scene.is-active .recap-wrap-right{animation:recapWrapRight 5.25s ease-in-out both}
+.recap-scene.is-active .recap-parcel-lid{animation:recapParcelLid 5.25s ease-in-out both;transform-box:fill-box;transform-origin:center top}
+.recap-scene.is-active .recap-parcel-rise{animation:recapParcelRise 5.25s ease-out both;transform-box:fill-box;transform-origin:center}
+.recap-scene.is-active .recap-hint{animation:recapHintAppear 5.25s ease-in both}
+.ending-screen.is-hidden-page .recap-scene *{animation-play-state:paused!important}
+@media(max-height:620px){.ending-recap{gap:6px}.recap-stage svg{max-height:34svh}.recap-caption{min-height:2em;font-size:17px}.recap-subtitle{min-height:2.3em;font-size:11px}.ending-inner{gap:7px}.ending-final{gap:7px}}
+@media(prefers-reduced-motion:reduce){.recap-scene *{animation:none!important}}
+
+
+/* 22 review: make the openings physically readable, not pre-opened. */
+@keyframes v2Unseal{0%,16%{opacity:1;transform:translateY(0)}30%,100%{opacity:0;transform:translateY(-13px)}}
+@keyframes v2HingedCover{0%,23%{transform:scaleY(1);opacity:1}53%{transform:scaleY(.045);opacity:1}59%,100%{transform:scaleY(.045);opacity:0}}
+@keyframes v2FoldedLid{0%,33%{opacity:0;transform:translateY(33px) scaleY(.12)}58%,100%{opacity:1;transform:translateY(0) scaleY(1)}}
+@keyframes v2Reveal{0%,48%{opacity:0;transform:translateY(20px)}79%,100%{opacity:1;transform:translateY(-43px)}}
+@keyframes v2InnerReveal{0%,51%{opacity:0;transform:translateY(25px) scale(.90)}81%,100%{opacity:1;transform:translateY(-63px) scale(1)}}
+@keyframes v2GlassArrival{0%,12%{opacity:0;transform:translateY(-50px)}30%,100%{opacity:1;transform:translateY(0)}}
+@keyframes v2WrapLeft{0%,46%{opacity:0;transform:translateX(-30px)}55%{opacity:1;transform:translateX(-30px)}78%{opacity:1;transform:translateX(48px)}96%,100%{opacity:0;transform:translateX(48px)}}
+@keyframes v2WrapRight{0%,57%{opacity:0;transform:translateX(30px)}65%{opacity:1;transform:translateX(30px)}85%{opacity:1;transform:translateX(-48px)}96%,100%{opacity:0;transform:translateX(-48px)}}
+@keyframes v2GlassUnderWrap{0%,60%{opacity:1}81%,100%{opacity:0}}
+@keyframes v2SheetToBundle{0%,65%{opacity:1;transform:scale(1)}89%,100%{opacity:0;transform:scale(.63,.82)}}
+@keyframes v2WrappedObject{0%,75%{opacity:0;transform:scale(.90)}87%,100%{opacity:1;transform:scale(1)}}
+@keyframes v2Light{0%,26%{transform:translateX(-115px);opacity:0}35%{opacity:1}61%,100%{transform:translateX(178px);opacity:0}}
+.recap-scene .v2-closed-cover{transform-origin:50% 0;transform-box:fill-box}
+.recap-scene .v2-open-flap{transform-origin:50% 100%;transform-box:fill-box}
+.recap-scene.is-active .v2-closed-cover{animation:v2HingedCover 5.25s ease-in-out both}
+.recap-scene.is-active .v2-open-flap{animation:v2FoldedLid 5.25s ease-out both}
+.recap-scene.is-active .v2-tape{animation:v2Unseal 5.25s ease both}
+.recap-scene.is-active .v2-contents-rise{animation:v2Reveal 5.25s ease-out both}
+.recap-scene.is-active .v2-inner-rise{animation:v2InnerReveal 5.25s ease-out both;transform-origin:center;transform-box:fill-box}
+.recap-scene.is-active .v2-glass{animation:v2GlassArrival 5.25s ease-out both}
+.recap-scene.is-active .v2-sheet-base{animation:v2SheetToBundle 5.25s ease-in-out both;transform-origin:center;transform-box:fill-box}
+.recap-scene.is-active .v2-light{animation:v2Light 5.25s ease-in-out both}
+.recap-scene.is-active .v2-wrap-left{animation:v2WrapLeft 5.25s ease-in-out both}
+.recap-scene.is-active .v2-wrap-right{animation:v2WrapRight 5.25s ease-in-out both}
+.recap-scene.is-active .v2-glass-under{animation:v2GlassUnderWrap 5.25s ease both}
+.recap-scene.is-active .v2-wrapped-bundle{animation:v2WrappedObject 5.25s ease-out both;transform-origin:center;transform-box:fill-box}
+@media(prefers-reduced-motion:reduce){.recap-scene .v2-closed-cover,.recap-scene .v2-tape{opacity:0!important}.recap-scene .v2-open-flap,.recap-scene .v2-wrapped-bundle{opacity:1!important}}
+
+
+/* 03: One SINGLE sheet. Nine physically adjoining paper panels share
+   the same pattern and fold on their original creases; no replacement packet. */
+@keyframes v3GlassIn{0%,9%{opacity:0;transform:translateY(-24px)}28%,100%{opacity:1;transform:translateY(0)}}
+@keyframes v3InspectLight{0%,23%{opacity:0;transform:translateX(-92px)}31%{opacity:.95}44%,100%{opacity:0;transform:translateX(110px)}}
+@keyframes v3FoldLeft{0%,45%{transform:scaleX(1)}65%,100%{transform:scaleX(-1)}}
+@keyframes v3FoldRight{0%,53%{transform:scaleX(1)}72%,100%{transform:scaleX(-1)}}
+@keyframes v3FoldTop{0%,70%{transform:scaleY(1)}86%,100%{transform:scaleY(-1)}}
+@keyframes v3FoldBottom{0%,77%{transform:scaleY(1)}96%,100%{transform:scaleY(-1)}}
+@keyframes v3FoldMark{0%,90%{opacity:0}98%,100%{opacity:1}}
+.recap-scene .v3-left,.recap-scene .v3-right,
+.recap-scene .v3-top,.recap-scene .v3-bottom{
+ transform-box:view-box;
+}
+.recap-scene .v3-left{transform-origin:138px 154px}
+.recap-scene .v3-right{transform-origin:222px 154px}
+.recap-scene .v3-top{transform-origin:180px 120px}
+.recap-scene .v3-bottom{transform-origin:180px 188px}
+.recap-scene.is-active .v3-left{animation:v3FoldLeft 5.25s ease-in-out both}
+.recap-scene.is-active .v3-right{animation:v3FoldRight 5.25s ease-in-out both}
+.recap-scene.is-active .v3-top{animation:v3FoldTop 5.25s ease-in-out both}
+.recap-scene.is-active .v3-bottom{animation:v3FoldBottom 5.25s ease-in-out both}
+.recap-scene.is-active .v3-glass{animation:v3GlassIn 5.25s ease-out both}
+.recap-scene.is-active .v3-light{animation:v3InspectLight 5.25s ease-in-out both}
+.recap-scene.is-active .v3-mark{animation:v3FoldMark 5.25s ease both}
+@media(prefers-reduced-motion:reduce){
+ .recap-scene .v3-left,.recap-scene .v3-right{transform:scaleX(-1)}
+ .recap-scene .v3-top,.recap-scene .v3-bottom{transform:scaleY(-1)}
+ .recap-scene .v3-mark{opacity:1}
+}
+
+/* Free 8-stage finale: a separate beat after receiving, before the score report. */
+.ending-screen{background:radial-gradient(ellipse at 50% 18%,#eff1e5 0%,#e1e8d9 63%,#d4decf 100%)}
+.ending-inner{max-width:430px;min-height:calc(var(--app-height) - 36px);margin:0 auto;display:flex;flex-direction:column;justify-content:center;text-align:center;align-items:center;gap:14px;padding:12px 0 18px}
+.ending-kicker{font-size:11px;letter-spacing:.22em;font-weight:800;color:#537878}
+.ending-inner h1{font-size:clamp(24px,7vw,34px);line-height:1.45;letter-spacing:.02em;font-weight:850}
+.ending-prelude{font-size:14px;line-height:1.85;color:#53675d}
+.ending-parcel-art{width:min(100%,300px);height:auto;filter:drop-shadow(0 12px 12px #374a3029);animation:unopenedParcel .9s cubic-bezier(.2,.8,.23,1) both}
+.ending-question{font-size:clamp(19px,5.8vw,25px);line-height:1.6;font-weight:850;color:#394f50;letter-spacing:.03em}
+.ending-pause{font-size:12px;letter-spacing:.18em;font-weight:700;color:#9b614e}
+.ending-actions{display:grid;gap:10px;width:min(100%,320px);margin-top:3px}
+.ending-actions .primary{font-size:15px;min-height:51px}
+.ending-note{font-size:11px;line-height:1.8;color:#69786a}
+@keyframes unopenedParcel{from{opacity:0;transform:translateY(-20px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-height:620px){.ending-inner{gap:8px;padding:4px 0}.ending-parcel-art{width:min(60vw,190px)}.ending-inner h1{font-size:24px}.ending-prelude{font-size:12px}.ending-question{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.ending-parcel-art{animation:none}}
+.next-parcel--mystery{padding-top:27px;border-top:1px solid var(--line);text-align:center}
+.next-parcel--mystery strong{display:block;font-size:18px;line-height:1.65;margin-top:7px}
+.next-parcel--mystery svg{display:block;margin:12px auto}
+
+
+/* 04: never let the extracted parcel overlap the flap or stage label.
+   The outer box moves to the left only after opening; the inner parcel
+   rises out of the original cavity and settles on the clear desk at right. */
+@keyframes v4OuterSettle{0%,67%{transform:translate(0px,0px) scale(1)}100%{transform:translate(-55px,18px) scale(.72)}}
+@keyframes v4InnerExtract{0%,45%{opacity:0;transform:translate(0px,22px) scale(.9)}62%{opacity:1;transform:translate(0px,-23px) scale(1)}100%{opacity:1;transform:translate(106px,18px) scale(1)}}
+@keyframes v4Shadow{0%,78%{opacity:0}100%{opacity:1}}
+.recap-scene .v4-outer-part{transform-box:view-box;transform-origin:180px 160px}
+.recap-scene .v4-inner-extract{transform-box:view-box;transform-origin:180px 160px}
+.recap-scene.is-active .v4-outer-part{animation:v4OuterSettle 5.25s ease-in-out both}
+.recap-scene.is-active .v4-inner-extract{animation:v4InnerExtract 5.25s ease-in-out both}
+.recap-scene.is-active .v4-parcel-shadow{animation:v4Shadow 5.25s ease both}
+@media(prefers-reduced-motion:reduce){
+ .recap-scene .v4-outer-part{transform:translate(-55px,18px) scale(.72)}
+ .recap-scene .v4-inner-extract{opacity:1;transform:translate(106px,18px)}
+ .recap-scene .v4-parcel-shadow{opacity:1}
+}
+</style>
+<style>
+.complete .game-inner{padding-bottom:12px}
+/* First-time reader usability: the why is legible before interaction, and response lives inside the play field. */
+.receiving-premise{width:min(100%,358px);margin:-5px auto 0;padding:11px 14px;background:#edf2e9;border-left:4px solid #426f7a;border-radius:5px;color:#3d5852;font-size:13px;line-height:1.65;text-align:left}
+.receiving-premise strong{display:block;color:#295863;font-size:14px;margin-bottom:3px}
+.task-panel{background:#fffdf5;border-color:#8ba99d;border-left:4px solid #426f7a;padding:9px 11px}
+.task-label{color:#426f7a;font-size:11px;letter-spacing:.03em}
+.task-panel .goal{font-size:15px;font-weight:800;line-height:1.46}
+.stage-why{margin-top:5px;padding-top:5px;border-top:1px solid #d6e0d0;color:#365b55;font-size:12px;line-height:1.5;font-weight:600}
+.work{overflow:hidden}
+.inboard-status{max-width:none;min-height:39px;padding:8px 12px;background:#e8efe5;border-top:1px solid #bccfbe;font-size:12px;line-height:1.55;color:#36534f;justify-content:flex-start;text-align:left}
+.inboard-status::before{content:'いま';display:inline-flex;flex:0 0 auto;align-items:center;margin-right:8px;padding:3px 6px;border-radius:4px;background:#d0e0d1;font-size:10px;font-weight:800;color:#366367}
+.inboard-status.caution{background:#f7e6d9;color:#804833}
+/* On completion, replace an easily missed transient toast with a persistent action in the same visual location. */
+.clear-toast{position:fixed;top:47%;left:50%;transform:translate(-50%,-50%);width:min(360px,calc(100vw - 26px));max-width:none;display:flex;flex-direction:column;align-items:center;gap:9px;padding:19px 19px 17px;border:3px solid #426f7a;border-radius:14px;background:#fffdf5;box-shadow:0 0 0 100vmax #1d302c70,0 12px 35px #253b374a;z-index:20;animation:none;pointer-events:auto;text-align:center}
+.clear-toast-text{align-items:center;text-align:center;gap:3px}
+.clear-toast-text strong{color:#274f56;font-size:24px;white-space:normal}
+.clear-toast-text small{color:#527268;font-size:13px}
+.clear-check{width:48px;height:48px;flex-basis:48px;font-size:31px}
+.center-complete-story{font-size:13px;line-height:1.6;color:#3d514a}
+#centerNext{width:100%;min-height:52px;font-size:16px;margin-top:4px}
+/* Retain bottom completion for users of older narrow layouts and accessible focus traversal. */
+@media(max-width:359px){.task-panel .goal{font-size:14px}.stage-why{font-size:12px}.clear-toast{gap:6px;padding:13px}.clear-toast-text strong{font-size:22px}.center-complete-story{font-size:12px}}
+@media(max-height:600px){.clear-toast{top:48%;padding:11px 14px;gap:5px}.clear-check{width:31px;height:31px;flex-basis:31px;font-size:19px}.clear-toast-text strong{font-size:20px}.center-complete-story{font-size:12px;line-height:1.4}#centerNext{min-height:44px}.receiving-premise{padding:7px 10px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){.clear-toast{animation:none;top:47%}}
+</style>
+
+<style>
+/* UX10: Upper story card — point first, gameplay second, no modal interruption.
+   First-read emphasis happens IN PLACE. It never covers the parcel. */
+.task-panel{
+  position:relative; isolation:isolate; overflow:hidden;
+  background:#fafaf2;
+  border:1px solid #9ebbb1; border-left:6px solid #4b7d74;
+  border-radius:11px; padding:11px 14px 10px;
+  margin:6px auto 9px;
+  box-shadow:0 2px 5px rgba(42,68,55,.09);
+}
+.task-label{
+  display:flex;align-items:center;gap:7px;
+  color:#3b736a;font-size:11px;font-weight:900;
+  line-height:1.4;letter-spacing:.07em;margin-bottom:4px;
+}
+.task-label::before{content:"";display:inline-block;width:7px;height:7px;
+  flex:0 0 7px;border-radius:50%;background:#649785;
+  box-shadow:0 0 0 3px #64978522}
+.stage-why{
+  margin:0;padding:0;border:0;color:#243c35;
+  font-size:clamp(18px,4.9vw,21px);font-weight:900;
+  line-height:1.44;letter-spacing:.012em;overflow-wrap:anywhere;
+}
+.task-action{
+  margin-top:8px;padding-top:8px;
+  border-top:1px solid #cad7c9;
+  display:flex;align-items:baseline;gap:8px;
+}
+.action-tag{flex:0 0 auto;font-size:11px;color:#49695e;font-weight:900;white-space:nowrap}
+.task-panel .goal{flex:1;min-height:0;padding:0;font-size:13px;
+  font-weight:650;line-height:1.5;color:#4a5d51;text-align:left;display:block}
+/* A single gentle introduction to the stationary note. The end state is the base card. */
+.task-panel.story-spotlight{animation:storySpotlightUX10 1.5s ease-out both}
+@keyframes storySpotlightUX10{
+  0%{background:#e1f1e7;box-shadow:0 0 0 3px #71a99b35,0 3px 16px #366c5b26;border-color:#6f9c8a}
+  24%{background:#ecf6ed;box-shadow:0 0 0 2px #71a99b21,0 3px 13px #366c5b19;border-color:#85ae9c}
+  100%{background:#fafaf2;box-shadow:0 2px 5px rgba(42,68,55,.09);border-color:#9ebbb1}
+}
+.inboard-status{font-size:14px;line-height:1.5;font-weight:650;
+ background:#e2ece2;color:#294841;min-height:44px}
+.inboard-status::before{font-size:11px;font-weight:900}
+@media(max-width:359px){
+ .task-panel{padding:9px 10px;margin:3px auto 6px}
+ .stage-why{font-size:17px;line-height:1.42}
+ .task-action{margin-top:6px;padding-top:6px}
+ .task-panel .goal{font-size:12px}
+ .inboard-status{font-size:13px}
+}
+@media(max-height:650px){
+ .task-panel{padding:7px 10px;margin:2px auto 3px}
+ .stage-why{font-size:16px;line-height:1.36}
+ .task-label{font-size:10px;margin-bottom:2px}
+ .task-action{margin-top:5px;padding-top:4px}
+ .inboard-status{font-size:12px;min-height:30px;padding:4px 7px}
+}
+@media(prefers-reduced-motion:reduce){
+ .task-panel.story-spotlight{animation:none}
+}
+</style>
+
+
+
+<style id="sfx11-style">
+.game-tools{align-items:center;gap:4px}
+.game-tools .sound-quick{min-width:52px;padding:7px 8px;margin-left:0;font-size:12px;border:1px solid #8aa699;background:#e8f0e5;color:#365b57;font-weight:750;white-space:nowrap}
+.game-tools .sound-quick[aria-pressed="false"]{color:#65706b;background:#f4f2ea;border-color:#cccbbd}
+@media(max-width:359px){.game-tools{gap:3px}.game-tools button{min-width:60px;padding:6px 5px;font-size:11px}.game-tools .sound-quick{min-width:45px;padding:6px 4px;font-size:11px}}
+</style>
+</head>
+<body>
+<p id="storageNote" hidden>この環境では進行を保存できません。画面を閉じるまで、続けて遊べます。</p>
+<main>
+<section id="titleScreen" class="screen" aria-label="タイトル">
+ <div class="title-inner">
+  <header class="title-heading"><p class="eyebrow">RECEIVING DESK / FIRST EIGHT / FOUR PARCELS</p><h1>梱包中。<span style="color:var(--red)">2</span></h1><p class="subtitle">── 受け取りました。──</p></header>
+  <div class="delivery-front" role="img" aria-label="玄関のチャイムと配達のお知らせ。まだ荷物そのものは見えていない。">
+   <svg viewBox="0 0 340 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="170" cy="216" rx="143" ry="7" fill="#677663" opacity=".12"/>
+    <path d="M65 29H235V211H65Z" fill="#d3bd92" stroke="#9c8258" stroke-width="2"/>
+    <path d="M80 38H220V210H80Z" fill="#ede0c2" stroke="#a98c63" stroke-width="1.5"/>
+    <path d="M94 49H206V200H94Z" fill="#f6eace" stroke="#ccb68a" stroke-width="2"/>
+    <path d="M99 53H201V198H99Z" fill="none" stroke="#d1bd95" stroke-width="1" stroke-dasharray="4 5"/>
+    <circle cx="190" cy="131" r="7" fill="#977858" stroke="#745d44" stroke-width="1.5"/>
+    <circle cx="190" cy="131" r="2.5" fill="#f6ecd9"/>
+    <rect x="246" y="78" width="41" height="57" rx="6" fill="#f7f5eb" stroke="#95a595" stroke-width="2"/>
+    <circle class="doorbell" cx="266.5" cy="99" r="9" fill="#e3d8a0" stroke="#a48b60" stroke-width="1.5"/>
+    <path d="M260 117H273" stroke="#a6b8a7" stroke-width="2" stroke-linecap="round"/>
+    <path d="M292 85q10 10 0 20M301 78q17 17 0 33" fill="none" stroke="#658b83" stroke-width="2.5" stroke-linecap="round"/>
+    <g class="delivery-ticket" transform="translate(0 0) rotate(-4 145 159)">
+     <rect x="93" y="113" width="131" height="89" rx="5" fill="#344940" opacity=".13" transform="translate(3 4)"/>
+     <rect x="93" y="113" width="131" height="89" rx="5" fill="#fffaf0" stroke="#b0b9ab" stroke-width="2"/>
+     <path d="M103 129H215" stroke="#bdd0c3" stroke-width="1.5"/>
+     <text x="158.5" y="125" text-anchor="middle" font-size="9" fill="#68796c" letter-spacing="1.5">お届けのお知らせ</text>
+     <text x="158.5" y="152" text-anchor="middle" font-size="16" font-weight="700" fill="#3c6669">お荷物が</text>
+     <text x="158.5" y="173" text-anchor="middle" font-size="16" font-weight="700" fill="#3c6669">届きました。</text>
+     <text x="158.5" y="190" text-anchor="middle" font-size="10" fill="#748276">中身は開けてからのお楽しみ</text>
+    </g>
+    <path d="M44 211H309" stroke="#b7bba9" stroke-width="2"/>
+    <text x="34" y="56" font-size="15" fill="#5b7d76" font-weight="700">♪</text>
+   </svg>
+  </div>
+  <p class="title-copy"><strong>ピンポーン。</strong>何かが届いたようです。</p>
+  <p class="receiving-premise"><strong>前作は、梱包する側。今作は、受け取る側。</strong>届いた荷物を開け、確かめる。次の人へ送るときは、また包む。</p>
+  <div class="title-actions"><button id="resume" type="button" class="primary" hidden>続きへ</button><button id="startNew" type="button" class="primary">荷物を受け取る →</button><button id="lastReport" type="button" class="secondary" hidden>前回の作業完了報告書</button></div>
+  <footer class="title-foot"><div class="title-tools"><button id="titleHelp" type="button" class="quiet">操作と記録について</button></div><p class="fine">先行8便・無料版。効果音はゲーム中にON/OFFできます。再読込した便は、最初から再開します。</p></footer>
+ </div>
+</section>
+<section id="gameScreen" hidden aria-label="作業台">
+ <div class="game-inner">
+  <header class="game-head"><button id="backTitle" type="button" aria-label="タイトルに戻る">‹ 戻る</button><div class="stage-heading"><small id="stageNo">01 / 08</small><h2 id="stageTitle" tabindex="-1">届いた「はじめる」</h2></div><button id="help" type="button" aria-label="操作の説明">操作</button></header>
+  <div class="parcel-context" id="parcelContext"><span id="parcelTag" class="parcel-tag">荷物A ｜ 新しい荷物</span><span id="parcelOrigin" class="parcel-origin">箱を受け取ったところ</span></div>
+  <div class="live-metrics"><span id="counts">タップ 0　ドラッグ 0</span><span><span id="timerNote">操作すると計測開始</span>　<time id="clock">00:00.0</time></span></div>
+  <div id="taskPanel" class="task-panel" aria-label="この便の物語と作業"><span class="task-label">今回のポイント</span><p id="stageWhy" class="stage-why">前作は送る側。今度は、受け取る側。</p><p class="task-action"><span class="action-tag">やること</span><span id="goal" class="goal">届いた箱を開け、ボタンを受け取る。</span></p></div>
+  <div id="work" class="work"><svg id="board" class="board" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 540" role="group" aria-label="受け取り作業の仕掛け"></svg><p id="status" class="status inboard-status" role="status" aria-live="polite" aria-atomic="true"></p></div>
+  <div id="clearToast" class="clear-toast" hidden role="dialog" aria-modal="false" aria-label="作業完了・次の便へ"><span class="clear-check" aria-hidden="true">✓</span><span class="clear-toast-text"><strong>作業完了！</strong><small id="clearToastStage">第01便 受け取り完了</small></span><p id="centerCompleteStory" class="center-complete-story"></p><button id="centerNext" type="button" class="primary">次の便へ →</button></div>
+  <nav class="game-tools" aria-label="作業の補助"><button id="reset" type="button">やり直す</button><button id="hint" type="button">ヒント</button><button id="chapters" type="button">便を選ぶ</button><button id="gameSound" type="button" class="sound-quick" aria-pressed="true" aria-label="効果音をオフにする">♪ ON</button></nav><div class="game-foot"></div>
+ </div>
+ <aside id="completion" class="completion" hidden aria-label="作業完了" aria-live="polite"><div class="completion-inner"><strong id="completeTitle" class="complete-title">✓ 第01便 作業完了</strong><p id="completeStats" class="complete-stats"></p><p id="completeLabel">届いたボタンが、もう一度動いた。</p><button id="next" type="button" class="primary">次の便へ →</button></div></aside>
+</section>
+<section id="endingScreen" class="screen ending-screen" hidden aria-label="先行8便のエンディング">
+ <div class="ending-inner">
+  <div class="ending-kicker-row"><p class="ending-kicker">RECEIVING DESK / 08 DELIVERIES</p>
+  <button id="endingSound" type="button" class="ending-sound-toggle" aria-pressed="true" aria-label="効果音をオフにする">♪ ON</button></div>
+  <div id="endingRecap" class="ending-recap">
+   <h1 id="endingRecapTitle" tabindex="-1">受け取ってきた、ものたち。</h1>
+   <div class="recap-topline"><span id="recapLabel">01 / 08　はじまりの箱</span><span id="recapCount">01 / 04</span></div>
+   <div class="recap-stage">
+    <svg id="recapArt" viewBox="0 0 360 290" role="img" aria-label="これまで開封してきた荷物を振り返る回想映像。音は切り替えられます。" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+      <pattern id="recapBubbles" width="19" height="19" patternUnits="userSpaceOnUse"><circle cx="9.5" cy="9.5" r="6.8" fill="#eff9ec77" stroke="#8eb2a3" stroke-width=".8"/><circle cx="7.4" cy="7.6" r="2.1" fill="#fff9"/></pattern>
+      <linearGradient id="recapPaper" x1="0" x2="1"><stop stop-color="#e8cda2"/><stop offset="1" stop-color="#d2a46c"/></linearGradient>
+      <clipPath id="recapGlassClip"><rect x="122" y="112" width="116" height="68" rx="11"/></clipPath>
+     </defs>
+     <rect width="360" height="290" fill="#f5f2e9"/>
+     <rect x="16" y="17" width="328" height="255" rx="8" fill="none" stroke="#c7ccba" stroke-dasharray="4 7" stroke-width="1.4"/>
+     <path d="M31 239H329" stroke="#d3d3bf" stroke-width="1.5"/>
+     <!-- Scene 1: a SEALED box visibly opens before the button rises -->
+     <g class="recap-scene is-active" data-recap-scene="0">
+      <text x="31" y="42" font-size="12" font-weight="700" fill="#648078">荷物 A / 受け取り</text>
+      <ellipse cx="180" cy="229" rx="101" ry="11" fill="#516c5830"/>
+      <!-- Rigid walls and dark inner cavity, behind the connected lid -->
+      <rect x="82" y="91" width="196" height="133" rx="4" fill="#a87b49" stroke="#88653e" stroke-width="2"/>
+      <rect x="92" y="99" width="176" height="116" fill="#89653f"/>
+      <path d="M99 110H261V181H99Z" fill="#94704a" stroke="#745739" stroke-width="1"/>
+      <g class="v2-contents-rise">
+       <rect x="120" y="152" width="120" height="60" rx="10" fill="#759681" stroke="#3d6761" stroke-width="2"/>
+       <rect x="125" y="152" width="110" height="47" rx="8" fill="#d8e8d5" stroke="#4e7971" stroke-width="1.5"/>
+       <text x="180" y="182" text-anchor="middle" font-size="19" font-weight="800" fill="#366b66">✓ はじめた</text>
+      </g>
+      <!-- Fixed front wall; button moves up out of the box -->
+      <path d="M82 185H278V224H82Z" fill="#c39765" stroke="#88653e" stroke-width="1.7"/>
+      <path d="M91 187H269" stroke="#e6be87" stroke-width="1.4"/>
+      <!-- When this scene starts, the front panel is unbroken and CLOSED. -->
+      <g class="v2-closed-cover">
+       <path d="M82 91H278V186H82Z" fill="#d2a672" stroke="#8d693e" stroke-width="2"/>
+       <path d="M91 101H269V176H91Z" fill="#dcb583" stroke="#b68b58" stroke-width="1"/>
+       <g class="v2-tape"><rect x="172" y="92" width="16" height="94" fill="#efd4a1"/><path d="M173 100H187M173 155H187" stroke="#d1b284" stroke-width="1.4"/></g>
+      </g>
+      <!-- Connected back lid appears above the rim after the cover turns -->
+      <g class="v2-open-flap"><path d="M82 92H278L264 48H96Z" fill="#e8c492" stroke="#947048" stroke-width="2"/><path d="M94 88H266" stroke="#f0d0a1" stroke-width="2"/></g>
+      <text x="180" y="255" text-anchor="middle" font-size="11" fill="#7b8d7c">封を開けると、最初に届いたのは──</text>
+     </g>
+     <!-- Scene 2: the envelope yields the bubble sheet that becomes protection -->
+     <g class="recap-scene" data-recap-scene="1">
+      <text x="31" y="42" font-size="12" font-weight="700" fill="#648078">荷物 B / 封筒とシート</text>
+      <ellipse cx="180" cy="240" rx="108" ry="11" fill="#516c5830"/>
+      <rect x="73" y="87" width="214" height="132" rx="3" fill="#cda36d" stroke="#916943" stroke-width="2"/>
+      <path d="M74 93L180 180L286 93" fill="#dfb681" stroke="#916943" stroke-width="1.6"/>
+      <g class="recap-envelope-flap"><path d="M74 87H286L180 186Z" fill="#e8c48e" stroke="#906e47" stroke-width="2"/></g>
+      <g class="recap-seal-peel"><rect x="158" y="169" width="45" height="18" rx="2" fill="#f5dca9" stroke="#ac8d5f"/><path d="M168 178h23" stroke="#8c6e46" stroke-width="2"/></g>
+      <g class="recap-sheet-move">
+       <rect x="88" y="123" width="184" height="117" rx="5" fill="#dcecdf" stroke="#679789" stroke-width="2"/>
+       <rect x="88" y="123" width="184" height="117" rx="5" fill="url(#recapBubbles)"/>
+       <path d="M180 123V240" stroke="#73a196" stroke-dasharray="5 5" stroke-width="2"/>
+       <text x="180" y="217" text-anchor="middle" font-size="17" font-weight="750" fill="#3e7371">気泡シート</text>
+      </g>
+      <text x="180" y="258" text-anchor="middle" font-size="11" fill="#7b8d7c">受け取った一枚が、次の品を守る。</text>
+     </g>
+     <!-- Scene 3: the ONE sheet from 03 folds physically around the inspected glass. -->
+     <g class="recap-scene" data-recap-scene="2">
+      <text x="31" y="42" font-size="12" font-weight="700" fill="#648078">荷物 C / 検品と再発送</text>
+      <ellipse cx="180" cy="241" rx="126" ry="8" fill="#516c5830"/>
+      <!-- Same continuous nine-panel sheet. The center stays on the desk. -->
+      <g class="v3-single-sheet" data-role="single-sheet-fold" data-source="delivery-03-bubble-sheet">
+       <g data-sheet-panel="1-1"><rect x="138" y="120" width="84" height="68" fill="#cbe3d7"/><rect x="138" y="120" width="84" height="68" fill="url(#recapBubbles)"/></g>
+       <g class="v3-glass">
+        <rect x="141" y="125" width="78" height="59" rx="9" fill="#e4f4f4" fill-opacity=".95" stroke="#467b88" stroke-width="2"/>
+        <text x="180" y="164" text-anchor="middle" font-size="29" font-weight="800" fill="#3d7e85">OK</text>
+        <path class="v3-light" d="M144 121h24l31 69h-24Z" fill="#fff" opacity=".85"/>
+       </g>
+       <g class="v3-left"><g data-sheet-panel="0-1"><rect x="54" y="120" width="84" height="68" fill="#cbe3d7"/><rect x="54" y="120" width="84" height="68" fill="url(#recapBubbles)"/><path d="M138 120V188" fill="none" stroke="#76a997" stroke-width="1.4" stroke-dasharray="4 4"/></g></g><g class="v3-right"><g data-sheet-panel="2-1"><rect x="222" y="120" width="84" height="68" fill="#cbe3d7"/><rect x="222" y="120" width="84" height="68" fill="url(#recapBubbles)"/><path d="M222 120V188" fill="none" stroke="#76a997" stroke-width="1.4" stroke-dasharray="4 4"/></g></g><g class="v3-left"><g class="v3-top"><g data-sheet-panel="0-0"><rect x="54" y="77" width="84" height="43" fill="#cbe3d7"/><rect x="54" y="77" width="84" height="43" fill="url(#recapBubbles)"/><path d="M138 77V120" fill="none" stroke="#76a997" stroke-width="1.4" stroke-dasharray="4 4"/><path d="M54 120H138" fill="none" stroke="#76a997" stroke-width="1.2" stroke-dasharray="4 4"/></g></g></g><g class="v3-top"><g data-sheet-panel="1-0"><rect x="138" y="77" width="84" height="43" fill="#cbe3d7"/><rect x="138" y="77" width="84" height="43" fill="url(#recapBubbles)"/><path d="M138 120H222" fill="none" stroke="#76a997" stroke-width="1.2" stroke-dasharray="4 4"/></g></g><g class="v3-right"><g class="v3-top"><g data-sheet-panel="2-0"><rect x="222" y="77" width="84" height="43" fill="#cbe3d7"/><rect x="222" y="77" width="84" height="43" fill="url(#recapBubbles)"/><path d="M222 77V120" fill="none" stroke="#76a997" stroke-width="1.4" stroke-dasharray="4 4"/><path d="M222 120H306" fill="none" stroke="#76a997" stroke-width="1.2" stroke-dasharray="4 4"/></g></g></g><g class="v3-left"><g class="v3-bottom"><g data-sheet-panel="0-2"><rect x="54" y="188" width="84" height="43" fill="#cbe3d7"/><rect x="54" y="188" width="84" height="43" fill="url(#recapBubbles)"/><path d="M138 188V231" fill="none" stroke="#76a997" stroke-width="1.4" stroke-dasharray="4 4"/><path d="M54 188H138" fill="none" stroke="#76a997" stroke-width="1.2" stroke-dasharray="4 4"/></g></g></g><g class="v3-bottom"><g data-sheet-panel="1-2"><rect x="138" y="188" width="84" height="43" fill="#cbe3d7"/><rect x="138" y="188" width="84" height="43" fill="url(#recapBubbles)"/><path d="M138 188H222" fill="none" stroke="#76a997" stroke-width="1.2" stroke-dasharray="4 4"/></g></g><g class="v3-right"><g class="v3-bottom"><g data-sheet-panel="2-2"><rect x="222" y="188" width="84" height="43" fill="#cbe3d7"/><rect x="222" y="188" width="84" height="43" fill="url(#recapBubbles)"/><path d="M222 188V231" fill="none" stroke="#76a997" stroke-width="1.4" stroke-dasharray="4 4"/><path d="M222 188H306" fill="none" stroke="#76a997" stroke-width="1.2" stroke-dasharray="4 4"/></g></g></g>
+       <g class="v3-mark" pointer-events="none">
+        <path d="M141 122H219V186H141Z" fill="none" stroke="#5f9581" stroke-width="1" stroke-dasharray="3 4"/>
+       </g>
+      </g>
+      <text x="180" y="260" text-anchor="middle" font-size="11" fill="#7b8d7c">敷いていた、その一枚の端を折り返して包んだ。</text>
+     </g>
+     <!-- Scene 4: the outside box is visibly SEALED before opening -->
+     <g class="recap-scene" data-recap-scene="3">
+      <text x="31" y="42" font-size="12" font-weight="700" fill="#648078">荷物 D / 箱の中に、箱</text>
+      <ellipse cx="180" cy="238" rx="109" ry="11" fill="#516c5830"/>
+      <!-- Outer carton settles to the left AFTER opening, creating a clear receiving spot. -->
+      <g class="v4-outer-part" data-role="outer-carton-back">
+       <rect x="66" y="83" width="228" height="147" rx="5" fill="#a47a4a" stroke="#80613e" stroke-width="2"/>
+       <rect x="78" y="95" width="204" height="119" rx="2" fill="#825e3b"/>
+      </g>
+      <!-- One and the same sealed parcel rises out, then lands BESIDE the outer box. -->
+      <ellipse class="v4-parcel-shadow" cx="286" cy="228" rx="54" ry="6" fill="#516c5830"/>
+      <g class="v4-inner-extract" data-role="extracted-inner-parcel">
+       <rect x="128" y="118" width="104" height="84" rx="4" fill="#d5a970" stroke="#80613e" stroke-width="2"/>
+       <!-- The inner object is still sealed, with an intact paper band. -->
+       <rect x="173" y="118" width="14" height="84" fill="#eed6a9"/>
+       <path d="M128 139H232" stroke="#b18a5b" stroke-width="1.5"/>
+       <path d="M173 119H187" stroke="#f7e3bc" stroke-width="2"/>
+       <text x="180" y="178" font-size="19" font-weight="750" fill="#805d3a" text-anchor="middle">荷物</text>
+      </g>
+      <g class="v4-outer-part" data-role="outer-carton-front">
+       <path d="M66 204H294V230H66Z" fill="#c09461" stroke="#80613e" stroke-width="1.7"/>
+       <!-- Closed front face initially covers the inner parcel and hides the cavity -->
+       <g class="v2-closed-cover">
+       <path d="M66 83H294V207H66Z" fill="#c49a67" stroke="#80613e" stroke-width="2"/>
+       <path d="M76 92H284V199H76Z" fill="#dbb27e" stroke="#b28c58" stroke-width="1"/>
+       <g class="v2-tape"><rect x="170" y="84" width="20" height="123" fill="#ead0a2"/><path d="M172 91H188M172 190H188" stroke="#cab084" stroke-width="1.3"/></g>
+      </g>
+       <g class="v2-open-flap"><path d="M66 83H294L279 40H81Z" fill="#e5c291" stroke="#947148" stroke-width="2"/><path d="M79 80H281" stroke="#f2d5aa" stroke-width="2"/></g>
+      </g>
+      <text class="recap-hint" x="180" y="260" text-anchor="middle" font-size="12" font-weight="750" fill="#47777a">でも、この封はまだ──。</text>
+     </g>
+    </svg>
+   </div>
+   <p id="recapCaption" class="recap-caption" aria-live="polite">最初に届いたのは、「✓ はじめた」。</p>
+   <p id="recapDetail" class="recap-subtitle">箱を開けて、前の持ち主からの小さなものを受け取った。</p>
+   <div id="recapProgress" class="recap-progress" aria-label="回想の進行" role="group"><span></span><span></span><span></span><span></span></div>
+   <button id="recapSkip" type="button" class="recap-skip">回想をスキップ →</button>
+  </div>
+  <div id="endingFinal" class="ending-final" hidden>
+   <h1 id="endingHeading" tabindex="-1">開けて、確かめて、<br>受け取ってきた。</h1>
+   <p class="ending-prelude">小さな箱も、封筒も、割れものも。<br>手にしたものは、次の荷物へつながった。</p>
+   <svg class="ending-parcel-art" viewBox="0 0 320 206" role="img" aria-label="まだ封をされている小さな『荷物』">
+    <ellipse cx="160" cy="174" rx="105" ry="17" fill="#566e5a" opacity=".14"/>
+    <g transform="translate(160 113) scale(2.25)">
+     <rect x="-37" y="-27" width="74" height="54" rx="3" fill="#d7ae76" stroke="#7d5d3d" stroke-width="1.5"/>
+     <rect x="-7" y="-27" width="14" height="54" fill="#eed5a2"/>
+     <path d="M-36 -26H36" stroke="#f5ddae" stroke-width="1.25" opacity=".65"/>
+     <text x="0" y="5" font-size="17" text-anchor="middle" fill="#7d5d3d" font-weight="650">荷物</text>
+    </g>
+   </svg>
+   <p class="ending-question">……で、この中身は？</p>
+   <p class="ending-pause">―― 封は、まだ開いていない。</p>
+   <div class="ending-actions"><button type="button" id="endingReport" class="primary">8便の記録を見る →</button><button type="button" id="endingReplay" class="secondary ending-replay">回想をもう一度見る</button></div>
+   <p class="ending-note">無料版はここまで。<br>この「荷物」の続きは、またいつか。<br>次回にご期待ください。</p>
+  </div>
+ </div>
+</section>
+<section id="reportScreen" class="screen" hidden aria-label="作業完了報告書">
+ <div class="report-inner">
+  <header class="report-head"><span class="report-stamp">先行8便 受領済</span><p class="eyebrow">RECEIVING DESK / WORK REPORT</p><h1 id="reportHeading" tabindex="-1">先行8便・作業報告書</h1><p>梱包中。2 ── 受け取りました。──<br>開けて、確かめて、次の受取台へ。</p></header>
+  <div class="total-time"><span>合計作業時間</span><strong id="totalTime">00:00.0</strong></div>
+  <dl class="totals"><div><dt>タップ</dt><dd id="totalTap">0</dd></div><div><dt>ドラッグ</dt><dd id="totalDrag">0</dd></div><div><dt>やり直し</dt><dd id="totalRetry">0</dd></div></dl>
+  <div class="table-scroll" tabindex="0" role="region" aria-label="先行8便の成績"><table><thead><tr><th scope="col">便・作業</th><th scope="col">時間</th><th scope="col">タップ</th><th scope="col">ドラッグ</th><th scope="col">やり直し</th></tr></thead><tbody id="reportRows"></tbody><tfoot id="reportTotals"></tfoot></table></div>
+  <p class="fine" style="margin-top:8px">最初に品物へ触れてから計時。ヒント・画面の切替中は止めます。やり直す前の時間と操作も含みます。各便の記録は0.1秒単位です。</p>
+  <div class="report-actions"><button id="imageSave" type="button" class="primary">報告書をPNGで保存</button><button id="shareImage" type="button" class="secondary" hidden>PNGを共有する</button></div>
+  <p class="fine">保存画像は合計と第01・03・06・08便の抜粋です。先行8便の詳細は上の表で確認できます。</p>
+  <label class="field-label" for="shareText">共有用の文章</label><textarea id="shareText" class="share-text" readonly spellcheck="false" aria-label="共有用の文章"></textarea>
+  <div class="share-buttons"><button id="copy" type="button">文章をコピー</button><a id="shareX" class="button secondary" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener noreferrer">Xの投稿画面へ ↗</a></div>
+  <p class="fine">投稿前に文章を編集できます。PNGは投稿画面で添付してください。</p><p id="shareStatus" class="share-status" role="status" aria-live="polite"></p>
+  <div id="imageBox" hidden><a id="download" class="button primary" href="#" download="梱包中2_先行8便_作業報告書.png">PNGを保存する</a><img id="reportImage" alt="作業完了報告書。合計と節目の4便の記録。" width="1200" height="1600"><p class="fine">スマートフォンでは画像を長押しして保存することもできます。</p></div>
+  <nav class="report-bottom"><button id="reportTitle" type="button" class="quiet">タイトルへ</button><button id="reportChapters" type="button" class="secondary">クリア済みの便を遊ぶ</button><button id="reportAgain" type="button" class="secondary">はじめから遊ぶ</button></nav><div class="next-parcel next-parcel--mystery"><p class="eyebrow">UNOPENED / TO BE CONTINUED</p><svg viewBox="0 0 220 102" width="196" height="92" role="img" aria-label="未開封の小さな「荷物」"><ellipse cx="110" cy="87" rx="65" ry="8" fill="#566e5a" opacity=".13"/><rect x="57" y="19" width="106" height="68" rx="4" fill="#d7ae76" stroke="#7d5d3d" stroke-width="2"/><rect x="100" y="19" width="20" height="68" fill="#eed5a2"/><text x="110" y="58" text-anchor="middle" font-size="23" font-weight="700" fill="#7d5d3d">荷物</text></svg><strong>受け取った。でも、まだ開けていない。</strong><p>前作から届いた「荷物」。<br>この小さな包みの続きは、またいつか。</p><p class="fine">次回にご期待ください。<br>遊んでくれてありがとう。</p></div>
+ </div>
+</section>
+</main>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-top"><h2 id="helpTitle">受け取り作業の手引き</h2><button type="button" data-close="helpDialog" class="quiet" aria-label="手引きを閉じる">×</button></div><ul class="help-steps"><li><strong>開ける</strong>つまみ・折返し・留め片を、折り線や矢印の向きへドラッグ。途中の形が指に沿って動き、十分に進むと終点へ、短ければ元へ戻ります。タップでも同じ動きを見られます。検品や帯は、つまみを選んで終点をタップします。箱だけでなく、包みの表と裏も見てみよう。</li><li><strong>動かす</strong>品物をドラッグして置き場へ。品物→置き場の順のタップでも移せます。キーボードではTabで選び、EnterかSpaceで操作。選んだものには点線がつき、違う位置なら元へ戻ります。</li><li><strong>画面が低いとき</strong>作業台の何もない場所や外側を上下になぞるとスクロールできます。物をつかんだ間は、その物だけを動かします。クリアすると中央に「作業完了」と「次の便へ」がまとまって表示されます。</li><li><strong>迷ったら</strong>ヒントは3段階。折り返しは開き直せます。「やり直す」では、その便の時間・操作数を残して入口に戻り、やり直しを1回加算します。</li><li><strong>記録と再開</strong>品物への操作は、タップかドラッグの一方で1回。誤順も数え、空白と補助UIは含めません。便の最初は時計が止まっています。品物に触れた時点から計時し、ヒント・手引き・タイトル・非表示中は止まります。再読込した便は入口へ戻り、操作済みならやり直し1回を加えます。</li><li><strong>再挑戦</strong>「便を選ぶ」でクリア済みの便を遊び直せます。その便だけ新しく計測し、再クリア時に最新の成績へ更新します。全便リセットには確認を入れ、前回の完了報告書は残します。</li></ul><p class="fine" style="margin-top:12px">第01〜08便の無料公開版です。保存が使えない環境でも、画面を閉じるまで続けて遊べます。音がなくても進行できます。ゲーム中の「♪ ON/OFF」から切り替えられます。</p><div class="help-tools"><button id="liveToggle" type="button" aria-pressed="false">作業中の記録 非表示</button><button id="sound" type="button" aria-pressed="true">効果音 ON</button><button id="restartAll" type="button" class="quiet">全便をはじめから</button></div><div class="dialog-actions"><button type="button" data-close="helpDialog" class="primary">作業へ戻る</button></div></dialog>
+<dialog id="hintDialog" aria-labelledby="hintTitle"><div class="dialog-top"><h2 id="hintTitle">ヒント</h2><button type="button" data-close="hintDialog" class="quiet" aria-label="ヒントを閉じる">×</button></div><p id="hintText" class="hint-text"></p><div class="dialog-actions"><button id="hintMore" type="button" class="secondary">もう少し見る</button><button type="button" data-close="hintDialog" class="primary">戻る</button></div></dialog>
+<dialog id="chapterDialog" aria-labelledby="chapterTitle"><div class="dialog-top"><h2 id="chapterTitle">便を選ぶ</h2><button type="button" data-close="chapterDialog" class="quiet" aria-label="便の一覧を閉じる">×</button></div><p>クリア済みの便を遊び直せます。選ぶと途中の作業はその便の最初に戻り、再クリア時にその便の記録を更新します。</p><div id="chapterList" class="chapter-list"></div></dialog>
+<dialog id="restartDialog" aria-labelledby="restartTitle"><h2 id="restartTitle">第1便から、もう一度？</h2><p>今回の進行と成績を消して、第1便から始めます。前回クリアした報告書は残ります。</p><div class="dialog-actions"><button id="restartNo" type="button">戻る</button><button id="restartYes" type="button" class="primary">はじめから</button></div></dialog>
+<noscript><p style="padding:24px">このゲームはJavaScriptを有効にして遊んでください。</p></noscript>
+<script>
+/* Trial 09: revised only from the supplied trial 08. Scores remain episode-based. */
+const R8=(()=>{
+ 'use strict';
+ const VERSION='receiving8-opening-free-ending03',COUNT=8;
+ const LEVELS=[
+  {name:'届いた、小さな箱',group:'A / あなた宛ての小包',end:'「✓ はじめた」を、受け取りました。',hints:['中央のテープには、折り返したつまみがあります。矢印の向きを見てみよう。','テープを右へ引くと継ぎ目が出ます。そのあと左右のふたを、側辺の折り線から外へ倒します。つまみ選択→矢印でも剥がせます。','入っているのは、前の持ち主が使った「✓ はじめた」。手前の机へ移すだけで完了です。押し直す必要はありません。']},
+  {name:'封は、そこじゃない',group:'B / 茶封筒',end:'封筒から、折り畳まれた緩衝シート。',hints:['切手と宛名があるのは表。封筒を返すと、紙の重なりが見えます。','裏の三角ふたの先を、細い封緘テープが留めています。折り返した端を右へ引けそうです。','封緘テープを剥がし、三角ふたを上へ。口から見えるシートを手前の空いた机へ引き出します。品物→机のタップでも移せます。']},
+  {name:'見える位置が変わる',group:'B / 透明緩衝シート',end:'気泡の層が広がり、割れものの敷物に。',hints:['さっきのシートは横に二つ折り。広げると、光る滑らかな面が見えます。','横から見ると、反対の面には丸い気泡。割れものを受けるなら、どちらが柔らかそう？','左端を持ってシート全体を返すと、気泡の面が上になります。最後に浮いた角を下へなでます。タップでも途中の動きを見ながら進められます。']},
+  {name:'割れもの、到着',group:'C / ガラスの「OK」',end:'箱の中で紙を開き、ガラスだけを気泡の上へ。',hints:['箱の手前の継ぎ目に、短い帯が貼ってあります。端に引く向きが見えます。','箱を開けたら、紙の折返しに掛かっているクッションを左右へ少し避けます。紙は箱に残したまま開けます。','上に重なった右の紙から開き、その下の左も開くとガラスのOKが現れます。ガラスだけを下の緩衝シートへ。品物→マットでも置けます。']},
+  {name:'本当に、無事？',group:'C / ガラスの「OK」',end:'反射は動いた。表面も縁も無傷。紙には擦れ。',hints:['輸送中に傷や欠けがないか、ガラスを確かめます。上は拡大した検品窓、下は光と角度の操作部です。','光のつまみを左から右へ、次は角度を右から左へ動かして観察します。つまみは左右どちらへも戻せます。途中で離しても、その位置から見直せて、確認済みの範囲は消えません。','タップでは、つまみを選んで反対の終点を押します。表面・縁の両方を確認すると、紙の擦れとガラスの状態を区別できます。置き位置は右上で机表示に戻して変えられます。']},
+  {name:'受け取った、そして返す',group:'C / ガラスの「OK」',end:'ガラスを直接保護して、次の検品台へ発送しました。',hints:['紙には擦れ跡。今度はガラスへ直接、柔らかな気泡を当てたい。シートの中央の広い範囲で、四つの端を折り包みます。','保護したガラスを、箱に残る説明書の中央へ。紙は気泡の外側に巻きます。気泡も紙も折る順は自由。上に重なった端から開き直せます。気泡を開くときは、紙を開いて包みを机へ戻します。','左右のクッションを戻し、ふたを閉じ、手前の継ぎ目へテープ。開き直すなら、ふた→クッション→外側の紙の順です。封をすると次の検品台へ出発します。']},
+  {name:'箱の中に、箱',group:'D / 入れ子の荷物',end:'外箱から、封のされた内箱を受け取った。',hints:['外箱のふたは、手前の継ぎ目にある一本の短い帯で留まっています。','帯を右へ外し、奥の折り線を支点にふたを起こします。箱の縁と側壁はそのまま残ります。','内箱の手前を押さえる中敷きの折返しを下へ倒します。それから、封のある内箱を下の受取台へ移します。']},
+  {name:'中の箱も、荷物',group:'D / 入れ子の荷物',end:'前作で包んだ小さな「荷物」を受け取った。封は、まだ閉じている。',hints:['取り出した内箱の一本の帯が、表から底まで回っています。箱を返すと、帯の端が見えます。','底の差込口から、紙の先を下へ抜きます。緩んだ輪を右へ滑らせると、幅を保った一本の帯が箱から外れます。タップでは先端を選んで下の終点へ、次に輪を選んで右の終点へ。どちらも紙が動きます。','表へ返してふたを開くと、薄い保護紙の折返し。上に重なる端を左へめくれば、その奥に小さな「荷物」。机へ取り出すだけで受領済です。']}
+ ];
+ const clone=v=>JSON.parse(JSON.stringify(v)),clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+ const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const near=(x,y,a,b,w=80,h=65)=>Math.abs(x-a)<=w&&Math.abs(y-b)<=h;
+ const metric=()=>({ms:0,taps:0,drags:0,retries:0});
+ const time=ms=>{const t=Math.floor(Math.max(0,ms)/100);return `${String(Math.floor(t/600)).padStart(2,'0')}:${String(Math.floor(t/10)%60).padStart(2,'0')}.${t%10}`};
+ const safeMat=(x,y)=>x>=105&&x<=315&&y>=346&&y<=466;
+ function state(n,carry={}){
+  const p={n,selected:null,done:false,tapeOff:false,lids:[false,false],buttonOnMat:false,
+   back:false,envelopeSealOff:false,envelopeOpen:false,sheetOut:false,sheetOpen:false,sheetFlat:false,sheetBubblesUp:false,
+   caseSealOff:false,caseOpen:false,foamOut:[false,false],
+   paperOpen:[false,false],paperOrder:[0,1],glassOnMat:false,glassAt:{x:210,y:406},checked:false,
+   surfaceSeen:false,edgeSeen:false,scanSurface:0,scanEdge:0,scanCursorSurface:0,scanCursorEdge:0,inspectionView:true,wrapped:false,cushioned:false,bubbleFolds:[false,false,false,false],bubbleOrder:[],sheetAt:{x:210,y:406},protectionInBox:false,packed:false,sealed:false,sent:false,
+   outerSealOff:false,outerOpen:false,insertOut:false,innerOut:false,bandLoose:false,bandOff:false,innerOpen:false,sleeveOpen:false,cargoOut:false,received:false};
+  if(n>=2&&n<=5)p.sheetOut=true;
+  if(n>=3&&n<=5){p.sheetOpen=true;p.sheetFlat=true;p.sheetBubblesUp=true;}
+  if(n>=4&&n<=5){p.caseSealOff=true;p.caseOpen=true;p.foamOut=[true,true];p.paperOpen=[true,true];p.glassOnMat=true;}
+  if(n===4&&carry.openedGlassAt&&safeMat(carry.openedGlassAt.x,carry.openedGlassAt.y))p.glassAt=clone(carry.openedGlassAt);
+  if(n===5){p.checked=true;p.surfaceSeen=true;p.edgeSeen=true;if(carry.glassAt&&safeMat(carry.glassAt.x,carry.glassAt.y))p.glassAt=clone(carry.glassAt);}
+  if(n===7){p.outerSealOff=true;p.outerOpen=true;p.insertOut=true;p.innerOut=true;}
+  return p;
+ }
+ function pos(p,id){
+  switch(p.n){
+   case 0:if(id==='start'&&p.tapeOff&&p.lids.every(Boolean))return {x:210,y:p.buttonOnMat?405:185};break;
+   case 1:if(id==='sheet'&&p.back&&p.envelopeOpen)return p.sheetOut?{x:132,y:406}:{x:210,y:192};break;
+   case 3:if(id==='glass'&&p.caseOpen&&p.paperOpen.every(Boolean))return p.glassOnMat?p.glassAt:{x:210,y:180};break;
+   case 4:if(id==='glass')return p.glassAt;break;
+   case 5:
+    if(id==='glass'&&!p.bubbleFolds.some(Boolean))return p.glassAt;
+    if(id==='bundle'&&p.cushioned&&p.paperOpen.every(Boolean)&&!p.foamOut.some(v=>!v))return p.protectionInBox?{x:210,y:180}:p.glassAt;
+    if(id==='tape'&&!p.sealed)return {x:95,y:480};break;
+   case 6:if(id==='inner'&&p.outerOpen)return {x:210,y:p.innerOut?410:195};break;
+   case 7:if(id==='cargo'&&(p.cargoOut||(!p.back&&p.innerOpen&&p.sleeveOpen)))return p.cargoOut?{x:210,y:175}:{x:210,y:410};break;
+  }return null;
+ }
+ function movable(p,id){return !(p.n===6&&id==='inner'&&!p.insertOut);}
+ const out=(message='',kind='notice',ok=false,targets=[])=>({message,kind,ok,targets});
+ const strain=(message,targets=[])=>out(message,'strain',false,targets);
+ function end(p,kind='complete'){p.done=true;p.selected=null;return out(LEVELS[p.n].end,kind,true);}
+ function goal(p){
+  if(p.done)return LEVELS[p.n].end;
+  switch(p.n){
+   case 0:return !p.tapeOff?'折返しつまみのある、届いた箱。':!p.lids.every(Boolean)?'中央の継ぎ目が、見えている。':'「✓ はじめた」。使い終えたボタンが、届いている。';
+   case 1:return !p.back?'切手と宛名のある表。紙の端が向こうへ続く。':!p.envelopeSealOff?'一本の封緘テープが、三角ふたの端を留めている。':!p.envelopeOpen?'封緘が剥がれ、紙のふたが自由になった。':'薄い袋口の内側に、気泡のあるシート。';
+   case 2:return !p.sheetOpen?'横に重なった二つ折り。端に柔らかい気泡。':!p.sheetBubblesUp?'つるっと光る上面。気泡は、反対側にある。':'柔らかい気泡が上。浮いた角を、机へなじませたい。';
+   case 3:return !p.caseSealOff?'届いた箱。短い帯が、手前の継ぎ目を留めている。':!p.caseOpen?'帯の外れた継ぎ目。奥にふたの折り線。':!p.foamOut.every(Boolean)?'左右のクッションが、紙の折返しに掛かっている。':!p.paperOpen.every(Boolean)?'箱の中で、同じ一枚の紙を広げられる。':'紙は箱に残して、ガラスだけを柔らかい面へ。';
+   case 4:return !p.inspectionView?'置き位置を変えても、検品窓は同じガラス。':!p.surfaceSeen?'輸送中の傷？ 白い筋と光の関係を見よう。':'表面は傷なし。次は角度を変え、縁の欠けを調べよう。';
+   case 5:return !p.cushioned?(p.bubbleFolds.some(Boolean)?'折った気泡がガラスを覆う。残る端も重ねられる。':'四つの端が見える。紙の前に、気泡でガラスを守ろう。'):!p.protectionInBox?'敷物が、ガラスに直接触れる保護材になった。':!p.wrapped?'説明書は、その柔らかな保護の外側へ。':p.foamOut.some(Boolean)?'同じクッションで、包みを両側から支える。':p.caseOpen?'左右が包みに触れ、ふたを閉じられる。':'閉じたふたの手前に、一本の継ぎ目。';
+   case 6:return !p.outerSealOff?'短い帯が、ふたと手前の壁をつないでいる。':!p.outerOpen?'奥の折り線につながる、箱のふた。':!p.insertOut?'中敷きの折返しが、内箱の手前に掛かっている。':'中敷きが開き、内箱を持ち上げられる。';
+   case 7:return p.back?(p.bandOff?'幅も折り目も、そのままの帯が傍らにある。':p.bandLoose?'留まっていた先が抜けた。輪を右へ滑らせられる。':'帯の先が、重なった紙の下へ差し込まれている。'):p.innerOpen?(p.sleeveOpen?'紙の奥に、本当の「荷物」が現れた。':'ふたの下にも、薄い紙の重なり。') :p.bandOff?'帯のなくなった内箱。奥につながるふた。':'同じ一本の帯が、表から底へ回っている。';
+  }
+ }
+ function drop(p,id,x,y){
+  if(p.done)return out();p.selected=null;if(!pos(p,id))return out('今は持ち上げられない。','reject');
+  switch(p.n){
+   case 0:if(id==='start'){if(near(x,y,210,405,125,76)){p.buttonOnMat=true;return end(p,'place');}return out('使用済みのボタンは、箱へ戻った。','return');}break;
+   case 1:if(id==='sheet'){if(near(x,y,132,406,125,90)){p.sheetOut=true;return end(p,'extract');}return out('シートは封筒の口へ戻った。','return');}break;
+   case 3:if(id==='glass'){
+    if(safeMat(x,y)){p.glassAt={x,y};p.glassOnMat=true;return end(p,'place');}
+    return strain('ガラスは箱の紙へ。気泡の面なら安全に置ける。',['glass']);}break;
+   case 4:if(id==='glass'){
+    if(safeMat(x,y)){p.glassAt={x,y};return out('柔らかい面の上で、光の位置を変えた。','place',true);}
+    return out('ガラスは気泡の上へ戻った。','return');}break;
+   case 5:
+    if(id==='glass'){
+     if(near(x,y,210,180,115,70))return strain('擦れた紙に直接戻さず、先に気泡の一枚で守ろう。',['wrap-left','wrap-right']);
+     if(safeMat(x,y)){p.glassAt={x,y};return out('ガラスを柔らかい面へ。中央の広い範囲なら、四つの端を折り包める。','place',true);}
+     return out('ガラスは、つかむ前の位置へ戻った。','return');
+    }
+    if(id==='bundle'){
+     if(safeWrap(p,x,y)){p.protectionInBox=false;p.packed=false;p.glassAt={x,y};p.sheetAt={x,y};return out('ガラスを守った同じ一枚を、手前へ戻した。','place',true);}
+     if(near(x,y,210,180,115,70)&&p.caseOpen){
+      p.protectionInBox=true;return out('気泡が内側、説明書は外側。元の紙の中央に収まった。','pack',true);
+     }return out('包みは、つかむ前の位置へ戻った。','return');}
+    if(id==='tape'){
+     if(!p.packed||p.foamOut.some(Boolean)||p.caseOpen)return strain('気泡で守ったガラスと外側の紙、クッションを収め、ふたを閉じてから。',['case-lid','foamL','foamR']);
+     if(near(x,y,210,255,80,45)){p.sealed=true;p.sent=true;return end(p,'send');}return out('テープは手元へ。貼るのはふたの継ぎ目。','return');
+    }break;
+   case 6:if(id==='inner'){
+    if(!p.insertOut)return strain('中敷きの折返しが、内箱の手前に掛かっている。',['insert','inner']);
+    if(near(x,y,210,410,105,75)){p.innerOut=true;return end(p,'extract');}return out('内箱は外箱の中へ戻った。','return');}break;
+   case 7:if(id==='cargo'){
+    if(near(x,y,210,175,110,70)){p.cargoOut=true;p.received=true;return end(p,'stamp');}return out('荷物は内箱へ戻った。','return');}break;
+  }return out(goal(p),'reject');
+ }
+ function act(p,id,x=null,y=null){
+  if(p.done)return out();const selected=p.selected;
+  switch(p.n){
+   case 0:
+    if(id==='tape-tab'&&!p.tapeOff){p.selected=selected==='tape-tab'?null:'tape-tab';return out('折返したつまみが、動く。','select',true);}
+    if(id==='peel'&&selected==='tape-tab'){p.tapeOff=true;p.selected=null;return out('するり。中央の継ぎ目が現れた。','peel',true);}
+    if(id==='lidL'||id==='lidR'){if(!p.tapeOff)return strain('一本のテープが、ふたを留めている。',['tape-tab']);p.lids[id==='lidL'?0:1]=true;return out('ふたが、外へ倒れた。','flap',true);}
+    if(id==='receive'&&selected==='start')return drop(p,selected,210,405);
+    break;
+   case 1:
+    if(id==='front-label')return strain('宛名の紙が、かさりと鳴った。',['front-label']);
+    if(id==='flip-envelope'){p.back=!p.back;p.selected=null;return out(p.back?'裏側に、つながった三角ふた。':'切手と宛名のある表。','turn',true);}
+    if(id==='envelope-seal'&&p.back){p.envelopeSealOff=true;return out('封緘テープが剥がれ、紙のふたが自由になった。','peel',true);}
+    if(id==='envelope-flap'&&p.back){if(!p.envelopeSealOff)return strain('細いテープが、ふたの端を留めている。',['envelope-seal']);p.envelopeOpen=!p.envelopeOpen;return out('一枚につながる三角ふたが、折り線で起きた。','flap',true);}
+    if(id==='receive'&&selected==='sheet')return drop(p,selected,132,406);break;
+   case 2:
+    if(id==='sheet-open'&&!p.sheetOpen){p.sheetOpen=true;return out('折り線から右へ、一枚分が広がった。','unfold',true);}
+    if(id==='sheet-turn'&&p.sheetOpen){p.sheetBubblesUp=!p.sheetBubblesUp;p.sheetFlat=false;return out(p.sheetBubblesUp?'気泡のふくらみが、上へ。':'滑らかな外面が、上へ。','turn',true);}
+    if(id==='sheet-smooth'&&p.sheetOpen){p.sheetFlat=true;return p.sheetBubblesUp?end(p,'mat'):out('平らになった。柔らかい気泡は、まだ下側。','smooth',true);}break;
+   case 3:
+    if(id==='case-seal'){p.caseSealOff=true;return out('短い帯が、継ぎ目から外れた。','peel',true);}
+    if(id==='case-lid'){if(!p.caseSealOff)return strain('帯がふたと手前の壁をつないでいる。',['case-seal']);p.caseOpen=true;return out('奥の折り線でふたが開き、箱の中が見えた。','flap',true);}
+    if(id==='foamL'||id==='foamR'){if(!p.caseOpen)return out();p.foamOut[id==='foamL'?0:1]=true;return out('紙の折返しからクッションが離れ、開く空間ができた。','support',true);}
+    if(id==='paperL'||id==='paperR')return paper(p,id);
+    if(id==='mat'&&selected==='glass')return drop(p,selected,Number.isFinite(x)?clamp(x,105,315):210,Number.isFinite(y)?clamp(y,346,466):406);break;
+   case 4:
+    if(id==='view-placement'||id==='view-inspection'){p.inspectionView=id==='view-inspection';p.selected=null;return out(p.inspectionView?'同じガラスを、拡大した検品窓で。':'ガラスの実際の置き位置。','view',true);}
+    if(id==='inspect-surface'){p.selected=selected===id?null:id;return out(p.surfaceSeen?'光の位置を戻して、気になる部分をもう一度見よう。':'光のつまみ。左右へ動かして、反射を調べよう。','select',true);}
+    if(id==='inspect-surface-end'&&selected==='inspect-surface')return inspection(p,'surface');
+    if(id==='inspect-edge'&&p.surfaceSeen&&!p.edgeSeen){p.selected=selected===id?null:id;return out('角度は左右に戻せます。気になる縁を何度でも見よう。','select',true);}
+    if(id==='inspect-edge-end'&&selected==='inspect-edge')return inspection(p,'edge');
+    if(id==='mat'&&selected==='glass')return drop(p,selected,Number.isFinite(x)?clamp(x,105,315):210,Number.isFinite(y)?clamp(y,346,466):406);break;
+   case 5:
+    if(id==='paper-zone'&&selected)return drop(p,selected,210,180);
+    if(id==='paperL'||id==='paperR')return paper(p,id);
+    if(id==='mat'&&selected==='bundle')return drop(p,selected,p.glassAt.x,p.glassAt.y);
+    if(id==='mat'&&selected==='glass')return drop(p,selected,p.sheetAt.x,p.sheetAt.y);
+    if(id.startsWith('wrap-'))return foldBubble(p,id);
+    if(id==='box'&&selected)return drop(p,selected,210,180);
+    if(id==='foamL'||id==='foamR'){
+     if(!p.caseOpen)return strain('ふたが閉じている。',['case-lid']);
+     const i=id==='foamL'?0:1;if(p.foamOut[i]&&!p.packed)return strain('気泡の包みを入れ、外側の紙を巻いてから。',['paperL','paperR']);
+     p.foamOut[i]=!p.foamOut[i];return out(p.foamOut[i]?'クッションを外へ。':'同じクッションが包みに密着した。','support',true);
+    }
+    if(id==='case-lid'){
+     if(p.sealed)return out();if(p.caseOpen&&(!p.packed||p.foamOut.some(Boolean)))return strain('包みを収め、左右のクッションを戻してから。',['foamL','foamR']);
+     p.caseOpen=!p.caseOpen;return out('奥の折り線につながるふたが、動いた。','flap',true);
+    }
+    if(id==='seam'&&selected==='tape')return drop(p,selected,210,255);break;
+   case 6:
+    if(id==='outer-seal'){p.outerSealOff=true;return out('一本の帯が、ふたの継ぎ目から外れた。','peel',true);}
+    if(id==='outer-lid'){if(!p.outerSealOff)return strain('手前の帯が、ふたを留めている。',['outer-seal']);p.outerOpen=true;return out('同じ箱の側壁の中に、封のされた内箱。','flap',true);}
+    if(id==='insert'&&p.outerOpen){p.insertOut=true;return out('中敷きの折返しが、手前へ倒れた。','flap',true);}
+    if(id==='receive'&&selected==='inner')return drop(p,selected,210,410);break;
+   case 7:
+    if(id==='flip-box'){p.back=!p.back;p.selected=null;return out(p.back?'底にも、同じ一本の紙帯。':'表へ。帯の状態はそのまま。','turn',true);}
+    if(id==='band-front'&&!p.bandOff)return strain('帯が底へ回って、ふたを引き止めている。',['band-front']);
+    if(id==='band-tip'&&p.back&&!p.bandLoose&&!p.bandOff){p.selected=selected===id?null:id;return out('重なりの下に差し込まれた、紙の先端。','select',true);}
+    if(id==='band-tip-end'&&selected==='band-tip'&&p.back)return releaseBand(p,false);
+    if(id==='band-loop'&&p.back&&p.bandLoose&&!p.bandOff){p.selected=selected===id?null:id;return out('先端が自由になった輪。右側の角を越えられる。','select',true);}
+    if(id==='band-loop-end'&&selected==='band-loop'&&p.back)return releaseBand(p,true);
+    if(id==='inner-lid'&&!p.back){if(!p.bandOff)return strain('一本の紙帯が、ふたと底をつないでいる。',['band-front']);p.innerOpen=true;return out('ふたの下に、もう一枚。薄い保護紙が重なっている。','flap',true);}
+    if(id==='sleeve-flap'&&p.innerOpen&&!p.back){p.sleeveOpen=true;return out('一枚の保護紙をめくると、小さな「荷物」が現れた。','unfold',true);}
+    if(id==='cargo-zone'&&selected==='cargo')return drop(p,selected,210,175);break;
+  }
+  if(pos(p,id)){p.selected=selected===id?null:id;return out(p.selected?'選んだ品が、少し浮く。':goal(p),'select',true);}
+  p.selected=null;return out(goal(p));
+ }
+ function inspection(p,kind,cursor=1){
+  p.selected=null;
+  if(kind==='surface'){
+    p.scanSurface=1;p.scanCursorSurface=clamp(cursor,0,1);
+    if(p.surfaceSeen)return out('表面をもう一度見直した。確認済みの範囲はそのまま。','observe',true);
+    p.surfaceSeen=true;return out('白い筋が光と動いた。表面：傷なし。縁の確認前なら表面も見直せます。','inspect',true);
+  }
+  if(!p.surfaceSeen)return strain('まずは、光を動かして表面を見よう。',['inspect-surface']);
+  p.scanEdge=1;p.scanCursorEdge=clamp(cursor,0,1);p.edgeSeen=true;p.checked=true;return end(p,'inspect');
+ }
+ // What is being examined now can move back; the furthest inspected portion persists separately.
+ function scanValue(p,id){return id==='inspect-surface'?p.scanSurface:id==='inspect-edge'?p.scanEdge:0;}
+ function scanCursor(p,id){return id==='inspect-surface'?p.scanCursorSurface:id==='inspect-edge'?p.scanCursorEdge:0;}
+ function scanPartial(p,id,cursor,furthest=cursor){
+  const coverageField=id==='inspect-surface'?'scanSurface':'scanEdge';
+  const cursorField=id==='inspect-surface'?'scanCursorSurface':'scanCursorEdge';
+  const before=p[coverageField];p[coverageField]=Math.max(before,clamp(furthest,0,1));
+  p[cursorField]=clamp(cursor,0,1);p.selected=null;
+  if(p[coverageField]<=before+0.001)return out('気になるところへ戻って、何度でも見直せます。確認済みの範囲はそのまま。','observe',true);
+  return out('ここまで確認できた。左右に戻って見直しても、確認した範囲は残る。','observe',true);
+ }
+ function safeWrap(p,x=p.glassAt.x,y=p.glassAt.y){return x>=170&&x<=250&&y>=370&&y<=442&&Math.abs(x-p.sheetAt.x)<=42&&Math.abs(y-p.sheetAt.y)<=38;}
+ const wrapIds=['wrap-left','wrap-right','wrap-top','wrap-bottom'];
+ function foldBubble(p,id){
+  const i=wrapIds.indexOf(id);if(i<0)return out();
+  if(p.protectionInBox)return strain('外側の紙を開いて、包みを机へ戻すと開けられる。',['paperL','paperR']);
+  if(p.bubbleFolds[i]){
+   if(p.bubbleOrder.at(-1)!==i)return strain('別の折返しが上に重なっている。上の端から開けられる。',[wrapIds[p.bubbleOrder.at(-1)]]);
+   p.bubbleFolds[i]=false;p.bubbleOrder.pop();p.cushioned=false;p.selected=null;
+   return out('上の折返しを開いた。同じ一枚が、ガラスの周りに広がる。','unfold',true);
+  }
+  if(!safeWrap(p))return strain('包むための余白が足りない。ガラスをシート中央の広い面へ。',['glass',id]);
+  if(!p.bubbleFolds.some(Boolean))p.sheetAt=clone(p.glassAt);
+  p.bubbleFolds[i]=true;p.bubbleOrder.push(i);p.cushioned=p.bubbleFolds.every(Boolean);p.selected=null;
+  return out(p.cushioned?'四つの端が重なり、ガラスへ直接、柔らかい気泡。':'一つの端が、ガラスへふわりと重なった。','wrap',true);
+ }
+ function releaseBand(p,off){p.selected=null;if(off){p.bandOff=true;return out('角を越えた、同じ幅の紙の輪。机に残った。','unwrap',true);}p.bandLoose=true;return out('先端が重なりから抜けた。輪はまだ箱の外周にある。','release',true);}
+ function paper(p,id){
+  const i=id==='paperL'?0:1;
+  if(!p.caseOpen)return strain('ふたが、閉じている。',['case-lid']);
+  if(p.n===3&&!p.foamOut[i])return strain('クッションが、この紙の折返しに掛かっている。',[i?'foamR':'foamL']);
+  if(p.n===5&&!p.foamOut[i])return strain('この折返しは、クッションに押さえられている。',[i?'foamR':'foamL']);
+  if(!p.paperOpen[i]&&!p.paperOpen[1-i]&&p.paperOrder.at(-1)!==i)return strain('もう一方の紙が、上に重なっている。',[i?'paperL':'paperR']);
+  if(p.n===5&&p.paperOpen[i]&&!p.protectionInBox)return strain('先に、気泡で守ったガラスを紙の中央へ。',['paper-zone']);
+  p.paperOpen[i]=!p.paperOpen[i];
+  if(!p.paperOpen[i])p.paperOrder=p.paperOrder.filter(v=>v!==i).concat(i);
+  p.wrapped=p.n===5&&p.paperOpen.every(v=>!v);if(p.n===5)p.packed=p.protectionInBox&&p.wrapped;p.selected=null;
+  return out(p.wrapped?'気泡の外側へ、同じ説明書を巻いた。':p.paperOpen.every(Boolean)?'一枚の説明書と、中のガラス。':'折り線につながった紙が、回った。','unfold',true);
+ }
+ function mechanism(p,id){
+  let axis='x',dir=1,amount=65,allowed=true;
+  switch(id){
+   case 'tape-tab':return {axis:'x',dir:1,amount:202,allowed:!p.tapeOff};
+   case 'lidL':case 'lidR':return {axis:'x',dir:id==='lidL'?-1:1,amount:95,allowed:p.tapeOff};
+   case 'flip-envelope':case 'flip-box':return {axis:'x',dir:0,amount:85,allowed:true};
+   case 'envelope-seal':return {axis:'x',dir:1,amount:70,allowed:p.back&&!p.envelopeOpen};
+   case 'envelope-flap':return {axis:'y',dir:p.envelopeOpen?1:-1,amount:90,allowed:p.envelopeSealOff};
+   case 'inspect-surface':return {axis:'x',dir:1,amount:252,allowed:p.n===4&&p.inspectionView&&!p.done};
+   case 'inspect-edge':return {axis:'x',dir:-1,amount:252,allowed:p.n===4&&p.inspectionView&&p.surfaceSeen&&!p.edgeSeen};
+   case 'sheet-turn':return {axis:'x',dir:0,amount:190,allowed:p.n===2&&p.sheetOpen};
+   case 'sheet-open':return {axis:'x',dir:1,amount:150,allowed:true};
+   case 'sheet-smooth':return {axis:'y',dir:1,amount:62,allowed:p.sheetOpen};
+   case 'case-seal':case 'outer-seal':break;
+   case 'case-lid':return {axis:'y',dir:p.caseOpen?1:-1,amount:80,allowed:p.n===3?p.caseSealOff:!p.caseOpen||(p.packed&&!p.foamOut.some(Boolean))};
+   case 'outer-lid':return {axis:'y',dir:-1,amount:90,allowed:p.outerSealOff};
+   case 'inner-lid':return {axis:'y',dir:-1,amount:80,allowed:p.bandOff&&!p.back};
+   case 'foamL':case 'foamR':{const i=id==='foamL'?0:1;return {axis:'x',dir:(i?1:-1)*(p.n===5&&p.foamOut[i]?-1:1),amount:65,allowed:p.caseOpen&&(p.n!==5||!p.foamOut[i]||p.packed)};}
+   case 'paperL':case 'paperR':{const i=id==='paperL'?0:1;return {axis:'x',dir:(i?1:-1)*(p.paperOpen[i]?-1:1),amount:120,allowed:p.caseOpen&&(p.n!==3&&p.n!==5||p.foamOut[i])&&(p.paperOpen[i]||p.paperOpen[1-i]||p.paperOrder.at(-1)===i)&&!(p.n===5&&p.paperOpen[i]&&!p.protectionInBox)};}
+   case 'insert':return {axis:'y',dir:1,amount:80,allowed:p.outerOpen};
+   case 'band-tip':return {axis:'y',dir:1,amount:64,allowed:p.back&&!p.bandLoose&&!p.bandOff};
+   case 'band-loop':return {axis:'x',dir:1,amount:135,allowed:p.back&&p.bandLoose&&!p.bandOff};
+   case 'sleeve-flap':return {axis:'x',dir:-1,amount:100,allowed:p.n===7&&p.innerOpen&&!p.back&&!p.sleeveOpen};
+   case 'band-front':case 'front-label':return {axis:'y',dir:1,amount:70,allowed:false};
+   default:{const i=wrapIds.indexOf(id);if(i<0)return null;const closing=!p.bubbleFolds[i],allowed=!p.protectionInBox&&(closing?safeWrap(p):p.bubbleOrder.at(-1)===i);return {axis:i<2?'x':'y',dir:(i%2===0?1:-1)*(closing?1:-1),amount:i<2?110:96,allowed};}
+  }return {axis,dir,amount,allowed};
+ }
+ function progress(p,id,dx=0,dy=0){const m=mechanism(p,id);if(!m)return 0;const v=m.axis==='x'?dx:dy;if(id==='inspect-surface'||id==='inspect-edge'){const base=scanCursor(p,id);return m.allowed?clamp(base+v*m.dir/m.amount,0,1):base;}return clamp(m.dir?v*m.dir/m.amount:Math.abs(v)/m.amount,0,m.allowed?1:.055);}
+ function gesture(p,id,dx,dy,x,y){
+  if(p.done)return out();
+  if(p.n===0&&id==='tape-tab'){if(dx>=70){p.tapeOff=true;p.selected=null;return out('するり。中央の継ぎ目が現れた。','peel',true);}return strain('折返しの矢印は、右へ。',['tape-tab']);}
+  const m=mechanism(p,id);
+  if(m){
+   if(!m.allowed)return actBlocked(p,id);
+   if(id==='inspect-surface'||id==='inspect-edge'){const q=progress(p,id,dx,dy),kind=id==='inspect-surface'?'surface':'edge';return q>=threshold(id)&&!(kind==='surface'&&p.surfaceSeen)?inspection(p,kind,q):scanPartial(p,id,q);}
+   if(progress(p,id,dx,dy)<threshold(id))return strain(id.startsWith('inspect-')?'操作部の反対の端まで、光が通る範囲を見よう。':'折り線・帯・矢印に沿う向きへ。元の位置に戻った。',[id]);
+   if(id==='band-tip'||id==='band-loop')return releaseBand(p,id==='band-loop');
+   return act(p,id);
+  }
+  return drop(p,id,x,y);
+ }
+ const threshold=id=>id==='tape-tab'?70/202:id.startsWith('inspect-') ? .94 : id==='band-tip' ? .88 : id==='band-loop' ? .93 : .6;
+ function actBlocked(p,id){
+  if(id.startsWith('wrap-'))return foldBubble(p,id);
+  if(['lidL','lidR','band-front','front-label','envelope-flap','case-lid','outer-lid','paperL','paperR','foamL','foamR','cushion-wrap'].includes(id)){
+   // Use the same physical guard as tapping, without bypassing it with a drag.
+   return act(p,id);
+  }return strain('まだ、留まっている。',[id]);
+ }
+ function session(){return {version:VERSION,stage:0,highest:0,mode:'playing',p:state(0),records:Array(COUNT).fill(null),current:metric(),carry:{},finishedAt:null};}
+ function commit(s){if(s.mode!=='playing'||!s.p.done)return false;s.current.ms=Math.floor(s.current.ms/100)*100;s.records[s.stage]=clone(s.current);if(s.stage===3)s.carry.openedGlassAt=clone(s.p.glassAt);if(s.stage===4){s.carry.glassAt=clone(s.p.glassAt);s.carry.inspected=true;}s.highest=Math.max(s.highest,Math.min(7,s.stage+1));s.mode='between';if(s.stage===7)s.finishedAt=new Date().toISOString();return true;}
+ function next(s){if(s.mode!=='between')return false;if(s.stage===7){s.mode='report';return true;}s.stage++;s.p=state(s.stage,s.carry);s.current=metric();s.mode='playing';return true;}
+ const totals=s=>s.records.reduce((a,r)=>{if(r)for(const k of ['ms','taps','drags','retries'])a[k]+=r[k];return a;},metric());
+ const saveData=s=>({version:VERSION,stage:s.stage,highest:s.highest,mode:s.mode,records:s.records,current:s.current,carry:s.carry,finishedAt:s.finishedAt});
+ function load(raw){try{
+  const v=JSON.parse(raw),valid=r=>r&&Object.keys(metric()).every(k=>Number.isFinite(r[k])&&r[k]>=0&&(k==='ms'||Number.isInteger(r[k])));
+  if(v?.version!==VERSION||!Number.isInteger(v.stage)||v.stage<0||v.stage>=COUNT||!Number.isInteger(v.highest)||v.highest<v.stage||v.highest>=COUNT||!['playing','between','report'].includes(v.mode)||!Array.isArray(v.records)||v.records.length!==COUNT||!v.records.every(r=>r===null||valid(r))||!valid(v.current))return null;
+  for(const key of ['glassAt','openedGlassAt'])if(v.carry?.[key]&&!safeMat(v.carry[key].x,v.carry[key].y))return null;
+  const s=session();Object.assign(s,v);s.carry=v.carry||{};s.p=state(s.stage,s.carry);
+  if(s.mode==='report'){if(s.records.some(v=>!v))return null;return s;}
+  if(s.mode==='between'){if(!s.records[s.stage])return null;if(s.stage===7){s.mode='report';return s;}s.stage++;s.p=state(s.stage,s.carry);s.current=metric();s.mode='playing';}
+  else s.needsRestart=s.current.taps+s.current.drags>0||s.current.ms>0;
+  return s;
+ }catch{return null;}}
+ function share(s){const z=totals(s);return `『梱包中。2 ── 受け取りました。──』\n先行8便、受取作業完了。\n${time(z.ms)}／タップ ${z.taps}／ドラッグ ${z.drags}／やり直し ${z.retries}\n#梱包中2 #受け取りました`;}
+ return {VERSION,COUNT,LEVELS,clone,clamp,esc,near,metric,time,safeMat,state,pos,movable,goal,act,drop,mechanism,progress,scanValue,scanCursor,scanPartial,inspection,threshold,gesture,safeWrap,wrapIds,session,commit,next,totals,saveData,load,share};
+})();
+
+
+
+const ReportArt=(()=>{
+ 'use strict';
+ const G=R8,C={ink:'#303a3b',paper:'#fcf9f1',card:'#d7ae76',side:'#bd8e54',dark:'#7d5d3d',red:'#b4573e',blue:'#426f7a',sage:'#a4b7a3',line:'#c5c8b9'},e=G.esc;
+ const r=(x,y,w,h,fill=C.paper,extra='',radius=4)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${radius}" fill="${fill}" ${extra}/>`;
+ const t=(s,x,y,size=14,color=C.ink,extra='')=>`<text x="${x}" y="${y}" font-size="${size}" fill="${color}" ${extra.includes('text-anchor')?'':'text-anchor="middle"'} ${extra}>${e(s)}</text>`;
+ const l=(x1,y1,x2,y2,color=C.line,extra='')=>`<path d="M${x1} ${y1}L${x2} ${y2}" fill="none" stroke="${color}" ${extra.includes('stroke-width')?'':'stroke-width="1.5"'} ${extra}/>`;
+ const tri=(x,y,color=C.blue)=>`<path d="M${x} ${y-7}l8 13h-16Z" fill="${color}"/>`;
+ const tick=(x,y)=>`<circle cx="${x}" cy="${y}" r="10" fill="${C.blue}"/><path d="M${x-4} ${y}l3 4 7-8" stroke="${C.paper}" stroke-width="2.3" fill="none"/>`;
+ const obj=(key,state,body)=>`<g data-object="${key}" data-state="${state}">${body}</g>`;
+ const passive=(body,x=0,y=0,extra='')=>`<g transform="translate(${x} ${y})" pointer-events="none" ${extra}>${body}</g>`;
+ function report(s){
+  const z=G.totals(s);let b=r(0,0,1200,1600,C.paper)+r(43,43,1114,1514,'none',`stroke="${C.line}" stroke-width="2"`,3)+t('RECEIVING DESK / FIRST EIGHT',84,112,21,C.blue,'text-anchor="start" letter-spacing="3"')+
+   t('受け取りました。',84,207,64,C.ink,'text-anchor="start" font-weight="700"')+t('梱包中。2 ── 先行8便・作業報告書',84,268,29,C.blue,'text-anchor="start"')+
+   `<g transform="translate(1007 192) rotate(7)">${r(-94,-51,188,102,'none',`stroke="${C.red}" stroke-width="4"`,3)}${t('先行8便',0,-6,32,C.red,'font-weight="700"')}${t('受取作業完了',0,31,22,C.red)}</g>`+
+   l(84,328,1116,328,C.line)+t('合計作業時間',84,394,24,C.blue,'text-anchor="start"')+t(G.time(z.ms),78,508,104,C.ink,'text-anchor="start" font-family="monospace" font-weight="700"');
+  [['タップ',z.taps],['ドラッグ',z.drags],['やり直し',z.retries]].forEach(([k,v],i)=>{const x=250+350*i;b+=t(k,x,590,24,C.blue)+t(v,x,660,55,C.ink,'font-family="monospace" font-weight="700"');});
+  b+=r(84,719,1032,58,'#e7ebde','',1)+t('開封の記録 — 節目の4便',109,758,23,C.blue,'text-anchor="start"');
+  [0,2,5,7].forEach((n,i)=>{const y=852+i*127;b+=t(String(n+1).padStart(2,'0'),108,y,27,C.red,'text-anchor="start" font-family="monospace"')+t(G.LEVELS[n].name,179,y,29,C.ink,'text-anchor="start" font-weight="650"')+t(G.time(s.records[n]?.ms||0),1080,y+45,35,C.ink,'text-anchor="end" font-family="monospace"')+l(84,y+70,1116,y+70,C.line);});
+  b+=t('ひとつの荷物が、次の作業へつながる。',600,1450,30,C.ink,'font-weight="650"')+t('全8便の明細はゲーム内に。無料公開版です。',600,1493,20,'#7b8675')+t('#梱包中2  #受け取りました',600,1535,22,C.blue);
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" font-family="sans-serif">${b}</svg>`;
+ }
+ return {C,report};
+})();
+
+const P8=(()=>{
+ 'use strict';
+ const G=R8,C=ReportArt.C,e=G.esc;
+ const r=(x,y,w,h,fill=C.paper,extra='',rad=3)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rad}" fill="${fill}" ${extra}/>`;
+ const t=(s,x,y,size=13,color=C.ink,extra='')=>`<text x="${x}" y="${y}" font-size="${size}" fill="${color}" text-anchor="middle" ${extra}>${e(s)}</text>`;
+ const line=(x,y,X,Y,color=C.dark,extra='')=>`<path d="M${x} ${y}L${X} ${Y}" fill="none" stroke="${color}" stroke-width="1.4" ${extra}/>`;
+ const obj=(id,state,body,extra='')=>`<g data-object="${id}" data-state="${state}" ${extra}>${body}</g>`;
+ const at=(body,x=0,y=0,extra='')=>`<g transform="translate(${x} ${y})" ${extra}>${body}</g>`;
+ const points=ps=>ps.map(v=>v.join(',')).join(' ');
+ function polygon(ps,fill,old=null,animate=false,extra=''){
+  const p=points(ps),before=old&&points(old);
+  return `<polygon points="${p}" fill="${fill}" ${extra.includes('stroke=')?'':`stroke="${C.dark}"`} stroke-width="1.4" ${extra}>${animate&&before&&before!==p?`<animate attributeName="points" from="${before}" to="${p}" dur=".32s" fill="freeze"/>`:''}</polygon>`;
+ }
+ function defs(){return `<defs><pattern id="d6dots" width="17" height="17" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".6" fill="#b9bdac" opacity=".35"/></pattern><pattern id="bubbles6" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r="7.4" fill="#e9f5ed66" stroke="#9dbfaf" stroke-width=".7"/><path d="M7 9q0-3 3-3" fill="none" stroke="#fff" stroke-width="1.2"/></pattern><filter id="soft6" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#55462c" flood-opacity=".13"/></filter><pattern id="bubblesWrap7" href="#bubbles6" patternTransform="translate(-78 0)"/><clipPath id="envelopeMouth7"><rect x="94" y="153" width="232" height="203" rx="1"/></clipPath><clipPath id="envelopePocket02"><rect x="93" y="150" width="234" height="205"/></clipPath><clipPath id="glassLightClip7"><rect x="-49" y="-34" width="98" height="68" rx="10"/></clipPath><linearGradient id="deskLight7" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".35" stop-color="#fff" stop-opacity=".9"/><stop offset=".65" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>`;}
+ function sheetBody(open=0,flat=false,oldOpen=open,oldFlat=flat,animate=false,showActions=true){
+  const hinge=78,edge=hinge-156*Math.cos(Math.PI*open),lift=(1-Number(flat))*(open>0.6?14*(open-.6)/.4:9*Math.sin(Math.PI*open));
+  const oldEdge=hinge-156*Math.cos(Math.PI*oldOpen),oldLift=(1-Number(oldFlat))*(oldOpen>.6?14*(oldOpen-.6)/.4:9*Math.sin(Math.PI*oldOpen));
+  const ps=[[hinge,-96],[edge,-96-lift],[edge,96-lift],[hinge,96]],before=[[hinge,-96],[oldEdge,-96-oldLift],[oldEdge,96-oldLift],[hinge,96]];
+  return obj('sheet-B',Number(flat)>.99?'flat-cushion':open>.99?'opened-not-flat':'folded-cushion',
+   r(-78,-96,156,192,'#dbece2b0',`stroke="${C.blue}" stroke-width="1.5"`,5)+r(-75,-93,150,186,'url(#bubbles6)','',4)+
+   polygon(ps,'#e0f0e7b8',before,animate)+polygon(ps,'url(#bubbles6)',before,animate,'stroke-opacity=".45"')+
+   line(78,-94,78,94,C.blue,'stroke-dasharray="5 4"')+
+   t('気泡の層',-31,-78,10,C.blue)+t('B',-62,82,11,C.blue)+
+   (flat||!showActions?'':t(open>.5?'↓ 平らにのばす':'→ めくる',open>.5?150:1,65,13,C.blue,'font-weight="700"')),
+   `data-fold-width="156" data-flat-width="312" data-height="192"`);
+ }
+ // The envelope folds the bubble face outward: unfolding exposes the smooth back.
+ function receivingSheet(open=0,flat=false,bubblesUp=false){
+  if(open>.999&&Number(flat)>.999&&bubblesUp)return sheetBody(1,true,1,true,false,false);
+  const hinge=78,edge=hinge-156*Math.cos(Math.PI*open),lift=(1-Number(flat))*(open>.6?14*(open-.6)/.4:9*Math.sin(Math.PI*open));
+  const base=[[-78,-96],[78,-96],[78,96],[-78,96]],leaf=[[78,-96],[edge,-96-lift],[edge,96-lift],[78,96]];
+  const face=(ps,bubble)=>polygon(ps,bubble?'#dbece2e0':'#dce9e1f0',null,false,'stroke="#729c89"')+
+   (bubble?polygon(ps,'url(#bubbles6)',null,false,'stroke="none"'):`<path d="M${ps[0][0]+12} ${ps[0][1]+19}L${ps[1][0]-12} ${ps[1][1]+19}M${ps[0][0]+18} ${ps[0][1]+27}L${ps[1][0]-18} ${ps[1][1]+27}" stroke="#fff" stroke-width="5" opacity=".75"/>`);
+  return obj('sheet-B',open>.99?(bubblesUp?'bubble-face-up':'smooth-face-up'):'folded-cushion',
+   face(base,bubblesUp)+face(leaf,open<.5?!bubblesUp:bubblesUp)+line(78,-94,78,94,C.blue,'stroke-dasharray="5 4"')+
+   t(open<.5?'B':bubblesUp?'ふくらむ気泡':'つるつるの面',open<.5?-62:0,open<.5?82:-62,open<.5?11:12,C.blue)+
+   (open<.6?t('→',5,48,24,C.blue):t(bubblesUp?'やわらかい面':'光る、なめらかな面',0,70,11,C.blue)),
+   `data-fold-width="156" data-flat-width="312" data-height="192" data-face="${bubblesUp?'bubbles':'smooth'}"`);
+ }
+ function edgePoint(q){
+  const path=[[-40,-30],[39,-30],[48,-20],[48,21],[37,33],[-37,33],[-48,21],[-48,-20],[-40,-30]];
+  const spans=path.slice(1).map(([x,y],i)=>Math.hypot(x-path[i][0],y-path[i][1]));
+  let length=Math.max(0,Math.min(1,q))*spans.reduce((a,b)=>a+b,0);
+  for(let i=0;i<spans.length;i++){
+   if(length<=spans[i]||i===spans.length-1){const f=spans[i]?Math.min(1,length/spans[i]):0;return [path[i][0]+(path[i+1][0]-path[i][0])*f,path[i][1]+(path[i+1][1]-path[i][1])*f];}
+   length-=spans[i];
+  }
+  return path[0];
+ }
+ function glassBody(checked=false,tilt=0,scan=false,observation=null){
+  const angle=observation?.angle??16*Math.sin(tilt*Math.PI),scale=observation?1-.18*Math.abs(angle)/16:1-.22*Math.sin(tilt*Math.PI);
+  const sheen=observation?.sheen??-70+140*tilt;
+  return obj('glass-C',checked?'inspected-intact':'unwrapped',
+   r(-49,-32,102,72,'#000','opacity=".08"',12)+
+   `<g transform="skewX(${angle})">${scan?'<animateTransform attributeName="transform" type="skewX" values="0;16;-10;0" dur=".85s" fill="freeze"/>':''}<g transform="scale(1 ${scale})">`+
+   (scan?'<animateTransform attributeName="transform" type="scale" values="1 1;1 .78;1 .88;1 1" dur=".85s" fill="freeze"/>':'')+
+   /* Keep the glass mostly flat and transparent; only a subtle hint of thickness on the right and bottom. */
+   `<path d="M41 -30Q47 -29 48 -22V22Q48 28 42 31L39 28Q44 27 44 21V-21Q44 -27 40 -29Z" fill="#bdd8dd" stroke="#7ba9b0" stroke-width=".9" opacity=".42" data-part="glass-right-thickness"/>`+
+   `<path d="M-38 30H36Q43 30 45 33Q11 35 -35 35Q-42 35 -45 31L-42 28Q-41 30 -38 30Z" fill="#c6e0e4" stroke="#7ba9b0" stroke-width=".9" opacity=".38" data-part="glass-bottom-thickness"/>`+
+   r(-49,-34,98,68,checked?'#d7edf0':'#e3f2f4',`fill-opacity=".72" stroke="${C.blue}" stroke-opacity=".88" stroke-width="1.7"`,11)+
+   `<path d="M-43 -27H33Q40 -26 41 -20L41 -11M-42 -23V18" fill="none" stroke="#fff" opacity=".82" stroke-width="2.2" stroke-linecap="round" data-part="glass-rim-highlight"/>`+
+   `<path d="M-38 27H31" stroke="#5c9ca7" opacity=".38" stroke-width="1.3" fill="none"/>`+
+   `<path d="M-39-28H37Q45-27 45-19V21Q45 29 36 30H-36Q-45 29-45 21V-19Q-45-27-39-28Z" stroke="#f9ffff" stroke-width="1.35" fill="none" opacity=".95" data-part="unbroken-glass-edge"/>`+
+   t('OK',0,8,31,C.blue,'font-weight="700"')+
+   `<g clip-path="url(#glassLightClip7)"><path d="M${sheen-27} -42l32 0 40 84h-32Z" fill="#fff" opacity=".78" data-part="moving-reflection">${scan?'<animate attributeName="d" values="M-98-42h32l40 84h-32Z;M52-42h32l40 84H92Z;M-58-42h32l40 84h-32Z" dur=".85s" fill="freeze"/>':''}</path></g>`+
+   `<path d="M-39-16-21-29M-41 26H33" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>`+
+   (observation?.edge?`<path d="M-40-30H39Q48-29 48-20V21Q48 32 37 33H-37Q-48 32-48 21V-20Q-48-29-40-30Z" fill="none" stroke="#fff7ad" stroke-width="3.5" stroke-dasharray="${Math.min(1,observation.edge)*302} 302" data-part="edge-observation"/>`:'')+
+   (Number.isFinite(observation?.edgeCursor)?(()=>{const [x,y]=edgePoint(observation.edgeCursor);return `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="4.5" fill="#fff" stroke="#e6a532" stroke-width="2.5" data-part="inspection-cursor"/>`;})():'')+'</g></g>');
+ }
+ function cargoBody(){return obj('cargo-D','original-parcel',r(-35,-24,74,54,'#000','opacity=".08"')+r(-37,-27,74,54,C.card,`stroke="${C.dark}" stroke-width="1.5"`)+r(-7,-27,14,54,'#eed5a2','',0)+t('荷物',0,5,17,C.dark,'font-weight="650"'));}
+ function scene(p,fx={}){
+  const d=fx.drag,old=fx.previous||p,anim=!!fx.previous&&!!fx.id&&!d;
+  const prog=id=>d?.id===id?(Number.isFinite(d.inspectionQ)?d.inspectionQ:G.progress(p,id,d.dx,d.dy)):0;
+  const changing=(id,v,prev)=>d?.id===id?v+(1-2*v)*prog(id):v;
+  const free=(id,x,y)=>d?.id===id?(G.movable(p,id)?{x:d.x,y:d.y}:{x:x+G.clamp(d.dx*.08,-7,7),y:y+G.clamp(d.dy*.08,-6,6)}):{x,y};
+  function ctrl(id,label,x,y,body,hx=0,hy=0,w=68,h=68,extra=''){
+   const selected=p.selected===id;
+   return `<g data-id="${id}" role="button" tabindex="${p.done?-1:0}" ${p.done?'aria-disabled="true"':''} aria-label="${e(label)}" class="piece${selected?' selected':''}${d?.id===id?' gripped':''}" transform="translate(${x} ${y})" ${extra}>`+
+    `<g class="visual ${fx.targets?.includes(id)?'tug':''}">${body}</g>`+
+    (selected?r(hx-w/2-3,hy-h/2-3,w+6,h+6,'none',`stroke="${C.blue}" stroke-width="2" stroke-dasharray="5 4"`,6):'')+
+    r(hx-Math.max(68,w)/2,hy-Math.max(68,h)/2,Math.max(68,w),Math.max(68,h),'transparent','class="hit" pointer-events="all"',4)+'</g>';
+  }
+  function item(id,label,x,y,body,w,h,active=true){const a=free(id,x,y);return active?ctrl(id,label,a.x,a.y,body,0,0,w,h):at(body,a.x,a.y,'pointer-events="none"');}
+  function receiver(id,x,y,w,h,label='受取台',active=true){const body=r(-w/2,-h/2,w,h,'#e7ebdd',`stroke="${C.sage}" stroke-width="1.3" stroke-dasharray="6 5"`,8)+t(label,0,h/2-13,12,'#7b9074');return active?ctrl(id,label,x,y,body,0,0,w,h,'data-target="true"'):at(body,x,y,'pointer-events="none"');}
+  function mat(active=false){const body=sheetBody(1,true);return active?ctrl('mat','同じ気泡シートの上へ置く',132,406,body,78,0,312,192,'data-target="true"'):at(body,132,406,'pointer-events="none"');}
+  function strip(id,cx,cy,w,removed,prev){
+   const q=d?.id===id?prog(id):removed?1:0;
+   const visible=Math.max(0,w*(1-q)),left=-w/2+w*q;
+   let body=r(left,-13,visible,26,'#e9d1a3','stroke="#ae8a54"',1)+
+    (q<.999?r(left-10,-19,32,38,'#f1dcaf',`stroke="${C.dark}"`)+t('→',left+6,7,22,C.dark):'');
+   if(q>0&&q<1)body+=`<path d="M${left} -12 Q${left-32} ${-24-35*q} ${left-50*q} ${-12-42*q}" fill="none" stroke="#eed9b3" stroke-width="24"/>`;
+   if(removed)body=at(`<path d="M-29 3q14-19 28 0t28 0" fill="none" stroke="#ecd3a8" stroke-width="17"/>`, -w/2-58,33);
+   if(removed&&anim&&fx.id===id)body=`<rect x="${-w/2}" y="-13" width="${w}" height="26" fill="#e9d1a3" stroke="#ae8a54"><animate attributeName="x" from="${-w/2}" to="${w/2}" dur=".32s" fill="freeze"/><animate attributeName="width" from="${w}" to="0" dur=".32s" fill="freeze"/></rect><g><animateTransform attributeName="transform" type="translate" from="65 -33" to="0 0" dur=".32s" fill="freeze"/>${body}</g>`;
+   return removed?at(body,cx,cy,'pointer-events="none"'):ctrl(id,'継ぎ目の短い帯を右へ引く',cx,cy,body,0,0,w+20,68);
+  }
+  function carton(kind,content,interactive=true){
+   const isC=kind==='C',cx=210,cy=isC?180:190,w=isC?250:278,h=isC?150:178;
+   const L=cx-w/2,R=cx+w/2,T=cy-h/2,B=cy+h/2,id=isC?'case-lid':'outer-lid';
+   const open=isC?p.caseOpen:p.outerOpen,prev=isC?old.caseOpen:old.outerOpen,q=changing(id,Number(open),Number(prev)),q0=Number(prev);
+   const ps=z=>[[L,T],[R,T],[R+z*8,T+h*(1-1.4*z)],[L-z*8,T+h*(1-1.4*z)]];
+   let b=r(L,T,w,h,'#b18a5c',`stroke="${C.dark}" stroke-width="1.6"`,2)+r(L+13,T+12,w-26,h-24,'#a27a50','',1)+
+    `<path d="M${L} ${T}l13 12v${h-24}l-13 12ZM${R} ${T}l-13 12v${h-24}l13 12Z" fill="#c49c65" stroke="${C.dark}"/>`+
+    r(L,B,w,25,C.side,`stroke="${C.dark}" stroke-width="1.4"`,1)+t(isC?'取 扱 注 意':'梱 包 済',cx,B+17,12,C.dark)+content;
+   const lid=polygon(ps(q),q>.6?'#e2bf8d':'#dbb580',ps(q0),anim&&fx.id===id,'data-part="hinged-lid"')+
+    line(L,T,R,T,'#a17d4c','stroke-dasharray="5 4"')+
+    (q<.4?t(isC?'割 れ も の':'箱 も 荷 物',cx,T+h*.35,16,C.dark):'')+
+    t(q>.6?'折り線につながるふた':'↑',cx,T+h*(1-1.4*q)*.65,q>.6?10:24,C.dark);
+   const ys=ps(q).map(v=>v[1]),m=(Math.min(...ys)+Math.max(...ys))/2;
+   b+=interactive?ctrl(id,open?'つながった上ふたを閉じる':'奥につながる上ふたを開く',0,0,lid,cx,m,w,Math.max(68,Math.max(...ys)-Math.min(...ys))):lid;
+   return obj(isC?'carton-C':'outer-D',open?'open-with-walls':'closed',b);
+  }
+  function foam(i,active=true){
+   const id=i?'foamR':'foamL',v=p.foamOut[i]?1:0,prev=old.foamOut[i]?1:0,q=changing(id,v,prev),x=(i?294:126)+(i?74:-74)*q;
+   const shape=i?'M24-64H-24V-42H-10V42H-24V64H24Z':'M-24-64H24V-42H10V42H24V64H-24Z';
+   const body=obj(i?'foam-C-R':'foam-C-L',p.foamOut[i]?'withdrawn':'holding',`<path d="${shape}" fill="#eee9d5" stroke="#a49e83" stroke-width="1.5"/>`+
+    r(-20,-59,40,118,'url(#bubbles6)','opacity=".44"',2)+line(i?-16:16,-39,i?-16:16,39,'#b6af96','stroke-dasharray="3 4"')+
+    t(i?'↔':'↔',0,4,21,C.blue));
+   let z=active?ctrl(id,`${i?'右':'左'}の一体形クッション`,x,180,body,0,0,68,128):at(body,x,180,'pointer-events="none"');
+   if(anim&&fx.id===id&&v!==prev){const oldx=(i?294:126)+(i?74:-74)*prev;z=at(`<animateTransform attributeName="transform" type="translate" from="${oldx-x} 0" to="0 0" dur=".3s" fill="freeze"/>${z}`);}
+   return z;
+  }
+  function paper(cx,cy,interactive=false,hasGlass=true,wrappedMove=false,contents=''){
+   const qs=p.paperOpen.map((v,i)=>changing(i?'paperR':'paperL',Number(v),Number(old.paperOpen[i])));
+   const oldQs=old.paperOpen.map(Number);
+   const connected=(i,q,q0)=>{
+    const hinge=i?60:-60,dir=i?-1:1,edge=hinge+dir*88*Math.cos(Math.PI*q),edge0=hinge+dir*88*Math.cos(Math.PI*q0),lift=10*Math.sin(Math.PI*q),lift0=10*Math.sin(Math.PI*q0);
+    const sag=8*Math.max(0,(q-.65)/.35);
+    const oldSag=8*Math.max(0,(q0-.65)/.35);
+    const ps=[[hinge,-56],[edge,-56-lift+sag],[edge,56-lift+sag],[hinge,56]],before=[[hinge,-56],[edge0,-56-lift0+oldSag],[edge0,56-lift0+oldSag],[hinge,56]];
+    const center=(hinge+edge)/2;
+    let body=polygon(ps,q>.5?'#eee4cd':'#e4d4b2',before,anim&&fx.id===(i?'paperR':'paperL'),'data-part="connected-paper-leaf"')+
+     line(hinge,-55,hinge,55,'#ac9773','stroke-dasharray="4 4"');
+    if(q>.65)body+=
+     /* Inside printing now resembles a real document, not an answer sheet. */
+     line(center-23,-22,center+23,-22,'#ae9f83','stroke-width="1" opacity=".6"')+
+     line(center-23,-14,center+15,-14,'#ae9f83','stroke-width="1" opacity=".48"')+
+     line(center-23,-6,center+20,-6,'#ae9f83','stroke-width="1" opacity=".40"')+
+     r(center-21,13,42,20,'none','stroke="#b6a88c" stroke-width="1" opacity=".55"',2)+
+     line(center-13,23,center+13,23,'#b6a88c','stroke-width="1" opacity=".45"');
+    else body+=t(i?'右の折返し':'左の折返し',center,-35,9,C.dark)+t(i?'→':'←',center,8,21,C.dark);
+    const id=i?'paperR':'paperL';
+    if(interactive&&!wrappedMove)return ctrl(id,`${i?'右':'左'}の、中央につながる紙`,0,0,body,center,0,Math.max(68,Math.abs(edge-hinge)),112);
+    return at(body,0,0,'pointer-events="none"');
+   };
+   let b=r(-60,-56,120,112,'#e7dbc0',`stroke="${C.dark}" stroke-width="1.4"`,1)+
+    r(-52,-37,104,74,'none','stroke="#af9c78" stroke-dasharray="4 4"',10);
+   if(p.glassOnMat||p.n>=4)b+=obj('abrasion-C','paper-contact-mark',`<path d="M-24 17l38-3m-34 7 36-3m-31 7 24-2" fill="none" stroke="#aa9379" stroke-width="1.2" opacity=".75"/>`+(p.checked?t('紙の擦れ',0,36,10,C.red):''));
+   if(hasGlass)b+=at(glassBody(p.checked),0,0,'pointer-events="none" aria-hidden="true"');
+   b+=contents;
+   // A single connected paper; the last folded leaf is the visible outer layer.
+   for(let i=0;i<2;i++)if(qs[i]>.5)b+=connected(i,qs[i],oldQs[i]);
+   for(const i of p.paperOrder)if(qs[i]<=.5)b+=connected(i,qs[i],oldQs[i]);
+   if(qs[0]<.1&&qs[1]<.1)b+=t('取 扱 注 意',0,43,11,C.dark);
+   const root=obj('manual-C',qs.every(v=>v>.99)?'one-open-sheet':qs.every(v=>v<.01)?'wrapped-around-OK':'partly-unfolded',b);
+   if(wrappedMove){
+    let moved=item('bundle','同じ説明書に包まれたOK',cx,cy,root,120,112);
+    const last=p.paperOrder.at(-1),sign=last?1:-1;
+    if(p.n===5&&!p.packed&&!(d?.id==='bundle'))moved+=ctrl(last?'paperR':'paperL','上に重なる紙の端を開き直す',cx+sign*52,cy-43,polygon([[-14,-9],[14,-9],[sign*14,12]],'#dfcda7')+t('↗',0,5,12,C.dark),0,0,68,68);
+    return moved;
+   }return at(root,cx,cy);
+  }
+  function paperBand(back){
+   if(p.n===6||!back&&!p.bandLoose&&!p.bandOff){
+    return obj('band-D','one-wrapped-band',`<path d="M0 -61 L0 77 Q0 95 0 5 T0 30" fill="none" stroke="#af905e" stroke-width="27" stroke-linejoin="round"/><path d="M0 -61 L0 77 Q0 95 0 5 T0 30" fill="none" stroke="#eed6a9" stroke-width="24" stroke-linejoin="round"/>`+r(-14,back?13:-58,28,37,'#eed6a9',`stroke="${C.dark}"`,2)+t('↓',0,back?40:-32,21,C.dark));
+   }
+   const slide=p.bandOff?135:d?.id==='band-loop'?135*prog('band-loop'):0;
+   const loose=p.bandLoose?1:d?.id==='band-tip'?prog('band-tip'):0;
+   // Rigid strip and rigid free end: neither paper width nor loop path is morphed.
+   const core=`<path d="M0 -61 L0 77 Q0 95 0 5 T0 30" fill="none" stroke="#af905e" stroke-width="27" stroke-linejoin="round"/><path d="M0 -61 L0 77 Q0 95 0 5 T0 30" fill="none" stroke="#eed6a9" stroke-width="24" stroke-linejoin="round"/>`;
+   let tail=at(r(-14,13,28,37,'#594c2e','opacity=".18"',2),2,3+64*loose)+
+    at(r(-14,13,28,37,'#f1dcb4',`stroke="${C.dark}"`,2)+line(-12,16,12,16,'#c5a678')+t(loose>.9?'→':'↓',0,41,21,C.dark),0,64*loose);
+   const retaining=!p.bandLoose&&loose<1?r(-16,17,32,14,'#e3c795',`stroke="#9a7d50"`,1)+line(-14,32,14,32,'#6f573b')+line(-14,18,14,18,'#fff0cd'):
+    r(-16,17,32,14,'#e3c795',`stroke="#9a7d50"`,1)+line(-14,32,14,32,'#6f573b');
+   return obj('band-D',p.bandOff?'removed-rigid-loop':p.bandLoose?'released-loop':'tucked-tail',
+    at(core+line(-12,-58,12,-58,'#ac8b56')+line(-12,61,12,61,'#ac8b56')+tail+retaining,slide,0),
+    `data-width="24" data-shape="fixed-loop" data-slide="${slide.toFixed(3)}" data-tail-progress="${loose.toFixed(3)}"`);
+  }
+  function inner(back=false,open=false,active=false,x=210,y=410){
+   const q=p.bandOff?1:0,band=q;
+   const lidQ=changing('inner-lid',Number(open),Number(old.innerOpen)),L=-83,R=83,T=-61,H=122;
+   let body=r(L,T,166,H,'#b68c59',`stroke="${C.dark}" stroke-width="1.6"`,2)+r(L+10,T+10,146,102,'#a17a50','',1)+
+    `<path d="M-83-61l10 10V51l-10 10ZM83-61 73-51V51l10 10Z" fill="#c49b65" stroke="${C.dark}"/>`;
+   if(back){body=r(-83,-61,166,138,C.card,`stroke="${C.dark}" stroke-width="1.7"`,2)+`<path d="M-78-55 0-10 78-55M-78 70 0 10 78 70M0-10v20" fill="none" stroke="#ae8758"/>`+t('底面',-47,56,13,C.dark)+(p.n===6?r(-34,-1,68,9,'#816744',`stroke="${C.dark}"`,2):'');}
+   else{
+    if(!p.cargoOut&&(!active||!p.innerOpen)&&p.n!==7)body+=at(cargoBody(),0,0,'pointer-events="none" aria-hidden="true"');
+    if(p.n===7&&!p.cargoOut){
+     const z=d?.id==='sleeve-flap'?prog('sleeve-flap'):Number(p.sleeveOpen);
+     const ps=v=>[[-58,-44],[-58+116*Math.cos(Math.PI*v),-44-12*Math.sin(Math.PI*v)],[-58+116*Math.cos(Math.PI*v),44-12*Math.sin(Math.PI*v)],[-58,44]];
+     let sleeve=r(-58,-44,116,88,'#ece2c9',`stroke="#ae9b79"`,1);
+     if(!p.sleeveOpen)sleeve+=at(cargoBody(),0,0,'pointer-events="none" aria-hidden="true"');
+     const leaf=polygon(ps(z),z>.5?'#f5ecd9':'#e1d3b3',ps(Number(old.sleeveOpen)),anim&&fx.id==='sleeve-flap','data-part="connected-sleeve-leaf"')+line(-58,-43,-58,43,'#aa9570','stroke-dasharray="4 4"')+
+      (z<.3?polygon([[38,-44],[58,-24],[38,-24]],'#f7efd9')+t('←',31,15,22,C.dark):'');
+     sleeve+=active&&p.innerOpen&&!p.sleeveOpen?ctrl('sleeve-flap','上に重なる保護紙の端を左へめくる',0,0,leaf,18,0,80,88):leaf;
+     body+=obj('sleeve-D',p.sleeveOpen?'opened-one-paper':'overlapping-paper',sleeve);
+    }else if(p.n===7&&p.sleeveOpen){
+     body+=obj('sleeve-D','opened-one-paper',r(-58,-44,116,88,'#ece2c9',`stroke="#ae9b79"`,1)+polygon([[-58,-44],[-174,-44],[-174,44],[-58,44]],'#f5ecd9')+line(-58,-43,-58,43,'#aa9570','stroke-dasharray="4 4"'));
+    }
+    body+=r(-83,61,166,16,C.side,`stroke="${C.dark}"`,1);
+    const ps=z=>[[-83,-61],[83,-61],[83+5*z,-61+122*(1-1.48*z)],[-83-5*z,-61+122*(1-1.48*z)]];
+    const lid=polygon(ps(lidQ),lidQ>.6?'#e3c18c':C.card,ps(Number(old.innerOpen)),anim&&fx.id==='inner-lid','data-part="hinged-lid"')+
+     line(-83,-61,83,-61,'#9f7c4f','stroke-dasharray="4 4"')+
+     (lidQ<.5?r(-68,-9,58,49,C.paper,'stroke="#c7b898"',2)+t('荷物',-39,10,14,C.ink)+t('在中',-39,29,12,C.ink)+t('梱包済',42,26,17,C.red,'font-weight="700" transform="rotate(-10 42 26)"')+t('↑ ↑',42,-39,14,C.dark):'');
+    body+=active&&!open?ctrl('inner-lid','奥につながった内箱のふた',0,0,lid,0,0,166,122):lid;
+   }
+   if(!p.bandOff){
+    const band=paperBand(back);
+    if(active&&back){
+     const id=p.bandLoose?'band-loop':'band-tip',y=p.bandLoose?104:40+64*prog('band-tip'),selected=p.selected===id;
+     body+=selected?band:ctrl(id,p.bandLoose?'自由になった紙帯の輪を右へ滑らせる':'重なりの下から紙帯の先を下へ引き抜く',0,0,band,0,y,88,88);
+     if(selected)body+=ctrl(id+'-end',p.bandLoose?'右の終点まで紙帯の輪を抜く':'下の終点まで紙帯の先を引き抜く',p.bandLoose?135:0,p.bandLoose?104:104,
+      r(-29,-24,58,48,'#fcf9f1dd',`stroke="${C.blue}" stroke-dasharray="4 3"`,7)+t(p.bandLoose?'→':'↓',0,7,27,C.blue),0,0,88,88,'data-target="true"');
+    }else body+=active?ctrl('band-front','表から底へ続く紙帯の端',0,0,band,0,-38,68,68):band;
+   }
+   const innerObject=obj('inner-D',back?'bottom':open?'open-with-walls':'sealed-front',body,`data-width="166" data-depth="122"`);
+   let b=at(innerObject,x,y);
+   return b;
+  }
+  function turn(body,previousBody,activeId){
+   if(d?.id===activeId){const q=prog(activeId),width=Math.max(.035,Math.abs(Math.cos(Math.PI*q)));return at(`<g transform="translate(210 275) scale(${width} 1) translate(-210 -275)">${q<.5?previousBody:body}</g>`);}
+   if(anim&&fx.id===activeId)return `<g>${previousBody}<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.49;.5;1" dur=".38s" fill="freeze"/></g><g>${body}<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.49;.5;1" dur=".38s" fill="freeze"/><animateTransform attributeName="transform" type="translate" values="210 0;210 0;0 0" keyTimes="0;.5;1" dur=".38s" additive="sum" fill="freeze"/></g>`;
+   return body;
+  }
+  function cushionedBundle(cx=p.glassAt.x,cy=p.glassAt.y){
+   const qs=p.bubbleFolds.map((v,i)=>changing(G.wrapIds[i],Number(v),Number(old.bubbleFolds[i])));
+   const first=!p.bubbleFolds.some(Boolean)&&d?.id?.startsWith('wrap-')?prog(d.id):0;
+   const ox=p.protectionInBox?0:(p.sheetAt.x-p.glassAt.x)*(1-first),oy=p.protectionInBox?0:(p.sheetAt.y-p.glassAt.y)*(1-first);
+   const xs=[ox-156,-56,56,ox+156],ys=[oy-96,-40,40,oy+96];
+   const map=(x,y)=>{
+    const qx=x < -56?qs[0]:x>56?qs[1]:0,qy=y < -40?qs[2]:y>40?qs[3]:0;
+    const X=x < -56?-56+(x+56)*Math.cos(Math.PI*qx):x>56?56+(x-56)*Math.cos(Math.PI*qx):x;
+    const Y=y < -40?-40+(y+40)*Math.cos(Math.PI*qy):y>40?40+(y-40)*Math.cos(Math.PI*qy):y;
+    const lift=8*Math.sin(Math.PI*qx)*Math.min(1,Math.abs(x-(x<0?-56:56))/80)+5*Math.sin(Math.PI*qy)*Math.min(1,Math.abs(y-(y<0?-40:40))/44);
+    return [X,Y-lift];
+   };
+   const cell=(col,row)=>{
+    const ps=[[xs[col],ys[row]],[xs[col+1],ys[row]],[xs[col+1],ys[row+1]],[xs[col],ys[row+1]]].map(([x,y])=>map(x,y));
+    let body=polygon(ps,'#dbece284',null,false,'stroke="none"');
+    for(let yy=oy-85;yy<oy+96;yy+=22)for(let xx=ox-145;xx<ox+156;xx+=22){
+     if(xx<xs[col]||xx>=xs[col+1]||yy<ys[row]||yy>=ys[row+1])continue;
+     const [x,y]=map(xx,yy),qx=xx < -56?qs[0]:xx>56?qs[1]:0,qy=yy < -40?qs[2]:yy>40?qs[3]:0;
+     const rx=Math.max(.35,7.4*Math.abs(Math.cos(Math.PI*qx))),ry=Math.max(.35,7.4*Math.abs(Math.cos(Math.PI*qy)));
+     body+=`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="#edf9f266" stroke="#96b8a5" stroke-width=".65"/><ellipse cx="${x-rx*.25}" cy="${y-ry*.32}" rx="${rx*.3}" ry="${ry*.18}" fill="#fff" opacity=".8"/>`;
+    }
+    return body;
+   };
+   const inside=p.bubbleFolds.some(Boolean)||d?.id?.startsWith('wrap-');
+   let layers=cell(1,1)+(inside?glassBody(true):'');
+   const priority=(c,r)=>Math.max(c===0?p.bubbleOrder.indexOf(0):c===2?p.bubbleOrder.indexOf(1):-1,r===0?p.bubbleOrder.indexOf(2):r===2?p.bubbleOrder.indexOf(3):-1,d?.id===G.wrapIds[c===0?0:c===2?1:r===0?2:3]?9:-1);
+   const cells=[[0,0],[1,0],[2,0],[0,2],[1,2],[2,2],[0,1],[2,1]].sort((a,b)=>priority(...a)-priority(...b));
+   for(const [c,rw]of cells)layers+=cell(c,rw);
+   // Shared crease vertices are fixed to the glass; soft shadows, no cut-up grid.
+   for(let i=0;i<4;i++)if(qs[i]>.02&&qs[i]<.98){const ps=i<2?[[i?56:-56,-40],[i?56:-56,40]]:[[-56,i===2?-40:40],[56,i===2?-40:40]];layers+=line(...ps[0],...ps[1],'#7f9b87',`opacity="${.18*Math.sin(Math.PI*qs[i])}"`);}
+   const mark=map(ox-140,oy+82);layers+=t('B',mark[0],mark[1],11,C.blue);
+   if(qs.every(v=>v>.99))layers+=r(-60,-48,120,96,'none',`stroke="#89a893" stroke-width="1.6"`,12);
+   const cloth=obj('sheet-B',p.cushioned?'glass-direct-protection':'folding-around-glass',layers,
+    `data-flat-width="312" data-height="192" data-cells="9" data-folds="${qs.map(q=>q.toFixed(3)).join(',')}" data-role="same-sheet-protection"`);
+   let result=G.pos(p,'bundle')?item('bundle','気泡で直接守ったガラスを動かす',cx,cy,cloth,120,96):at(cloth,cx,cy);
+   if(!p.protectionInBox&&d?.id!=='bundle'){
+    if(p.selected==='glass')result=ctrl('mat','気泡の広い面にガラスを置く',p.sheetAt.x,p.sheetAt.y,'',0,0,180,144,'data-target="true"')+result;
+    if(!inside)result+=item('glass','気泡の広い中央へガラスを移す',p.glassAt.x,p.glassAt.y,glassBody(true),102,72);
+    for(let i=0;i<4;i++){
+     const closed=p.bubbleFolds[i];if(closed&&p.bubbleOrder.at(-1)!==i)continue;
+     let [x,y]=closed?[48,-42]:map(i===0?xs[0]+10:i===1?xs[3]-10:0,i===2?ys[0]+6:i===3?ys[3]-6:0);
+     const arrow=closed?'↶':i===0?'→':i===1?'←':i===2?'↓':'↑';
+     result+=ctrl(G.wrapIds[i],`${['左','右','奥','手前'][i]}の気泡の端を${closed?'開き直す':'折り重ねる'}`,cx+x,cy+y,
+      closed?polygon([[-17,-13],[17,-13],[17,15]],'#e3f0e6',null,false,'stroke="#779a86"')+t(arrow,1,4,18,C.blue):
+       line(i<2?0:-19,i<2?-23:0,i<2?0:19,i<2?23:0,'#628b75','stroke-dasharray="3 3"')+t(arrow,0,7,24,C.blue),0,0,68,68,
+       `data-fold-edge="${i}"`);
+    }
+   }
+   return result;
+  }
+  let b=defs()+r(0,0,420,540,'#f3efe4','',8)+r(0,0,420,540,'url(#d6dots)')+r(12,12,396,516,'none','stroke="#c7c8ba" stroke-dasharray="3 6"',4)+t(`${String(p.n+1).padStart(2,'0')} / ${G.LEVELS[p.n].group}`,135,32,11,'#818879');
+  if(p.n===0){
+   if(p.selected==='start')b+=ctrl('receive','手前の空いた机へ置く',210,405,t('机に置く',0,94,12,C.blue),0,0,300,174,'data-target="true"');
+   const heading=t(p.done?'受け取りました。':p.lids.every(Boolean)?'前の持ち主から、届いたもの。':'荷物が届きました。',p.done?180:210,69,21,C.ink,'font-weight="700"');
+   b+=fx.arrival?`<g class="arrival-board-caption">${heading}</g>`:heading;
+   const L=88,R=332,T=105,B=265,W=244,H=160;
+   const arrivalPiecesStart=b.length; // Include shadow, carton AND tape in the same arriving physical parcel.
+   b+=`<ellipse cx="210" cy="298" rx="131" ry="11" fill="#655032" opacity=".12"/>`;
+   let box=r(L,T,W,H,'#b48a5b',`stroke="${C.dark}" stroke-width="1.5"`,2)+r(L+10,T+10,W-20,H-20,'#a67b4e','',1)+
+    `<path d="M88 105l10 10v140l-10 10ZM332 105l-10 10v140l10 10Z" fill="#c59d67" stroke="${C.dark}"/>`+
+    r(L,B,W,25,C.side,`stroke="${C.dark}"`,1)+t('梱 包 中 。',210,282,12,C.dark);
+   const used=obj('start-A','received-used',r(-78,-25,156,58,'#81947b','',8)+r(-78,-29,156,58,'#a4b7a3',`stroke="${C.ink}" stroke-width="1.5"`,8)+t('✓ はじめた',0,8,22,C.ink,'font-weight="650"')+t('使用済み',0,48,13,C.blue));
+   if(!p.buttonOnMat&&!p.lids.every(Boolean))box+=at(used,210,185,'pointer-events="none"');
+   for(let i=0;i<2;i++){
+    const id=i?'lidR':'lidL',hinge=i?R:L,dir=i?-1:1;
+    const q=d?.id===id?Number(p.lids[i])+(1-2*Number(p.lids[i]))*prog(id):Number(p.lids[i]);
+    // The free edge rises above the rim, turns edge-on, then settles OUTSIDE.
+    // Both hinge vertices stay fixed; no leaf sweeps flat across the contents.
+    const coords=z=>{const reach=122*Math.cos(z*Math.PI)*(.53+.47*(1-z)),lift=72*Math.sin(z*Math.PI);return [[hinge,T],[hinge+dir*reach,T-lift],[hinge+dir*reach,B-lift],[hinge,B]];};
+    const ps=coords(q),before=coords(Number(old.lids[i]));
+    const keys=anim&&fx.id===id?[0,.25,.5,.75,1].map(v=>points(coords(v))).join(';'):'';
+    const moving=(fill,extra='')=>`<polygon points="${points(ps)}" fill="${fill}" stroke="${C.dark}" stroke-width="1.5" ${extra}>${keys?`<animate attributeName="points" values="${keys}" keyTimes="0;.25;.5;.75;1" dur=".55s" fill="freeze"/><animate attributeName="fill" values="#d9b37f;#d9b37f;#edcfa0;#edcfa0" keyTimes="0;.49;.5;1" calcMode="discrete" dur=".55s" fill="freeze"/>`:''}</polygon>`;
+    let flap=moving(q>.5?'#edcfa0':'#d9b37f','data-part="side-hinged-lid" data-lift="'+(72*Math.sin(q*Math.PI)).toFixed(3)+'" data-free-x="'+ps[1][0].toFixed(3)+'"')+
+     line(hinge,T+2,hinge,B-2,'#97764c','stroke-dasharray="4 4"')+
+     (q<.4?t(i?'→':'←',hinge+dir*(ps[1][0]-hinge)*dir*.5,217-72*Math.sin(q*Math.PI)*.5,23,C.dark):'');
+    if(q>0.04&&q<.96)flap+=line(ps[1][0],ps[1][1],ps[2][0],ps[2][1],q>.5?'#a27848':'#f3d6a8','stroke-linecap="round"');
+    if(i&&q<.49){
+     const reach=Math.abs(ps[1][0]-hinge)/122,lift=72*Math.sin(q*Math.PI)/122;
+     flap+=`<g transform="matrix(${reach} ${lift} 0 1 ${ps[1][0]} ${ps[1][1]})" pointer-events="none">${r(16,18,93,55,C.paper,'stroke="#bbab89"',2)}${t('あなたへ',63,42,16,C.blue,'font-weight="700"')}${t('受取人 様',63,62,11,C.blue)}</g>`;
+    }
+    if(!i&&q<.49)flap+=t('配達済',hinge+(ps[1][0]-hinge)*.5,144-36*Math.sin(q*Math.PI),15,C.red,'font-weight="700"');
+    const center=(ps[0][0]+ps[1][0])/2;
+    box+=p.lids[i]?flap:ctrl(id,`${i?'右':'左'}の、側辺につながったふた`,0,0,flap,center,185,Math.max(68,Math.abs(ps[1][0]-hinge)),160);
+   }
+   box+=line(L,T,L,B,'#88663e')+line(R,T,R,B,'#88663e');
+   b+=obj('carton-A','side-hinged-carton',box);
+   if(!p.tapeOff){
+    const pull=202*prog('tape-tab');
+    let tape=r(-117+pull,-13,Math.max(1,234-pull),26,'#e8cf9e','stroke="#b29561"',1)+
+     (pull>.1?`<path d="M${-117+pull} -12q-20 ${-10-18*pull/202} -28 -23" fill="none" stroke="#eedcb4" stroke-width="24"/>`:'')+
+     r(-126+pull,-19,35,38,'#efdcaf',`stroke="${C.dark}"`,3)+t('→',-108+pull,7,21,C.dark)+(pull<3?t('テープ',0,5,12,C.dark):'');
+    b+=ctrl('tape-tab','一本のテープの折返しつまみ',210,185,tape,-108+pull,0,68,68);
+    if(p.selected==='tape-tab')b+=ctrl('peel','選んだテープを右の終点へ剥がす',321,185,t('→',0,7,25,C.dark),0,0,68,68,'data-target="true"');
+   }else b+=at(`<path d="M-31 0l22-8 22 8 22-8" fill="none" stroke="#e8cf9e" stroke-width="17"/>`,79,318,'pointer-events="none"');
+   if(p.lids.every(Boolean)){
+    if(!p.buttonOnMat)b+=item('start','届いた使用済みの「はじめた」',210,185,used,156,96);
+    else b+=at(used,210,405,'pointer-events="none"');
+   }
+   if(fx.arrival)b=b.slice(0,arrivalPiecesStart)+`<g class="delivered-from-back" data-role="arriving-package">${b.slice(arrivalPiecesStart)}</g>`;
+  }
+  if(p.n===1){
+   const incomingEnvelopeAt=b.length;
+   if(p.selected==='sheet')b+=ctrl('receive','手前の空いた机へシートを取り出す',210,416,t('机に取り出す',0,112,12,C.blue),0,0,364,196,'data-target="true"');
+   function envelope(back,oldFace=false){
+    const open=changing('envelope-flap',Number(p.envelopeOpen),Number(old.envelopeOpen));
+     // Same triangular flap, viewed from the other side: it does not disappear when turned over.
+     const apexY=150+133*Math.cos(open*Math.PI*.72);
+     const frontOpenFlap=!back&&p.envelopeOpen?
+      `<path d="M87 150L210 ${apexY.toFixed(2)}L333 150Z" fill="#e7c699" stroke="#98754c" stroke-width="1.4" data-part="front-connected-open-flap"/>`+
+      `<path d="M97 149L210 ${(apexY+7).toFixed(2)}L323 149" fill="none" stroke="#f8dfb3" stroke-width="1.1" opacity=".65"/>`:'';
+     let q=r(87,152,246,210,'#9d794c','opacity=".14"',1)+frontOpenFlap+r(87,150,246,210,'#d7ad76',`stroke="${C.dark}" stroke-width="1.3"`,1);
+    if(!back){
+     q+=line(89,152,331,152,'#f2d2a3')+r(109,202,173,112,'#f5ead4','stroke="#bba278"',2)+t('受 取 人 様',194,235,19,C.ink)+line(133,255,257,255,'#c1ad88')+line(133,275,242,275,'#c1ad88')+r(286,165,33,41,'#e7e1bf',`stroke="${C.blue}"`)+t('〒',302,190,20,C.blue)+`<circle cx="273" cy="186" r="19" fill="none" stroke="#8b7d60"/><path d="M250 177h34m-34 7h34m-34 7h34" stroke="#8b7d60"/>`+
+      `<path d="M87 150h246l-3-4H90Z" fill="#e5c592" stroke="#a48255" stroke-width=".8"/>`+t('表',109,341,11,C.dark);
+     // The envelope remains physically open after flipping to the address side.
+     // Its lifted top lip is visible instead of silently drawing a sealed rectangle.
+      if(p.envelopeOpen)q+=`<path d="M93 149Q210 145 327 149L324 168Q210 160 96 168Z" fill="#745e43" data-part="front-open-mouth"/>`+
+       `<path d="M99 154Q210 151 321 154" fill="none" stroke="#d9eadd" stroke-width="5" opacity=".72" data-part="sheet-peeking-through"/>`+
+       `<path d="M91 148Q210 144 329 148" fill="none" stroke="#f1d8ac" stroke-width="3" data-part="front-open-lip"/>`;
+     if(!oldFace)q+=ctrl('front-label','表の郵送ラベル',194,257,'',0,0,166,103);
+    }else{
+     q+=r(93,154,234,198,'#b48d5e','',1)+line(95,154,325,154,'#7d6343');
+     if(!p.sheetOut&&(p.envelopeOpen||open>.12)){
+      const sheet=receivingSheet(0,false,false);
+      q+=`<g clip-path="url(#envelopePocket02)">${oldFace?at(sheet,210,247):ctrl('sheet','袋口から見える気泡シートを取り出す',210,247,sheet,0,-45,156,90)}</g>`;
+     }
+     q+=`<path d="M87 150l123 128L87 360ZM333 150 210 278 333 360Z" fill="#d4a66c" stroke="#b28a58" stroke-width="1"/><path d="M87 360 210 268 333 360Z" fill="#ddba86" stroke="#b28a58" stroke-width="1.1"/>`+t('裏',109,341,11,C.dark);
+     if(open>.25)q+=`<path d="M89 151q121 ${9*open} 242 0" stroke="#f3d7ab" stroke-width="2" fill="none" data-part="thin-bag-mouth"/>`;
+     const tri=z=>[[87,150],[333,150],[210,150+133*Math.cos(z*Math.PI*.72)]];
+     let flap=polygon(tri(open),'#e3bf89',tri(Number(old.envelopeOpen)),anim&&fx.id==='envelope-flap','data-part="connected-triangle-flap"')+line(89,150,331,150,'#a38155','stroke-dasharray="5 4"');
+     if(open<.4)flap+=line(197,269,223,269,'#c4a171')+t('↑',210,209,22,C.dark);
+     q+=oldFace?flap:ctrl('envelope-flap','上辺につながる薄い三角ふた',0,0,flap,210,open>.5?112:214,246,open>.5?80:128);
+     const sealQ=p.envelopeSealOff?1:d?.id==='envelope-seal'?prog('envelope-seal'):0;
+     if(!p.envelopeSealOff&&open<.4){
+      const edge=178+64*sealQ;
+      let seal=r(edge,266,Math.max(0,64*(1-sealQ)),25,'#f1dcb3',`stroke="#aa8e60"`,1)+r(edge-10,262,23,33,'#f5e6c5',`stroke="${C.dark}"`,2)+t('→',edge+1,284,17,C.dark);
+      if(sealQ>.01)seal+=polygon([[edge,267],[edge-64*sealQ,250],[edge-64*sealQ,274],[edge,291]],'#f2dfb9');
+      q+=oldFace?seal:ctrl('envelope-seal','三角ふたを留める細い封緘テープを右へ剥がす',0,0,seal,210,278,88,68);
+     }
+    }
+    return at(obj('envelope-B',back?'back-with-paper-flap':'postal-front',q,'data-paper-thickness="1"'),0,-55);
+   }
+   const now=envelope(p.back),prior=envelope(!p.back,true);
+   if(d?.id==='flip-envelope'||anim&&fx.id==='flip-envelope'){
+    const width=d?Math.max(.035,Math.abs(Math.cos(Math.PI*prog('flip-envelope')))):1;
+    const faces=d?(prog('flip-envelope')<.5?now:prior):`<g>${prior}<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.49;.5;1" dur=".38s" fill="freeze"/></g><g>${now}<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;.49;.5;1" dur=".38s" fill="freeze"/></g>`;
+    b+=`<g transform="translate(210 255)"><g transform="scale(${width} 1)">${!d?'<animateTransform attributeName="transform" type="scale" values="1 1;.025 1;1 1" dur=".38s"/>':''}<g transform="translate(-210 -255)">${faces}</g></g></g>`;
+   }else b+=now;
+   b+=ctrl('flip-envelope',p.back?'封筒を表へ返す':'封筒を裏へ返す',370,260,r(-29,-20,58,40,'#e4c394',`stroke="${C.dark}"`)+t(p.back?'表 ↻':'裏 ↻',0,5,14,C.dark),0,0,68,68);
+   if(p.envelopeSealOff)b+=at(obj('seal-B','peeled-seal',r(-32,-10,64,20,'#f1dcb3',`stroke="${C.dark}"`,1)+line(-24,-6,24,6,'#c6aa7b')),61,210,'pointer-events="none"');
+   if(p.sheetOut)b+=at(receivingSheet(0,false,false),132,406);
+   if(fx.arrival)b=b.slice(0,incomingEnvelopeAt)+`<g class="delivered-from-back delivery-envelope" data-role="arriving-envelope">${b.slice(incomingEnvelopeAt)}</g>`;
+  }
+  if(p.n===2){
+   const open=changing('sheet-open',Number(p.sheetOpen),Number(old.sheetOpen));
+   const flat=d?.id==='sheet-smooth'?prog('sheet-smooth'):Number(p.sheetFlat);
+   const q=d?.id==='sheet-turn'?prog('sheet-turn'):0;
+   const face=q>.5?!p.sheetBubblesUp:p.sheetBubblesUp;
+   const body=receivingSheet(open,flat,face);
+   const width=Math.max(.035,Math.abs(Math.cos(Math.PI*q)));
+   b+=at(`<g transform="translate(78 ${-12*Math.sin(Math.PI*q)}) scale(${width} 1) translate(-78 0)">${body}</g>`,132,406);
+   if(!p.sheetOpen)b+=ctrl('sheet-open','折り線から上の一枚を右へ開く',132,406,'',0,0,156,192);
+   else if(!p.done){
+    b+=ctrl('sheet-turn','シートの左端を持って、全体を裏返す',66,356,t('↻',0,6,24,C.blue),0,0,84,84);
+    b+=ctrl('sheet-smooth','浮いた右の角を下へなでる',324,454,t('↓',0,7,24,C.blue),0,0,84,84);
+    b+=t(p.sheetBubblesUp?'気泡のふくらみが上':'向こう側に、気泡のふくらみ',210,279,15,C.blue,'font-weight="650"');
+   }
+  }
+  if(p.n===3||p.n===4&&!p.inspectionView){
+   b+=mat(!!p.selected&&['glass','bundle'].includes(p.selected));
+   if(p.n===4)b+=`<path d="M89 310h62l181 192h-80Z" fill="url(#deskLight7)" pointer-events="none"/>`+t('光の帯',109,302,11,C.blue);
+   const incomingCartonAt=b.length;
+   let inside='';
+   if(p.n===3&&!p.caseOpen)inside+=paper(210,180,false,true,false)+foam(0,false)+foam(1,false);
+   b+=carton('C',inside,p.n===3&&!p.caseOpen);
+   if(p.n===3&&!p.caseSealOff)b+=strip('case-seal',210,255,112,false,false);
+   else if(!p.sealed)b+=strip('case-seal',210,255,112,true,true);
+   if(p.n===3&&p.caseOpen){
+    b+=paper(210,180,true,!p.glassOnMat&&!p.paperOpen.every(Boolean),false);
+    if(p.paperOpen.every(Boolean)&&!p.glassOnMat)b+=item('glass','箱の紙から現れたガラスのOKだけを取り出す',210,180,glassBody(false),102,72);
+    b+=foam(0,true)+foam(1,true);
+    if(p.glassOnMat)b+=at(glassBody(false),p.glassAt.x,p.glassAt.y);
+   }
+   if(p.n===3&&fx.arrival)b=b.slice(0,incomingCartonAt)+`<g class="delivered-from-back" data-role="arriving-package">${b.slice(incomingCartonAt)}</g>`;
+   if(p.n===4){
+    b+=paper(210,180,false,false,false)+foam(0,false)+foam(1,false);
+    b+=item('glass','気泡の上でガラスの置き場所を変える',p.glassAt.x,p.glassAt.y,glassBody(p.checked),102,72);
+   }
+  }
+  if(p.n===4){
+   b+=ctrl(p.inspectionView?'view-placement':'view-inspection',p.inspectionView?'机の実際の置き位置を見る':'拡大した検品窓へ戻る',326,35,
+    r(-74,-25,148,50,'#ebe6d8',`stroke="#adb5a2"`,6)+t(p.inspectionView?'机の置き位置':'検品窓へ',0,5,14,C.blue),0,0,148,70);
+   if(p.inspectionView){
+    b+=r(42,76,336,190,'#e4e9dc',`stroke="#a2b5a3"`,10)+t('検品窓 ×2.1 ／ 同じガラスを拡大',210,68,12,C.blue);
+    const kind=d?.id==='inspect-edge'?'edge':'surface',q=d&&['inspect-surface','inspect-edge'].includes(d.id)?prog(d.id):0;
+    const observe=d&&['inspect-surface','inspect-edge'].includes(d.id);
+    const surfacePosition=observe&&kind==='surface'?q:p.scanCursorSurface;
+    const edgePosition=observe&&kind==='edge'?q:p.scanCursorEdge;
+    const edgeCoverage=observe&&kind==='edge'?Math.max(p.scanEdge,d?.maxInspection||0,edgePosition):p.scanEdge;
+    const appearance=glassBody(p.checked,0,false,{angle:observe?(kind==='surface'?12:-15)*Math.sin(q*Math.PI):0,sheen:-70+140*surfacePosition,edge:p.edgeSeen?1:edgeCoverage,edgeCursor:observe&&kind==='edge'?edgePosition:p.scanEdge>0&&!p.edgeSeen?p.scanCursorEdge:null});
+    b+=at(`<g transform="scale(2.1)" data-role="inspection-view" data-sweep="${q.toFixed(3)}">${appearance}</g>`,210,168,'pointer-events="none"');
+    b+=at(r(-24,-15,48,30,'#e8d9bc','stroke="#ad9978"',2)+`<path d="M-14 1l28-4m-26 9 24-4m-21 8 18-3" stroke="#aa9175" fill="none"/>`,84,287,'pointer-events="none"')+
+     t(p.checked?'ガラスは無傷。擦れたのは、紙。':'紙の擦れ跡と、ガラスを見比べる。',252,290,12,p.checked?C.red:C.blue);
+    const rail=(id,y,right,label,done,enabled)=>{
+     const selected=p.selected===id,active=d?.id===id;
+     const qPosition=active?prog(id):G.scanCursor(p,id);
+     const qCovered=done?1:active?Math.max(G.scanValue(p,id),d?.maxInspection||0,qPosition):G.scanValue(p,id);
+     const x=(right?336:84)+(right?-252:252)*qPosition;
+     let rail=line(84,y,336,y,'#acb7a4')+r(77,y-5,266,10,'#d4ddce','',5)+`<path d="M${right?336:84} ${y}h${(right?-252:252)*qCovered}" stroke="#426f7a" stroke-width="6" stroke-linecap="round"/>`+t(label,210,y-31,14,C.blue,'font-weight="650"');
+     for(const X of [84,147,210,273,336])rail+=line(X,y-10,X,y+10,'#8da28f');
+     const knob=r(-31,-25,62,50,done?'#dce9d7':'#f9f6eb',`stroke="${C.blue}" stroke-width="1.8"`,12)+line(-7,-9,-7,9,C.blue)+line(0,-9,0,9,C.blue)+line(7,-9,7,9,C.blue);
+     rail+=enabled&&!selected?ctrl(id,label+'のつまみを左右へ動かす',x,y,knob,0,0,88,88):at(knob,x,y,'pointer-events="none"');
+     if(selected)rail+=ctrl(id+'-end',label+'の反対の終点まで動かす',right?84:336,y,
+      r(-30,-25,60,50,'#f9f6eb',`stroke="${C.blue}" stroke-dasharray="4 3"`,12)+t(right?'←':'→',0,7,26,C.blue),0,0,88,88,'data-target="true"');
+     rail+=t(done?(id==='inspect-surface'?'✓ 表面：傷なし（見直し可）':'✓ 縁：欠けなし'):qCovered>.015?'見た範囲は残る・左右に見直せます':id==='inspect-surface'?'白い筋が、光と動く？':'光で縁の輪郭をたどる',210,y+57,12,done||qCovered>.015?C.blue:'#78816f');
+     return `<g data-rail="${id}" data-complete="${done}" data-position="${qPosition.toFixed(3)}" data-covered="${qCovered.toFixed(3)}">${rail}</g>`;
+    };
+    b+=rail('inspect-surface',350,false,'光の位置',p.surfaceSeen,true)+rail('inspect-edge',458,true,'角度',p.edgeSeen,p.surfaceSeen);
+   }else b+=t('置き位置は、次の便にもつながる。',210,526,12,C.blue);
+  }
+  if(p.n===5){
+   if(!p.protectionInBox&&!p.bubbleFolds.some(Boolean))b+=r(119,334,182,144,'#e8f1e222',`stroke="#a8b8a2" stroke-dasharray="4 6"`,13);
+   let contents=paper(210,180,p.caseOpen&&!p.sealed,false,false,p.protectionInBox?cushionedBundle(0,0):'');
+   contents+=foam(0,p.caseOpen&&!p.sealed)+foam(1,p.caseOpen&&!p.sealed);
+   if(p.selected==='bundle'&&p.caseOpen&&!p.protectionInBox)contents+=ctrl('paper-zone','気泡で守ったガラスを、箱に残る紙の中央へ',210,180,r(-60,-56,120,112,'#d9eee144',`stroke="${C.blue}" stroke-dasharray="4 4"`,6),0,0,120,112,'data-target="true"');
+   let parcel=carton('C',p.caseOpen?'':contents,!p.sealed);
+   if(p.caseOpen)parcel+=contents;
+   if(!p.caseOpen&&p.packed&&!p.sealed)parcel+=ctrl('seam','ふたの継ぎ目にテープを貼る',210,255,line(-90,0,90,0,'#8c6c46')+r(-68,-11,136,22,'#ead7ad55',`stroke="${C.blue}" stroke-dasharray="4 3"`,1),0,0,180,68,'data-target="true"');
+   if(p.sealed)parcel+=r(142,242,136,26,'#ebd2a5','stroke="#b69760"',1)+at(r(-50,-28,100,56,C.paper,'stroke="#bda781"',2)+t('確認済',0,-5,16,C.red,'font-weight="700"')+t('次の検品台へ',0,17,11,C.blue),266,189);
+   b+=p.sealed?`<g class="${anim?'dispatch-box':'dispatched-hidden'}" data-role="sealed-dispatch">${parcel}</g>`:parcel;
+   if(!p.sealed)b+=strip('case-seal',210,255,112,true,true);
+   if(!p.protectionInBox)b+=cushionedBundle();
+   if(!p.sealed)b+=item('tape','封緘用テープ',95,480,r(-30,-18,60,36,'#eddbb7',`stroke="${C.dark}"`)+line(-24,0,24,0,'#b89960')+t('テープ',0,7,13,C.dark),68,68,!p.caseOpen&&p.packed);
+   b+=p.sent?t('発送しました',210,366,25,C.red,'font-weight="700"')+t('次の検品台へ →',210,401,16,C.blue):t(!p.cushioned?'無傷のガラス。今度は、気泡を直接。':p.protectionInBox?'ガラス → 気泡 → 説明書':'同じ一枚が、敷物から保護材へ。',210,525,13,C.blue);
+  }
+  if(p.n===6){
+   b+=receiver('receive',210,410,226,160,'内箱の受取台');
+   const incomingOuterAt=b.length;
+   let contents='';
+   {
+    contents+=r(119,118,182,143,'#dfd2b4','stroke="#aa936d"',2);
+    if(!p.innerOut){const a=free('inner',210,195);contents+=p.outerOpen?ctrl('inner','封のされた内箱を持ち上げる',a.x,a.y,inner(false,false,false,0,0),0,0,166,138):inner(false,false,false,210,195);}
+    const z=changing('insert',Number(p.insertOut),Number(old.insertOut)),ps=q=>[[128,279],[292,279],[292,220+118*q],[128,220+118*q]];
+    const body=obj('insert-D',p.insertOut?'folded-out':'holding-front',polygon(ps(z),'#e6d5b2',ps(Number(old.insertOut)),anim&&fx.id==='insert','data-part="connected-insert"')+line(128,279,292,279,'#a28c69','stroke-dasharray="4 4"')+t(p.insertOut?'中敷き':'↓ 中敷き',210,p.insertOut?321:247,13,C.dark));
+    contents+=p.insertOut||!p.outerOpen?body:ctrl('insert','内箱の手前に掛かった中敷きを下へ倒す',0,0,body,210,250,164,68);
+   }
+   b+=carton('D',contents,!p.outerOpen);
+   if(!p.outerSealOff)b+=strip('outer-seal',210,280,124,false,false);
+   if(p.innerOut)b+=inner(false,false,false,210,410);
+   if(fx.arrival)b=b.slice(0,incomingOuterAt)+`<g class="delivered-from-back" data-role="arriving-package">${b.slice(incomingOuterAt)}</g>`;
+  }
+  if(p.n===7){
+   b+=receiver('cargo-zone',210,175,220,142,'受取台',true);
+   const q=d?.id==='flip-box'?prog('flip-box'):0;
+   const face=q>.5?!p.back:p.back,cy=(p.back?330:410)+(p.back?80:-80)*q;
+   const width=Math.max(.035,Math.abs(Math.cos(Math.PI*q)));
+   b+=at(`<g transform="scale(${width} 1)">${inner(face,p.innerOpen,!d||d.id!=='flip-box',0,0)}</g>`,210,cy);
+   // A removed band belongs to the desk, so turning the box cannot move it.
+   if(p.bandOff)b+=at(paperBand(true),210,330,'pointer-events="none"');
+   b+=ctrl('flip-box',p.back?'同じ箱を表へ返す':'同じ箱を底面へ返す',358,312,
+    r(-43,-23,86,46,'#e4c99c',`stroke="${C.dark}"`,6)+t(p.back?'表へ ↻':'底面 ↻',0,5,13,C.dark),0,0,100,80);
+   if(p.innerOpen&&p.sleeveOpen&&!p.back&&!p.cargoOut)b+=item('cargo','保護紙から現れた小さな荷物を机へ',210,410,cargoBody(),74,68);
+   if(p.cargoOut)b+=at(cargoBody(),210,175)+at(r(-51,-24,102,48,C.paper,`stroke="${C.red}"`,2)+t('受領済',0,6,21,C.red,'font-weight="700"'),210,236);
+  }
+  // Liftable items remain above drop targets, except when a real support still holds them.
+  if(d?.id&&G.pos(p,d.id)&&G.movable(p,d.id)){
+   // scene-based previews are used only for closures; free items use the retained 05 DOM-follow path.
+  }
+  if(p.done)b+=at(r(-48,-16,96,32,C.paper,`stroke="${C.red}"`,2)+t('受取済',0,5,15,C.red,'font-weight="700"'),343,58,'pointer-events="none"');
+  return b;
+ }
+ const full=(p,fx={})=>`<svg xmlns="http://www.w3.org/2000/svg" width="420" height="540" viewBox="0 0 420 540" font-family="sans-serif">${scene(p,fx)}</svg>`;
+ return {C,scene,full,report:ReportArt.report,sheetBody,receivingSheet,glassBody,cargoBody};
+})();
+
+
+
+
+(()=>{
+ 'use strict';
+ const G=R8,A=P8,$=id=>document.getElementById(id),KEY='konpo2.receiving8.free-ending03.session',LAST='konpo2.receiving8.free-ending03.report';
+ const board=$('board'),motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+ let s=null,last=null,shownReport=null,screen='title',tickStart=null,drag=null,hintIndex=0,completionTimer=null,audioOn=true,audio=null;
+ let imageURL=null,imageBlob=null,imageBusy=false,imageGeneration=0;
+ let clockStarted=false;
+ let tween=null,motionTick=performance.now();
+ const pauses=new Set();
+ /* UX10: A fixed-position explanation in the upper game area.
+    It never blocks or intercepts input; the words remain readable after the emphasis ends. */
+ let storyEmphasisTimer=null;
+ function cancelStageIntro(){
+  if(storyEmphasisTimer!==null){clearTimeout(storyEmphasisTimer);storyEmphasisTimer=null;}
+  $('taskPanel').classList.remove('story-spotlight');
+ }
+ function needsStageIntro(){return Boolean(s&&s.mode==='playing');}
+ function showStageIntro(){
+  cancelStageIntro();
+  // The start of a delivery draws attention to the same static location as before.
+  // The text never jumps to another position and there is no forced OK action.
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+   void $('taskPanel').offsetWidth;
+   $('taskPanel').classList.add('story-spotlight');
+   storyEmphasisTimer=setTimeout(()=>{
+    $('taskPanel').classList.remove('story-spotlight');
+    storyEmphasisTimer=null;
+   },1550);
+  }
+  return true;
+ }
+ function read(key){try{return localStorage.getItem(key);}catch{$('storageNote').hidden=false;return null;}}
+ function write(key,value){try{localStorage.setItem(key,JSON.stringify(value));}catch{$('storageNote').hidden=false;}}
+ // Copy a saved run from the previous free build without modifying its data.
+ function fromPrevious(key){try{const raw=read(key);if(!raw)return null;const v=JSON.parse(raw);if(!['receiving8-opening-free-ending02','receiving8-opening-free-ending','receiving8-opening-prototype095'].includes(v.version))return null;v.version=G.VERSION;return G.load(JSON.stringify(v));}catch{return null;}}
+ s=G.load(read(KEY))||fromPrevious('konpo2.receiving8.free-ending02.session')||fromPrevious('konpo2.receiving8.free-ending.session')||fromPrevious('konpo2.receiving8.prototype095.session');
+ last=G.load(read(LAST))||fromPrevious('konpo2.receiving8.free-ending02.report')||fromPrevious('konpo2.receiving8.free-ending.report')||fromPrevious('konpo2.receiving8.prototype095.report');
+ if(last?.records.some(v=>!v))last=null;
+ try{if(localStorage.getItem('konpo2.receiving8.sound.pref')==='0')audioOn=false;}catch{}
+ syncSoundButtons();
+ function running(){return screen==='game'&&s?.mode==='playing'&&!document.hidden&&pauses.size===0;}
+ function commitClock(){if(tickStart!==null&&s){s.current.ms+=Math.max(0,performance.now()-tickStart);tickStart=null;}}
+ function syncClock(){if(running()&&clockStarted){if(tickStart===null)tickStart=performance.now();}else commitClock();}
+ function startClock(){if(!clockStarted&&running()){clockStarted=true;syncClock();metrics();}}
+ function elapsed(){return (s?.current.ms||0)+(tickStart===null?0:Math.max(0,performance.now()-tickStart));}
+ function save(){if(s)write(KEY,G.saveData(s));}
+ function stop(name){commitClock();pauses.add(name);cancelDrag();SFX.stopAll();save();}
+ function unstop(name){pauses.delete(name);motionTick=performance.now();syncClock();}
+ function fit(){
+  const vh=window.visualViewport?.height||window.innerHeight||640,vw=window.visualViewport?.width||window.innerWidth||360;
+  document.documentElement.style.setProperty('--app-height',Math.round(vh)+'px');
+  let boardByHeight=(vh-156)*420/540;
+  // The narrative headline adds height. Measure the actual space above the board
+  // so normal phones still show the work field, feedback and controls without scrolling.
+  // Under ~650px tall, preserve a 300px touch target instead of shrinking gameplay to illegibility.
+  if(screen==='game'&&!$('gameScreen').hidden){
+   const y=$('work').getBoundingClientRect().top;
+   const statusHeight=$('status').getBoundingClientRect().height;
+   const toolsHeight=document.querySelector('.game-tools').getBoundingClientRect().height;
+   if(y>0&&y<vh)boardByHeight=(vh-y-statusHeight-toolsHeight-13)*420/540;
+  }
+  document.documentElement.style.setProperty('--board-width',Math.min(440,vw-16,Math.max(300,boardByHeight))+'px');
+  if(drag)cancelDrag();
+  if(screen==='game'&&s?.mode==='between'&&completionTimer===null)showComplete(true);
+ }
+ function display(which){SFX.stopAll();if(which!=='ending')stopRecap();commitClock();screen=which;for(const [id,name]of [['titleScreen','title'],['gameScreen','game'],['endingScreen','ending'],['reportScreen','report']])$(id).hidden=name!==which;syncClock();}
+ function top(){window.scrollTo({top:0,behavior:'instant'});}
+ function title(){cancelStageIntro();cancelArrival();display('title');$('resume').hidden=!s;$('resume').textContent=s?.mode==='report'?'最後の「荷物」を見る':`第${(s?.stage||0)+1}便${s?.needsRestart?'の最初から、続きへ':'の続きへ'}`;$('startNew').className=s?'secondary':'primary';$('startNew').textContent=s?'最初から受け取り直す':'荷物を受け取る →';$('lastReport').hidden=!last;top();}
+ function begin(options={}){
+  cancelArrival();cancelTween();cancelDrag();if(completionTimer!==null){clearTimeout(completionTimer);completionTimer=null;}
+  s=G.session();clockStarted=false;hintIndex=0;showGame(options);save();
+ }
+ function showGame(options={}){
+  SFX.unlock();
+  if(!s)return begin();if(s.mode==='report')return showEnding();
+  if(s.needsRestart){s.current.retries++;delete s.needsRestart;}
+  display('game');if(window.location.hash!=='#work')window.history.pushState({work:true},'','#work');
+  const justDelivered=isNewDelivery(s.stage)&&s.current.taps+s.current.drags===0;
+  const intro=needsStageIntro();
+  draw({arrival:justDelivered});fit();save();syncClock();top();$('stageTitle').focus({preventScroll:true});
+  if(justDelivered)enterArrival();else cancelArrival();
+  if(intro)showStageIntro();
+ }
+ function showComplete(show){
+  // Keep the former bottom button as an invisible event target for compatibility.
+  // The completion message and visible next action belong together in the center.
+  $('completion').hidden=true;
+  $('gameScreen').classList.toggle('complete',show);
+  if(show&&screen==='game')requestAnimationFrame(()=>{if(!$('clearToast').hidden)$('centerNext').focus({preventScroll:true});});
+ }
+ function metrics(){if(!s)return;$('clock').textContent=G.time(elapsed());$('timerNote').textContent=s.mode!=='playing'?'計測終了':clockStarted?'作業中':'操作すると計測開始';$('counts').textContent=`タップ ${s.current.taps}　ドラッグ ${s.current.drags}`;}
+ function draw(fx={}){
+  if(!s)return;
+  const oldFocus=document.activeElement?.closest?.('[data-id]')?.getAttribute('data-id');
+  const options=motion.matches?{...fx,id:null}:{...fx};
+  board.innerHTML=A.scene(s.p,options);
+  if(oldFocus)board.querySelector(`[data-id="${oldFocus}"]`)?.focus({preventScroll:true});
+  $('stageNo').textContent='第'+String(s.stage+1).padStart(2,'0')+'便 / 08';$('stageTitle').textContent=G.LEVELS[s.stage].name;
+  // Keep the player's task legible; the changing condition remains in the status below the board.
+  const briefs=[
+   ['荷物A ｜ あなた宛ての小包','配達済み・新しく届いた箱','荷物が届きました。開けてみよう。',false],
+   ['荷物B ｜ 茶封筒','新しく届いた封筒','封筒を開け、中のシートを机へ取り出す。',false],
+   ['荷物B ｜ 透明緩衝シート','第02便から続く・気泡のある二つ折りの一枚','さっきのシートを広げ、柔らかい面を敷物にする。',true],
+   ['荷物C ｜ ガラスの「OK」','第03便の敷物と、新しく届いた割れもの','箱の中で包装を開き、ガラスだけを気泡の上へ。',false],
+   ['荷物C ｜ ガラスの「OK」','第04便から続く・ガラスと箱の中の説明書','輸送中の傷・欠けがないか、光と角度を動かす。',true],
+   ['荷物C ｜ ガラスの「OK」','第05便から続く・無傷のガラスと紙の擦れ跡','次へ送るため、敷いた気泡シートで包み直す。',true],
+   ['荷物D ｜ 入れ子箱','新しく届いた箱・外箱の作業','大きな外箱を開け、中の小箱を受け取る。',false],
+   ['荷物D ｜ 入れ子箱','前の第07便から続く・取り出した内箱','さっき取り出した小箱を開け、中身を受け取る。',true]
+  ];
+  // A visible reason accompanies the action; do not make players infer purpose from tiny status text.
+  const reasons=[
+   '前作は「送る側」。今度は「受け取る側」。',
+   '封筒も、届いた荷物のひとつ。',
+   '取り出した一枚は、まだ役に立つ。',
+   'さっき敷いたシートが、割れものを受け止める。',
+   '受け取ったら、壊れていないか確かめる。',
+   'ガラスは無傷。でも、紙には擦れ跡。',
+   '箱を開けたら、また箱。',
+   '最後に出てきたのは、まだ封のある「荷物」。'
+  ];
+  const [tag,origin,task,continued]=briefs[s.stage];
+  $('stageWhy').textContent=reasons[s.stage];
+  $('parcelTag').textContent=tag;$('parcelOrigin').textContent=origin;
+  $('parcelContext').classList.toggle('continuation',continued);
+  $('goal').textContent=task;
+  if(!fx.keepMessage){$('status').textContent=fx.message||G.goal(s.p);$('status').className=fx.ok===false&&fx.kind!=='notice'?'status inboard-status caution':'status inboard-status';}
+  const done=s.mode==='between';
+  const currentNo=String(s.stage+1).padStart(2,'0');
+  $('clearToast').hidden=!done;
+  $('clearToastStage').textContent=s.stage===7?'先行8便 受け取り完了':`第${currentNo}便 受け取り完了`;
+  $('centerCompleteStory').textContent=done?G.LEVELS[s.stage].end:'';
+  $('centerNext').textContent=s.stage===7?'エンディングへ →':'次の便へ →';
+  $('completeTitle').textContent=s.stage===7?'✓ 第08便 受け取り完了':`✓ 第${currentNo}便 作業完了`;
+  $('completeLabel').textContent=done?G.LEVELS[s.stage].end:'';
+  $('completeStats').textContent=done?`${G.time(s.current.ms)}　タップ ${s.current.taps} ／ ドラッグ ${s.current.drags} ／ やり直し ${s.current.retries}`:'';
+  $('next').textContent=s.stage===7?'最後の「荷物」を見る →':'次の便へ →';
+  if(done)$('status').textContent=`✓ 第${currentNo}便、作業完了。${G.LEVELS[s.stage].end}`;
+  showComplete(done);
+  $('reset').disabled=done;$('hint').disabled=done;
+  metrics();
+ }
+
+ // SFX13: material-specific synthesized foley; continuous contact reserved for real peels.
+ // The noise source is seeded, so its character is stable, while short offsets vary naturally.
+ const SFX=(()=>{
+  let context=null,master=null,noise=null,moving=null,lastTouchAt=0;
+  // Track every scheduled voice, including delayed foley, so mute and leaving
+  // a scene cancel the whole cue. Disconnect finished graphs promptly.
+  const voices=new Set();
+  function trackVoice(source,gain,...nodes){
+   const voice={source,gain,nodes:[source,gain,...nodes]};voices.add(voice);
+   source.addEventListener('ended',()=>{
+    voices.delete(voice);
+    for(const node of voice.nodes){try{node.disconnect();}catch{}}
+   },{once:true});
+  }
+  function stopAll(){
+   endMotion();stopEnding();
+   if(!context)return;
+   const now=context.currentTime;
+   for(const voice of voices){
+    try{
+     voice.gain.gain.cancelScheduledValues(now);
+     voice.gain.gain.setTargetAtTime(0,now,.004);
+     voice.source.stop(now+.025);
+    }catch{}
+   }
+  }
+  const classify=(id='',stage=s?.stage)=>{
+   if(id==='glass'||id==='inspect-surface'||id==='inspect-edge'||id==='inspect-surface-end'||id==='inspect-edge-end')return 'glass';
+   if(/^(tape-tab|peel|envelope-seal|case-seal|outer-seal|tape|seam)$/.test(id))return 'tape';
+   if(/^(sheet|sheet-open|sheet-turn|sheet-smooth|wrap-(left|right|top|bottom)|mat)$/.test(id))return 'bubble';
+   if(/^(envelope-flap|flip-envelope|front-label|paperL|paperR|paper-zone|sleeve-flap|insert|band-tip|band-tip-end|band-loop|band-loop-end|band-front)$/.test(id))return 'paper';
+   if(/^(foamL|foamR)$/.test(id))return 'foam';
+   if(/^(lidL|lidR|case-lid|outer-lid|inner-lid|flip-box|box|inner|cargo|cargo-zone)$/.test(id))return 'cardboard';
+   if(id==='bundle')return 'bubble';
+   if(id==='start')return 'wood';
+   if(id==='receive')return stage===1?'bubble':'cardboard';
+   if(id==='view-inspection'||id==='view-placement')return 'wood';
+   return 'cardboard';
+  };
+  // Phone-speaker-oriented level with dynamics protection, no sustained BGM.
+  function awake(){
+   if(!audioOn||document.hidden)return null;
+   try{
+    if(!context){
+     const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;
+     context=new AC();
+     const compressor=context.createDynamicsCompressor();compressor.threshold.value=-15;compressor.knee.value=10;
+     compressor.ratio.value=4;compressor.attack.value=.003;compressor.release.value=.14;
+     const limiter=context.createDynamicsCompressor();limiter.threshold.value=-4;limiter.knee.value=0;
+     limiter.ratio.value=20;limiter.attack.value=.002;limiter.release.value=.12;
+     master=context.createGain();master.gain.value=1.20;
+     master.connect(compressor);compressor.connect(limiter);limiter.connect(context.destination);
+     noise=context.createBuffer(1,Math.ceil(context.sampleRate*1.8),context.sampleRate);
+     const data=noise.getChannelData(0);let seed=271828;
+     for(let i=0;i<data.length;i++){seed=(Math.imul(seed,1664525)+1013904223)|0;data[i]=((seed>>>0)/2147483648)-1;}
+    }
+    if(context.state==='suspended')context.resume().catch(()=>{});
+    return context;
+   }catch{return null;}
+  }
+  function hiss(hz=1900,duration=.085,gain=.045,delay=0,Q=.7,attack=.008){
+   const a=awake();if(!a||!noise)return;
+   const when=a.currentTime+Math.max(0,delay),len=Math.max(.025,duration);
+   try{
+    const src=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();src.buffer=noise;
+    src.loop=true;src.playbackRate.value=.95+Math.random()*.13;
+    f.type='bandpass';f.frequency.value=hz;f.Q.value=Q;
+    const t=Math.min(attack,len*.4);
+    g.gain.setValueAtTime(.0001,when);g.gain.exponentialRampToValueAtTime(Math.max(.0002,gain*2.3),when+t);
+    g.gain.exponentialRampToValueAtTime(.0001,when+len);
+    src.connect(f);f.connect(g);g.connect(master);trackVoice(src,g,f);src.start(when,Math.random()*.8);src.stop(when+len+.008);
+   }catch{}
+  }
+  function hit(hz=180,dur=.1,level=.055,delay=0,shape='sine'){
+   const a=awake();if(!a)return;
+   const when=a.currentTime+Math.max(0,delay);
+   try{
+    const o=a.createOscillator(),g=a.createGain();o.type=shape;
+    o.frequency.setValueAtTime(hz,when);o.frequency.exponentialRampToValueAtTime(Math.max(25,hz*.66),when+dur);
+    g.gain.setValueAtTime(Math.max(.0002,level*1.85),when);
+    g.gain.exponentialRampToValueAtTime(.0001,when+dur);
+    o.connect(g);g.connect(master);trackVoice(o,g);o.start(when);o.stop(when+dur+.008);
+   }catch{}
+  }
+  // Paper: light, brief high-frequency rustle; no motor-like midrange scrape.
+  function paper(delay=0,level=1){
+   hiss(3350,.105,.021*level,delay,.95,.021);
+   hiss(4800,.050,.007*level,delay+.075,1.15,.009);
+  }
+  // Corrugated board: a low creak followed by a muted fold/thump.
+  function boardFlex(delay=0,level=1){
+   hiss(470,.125,.028*level,delay,1.2,.028);
+   hit(123,.115,.038*level,delay+.068,'triangle');
+   hiss(930,.032,.007*level,delay+.095,1.5,.006);
+  }
+  // Tape: a short adhesive separation with a bright trailing edge, not grinding.
+  function adhesive(delay=0,level=1){
+   hiss(4100,.215,.032*level,delay,.85,.039);
+   hiss(5400,.110,.010*level,delay+.095,1.2,.018);
+   hiss(2500,.042,.006*level,delay+.19,1.25,.008);
+  }
+  // Bubble sheet: delicate crinkle plus two occasional tiny cell clicks.
+  // These are separate transients for FOLD/OPEN, never a continuous rolling rumble.
+  function bubble(delay=0,level=1){
+   hiss(2750,.12,.017*level,delay,.83,.028);
+   hiss(4500,.060,.012*level,delay+.06,1.35,.012);
+   for(let i=0;i<2;i++){
+    const d=delay+.058+i*.067;
+    hiss(5100,.018,.013*level,d,2.2,.003);
+    hit(650+i*120,.023,.004*level,d);
+   }
+  }
+  function foam(delay=0,level=1){
+   hiss(540,.115,.019*level,delay,1.2,.026);
+   hit(105,.064,.014*level,delay+.055);
+  }
+  // Glass is contact, not friction: a short clear chink and faint overtone.
+  function glass(delay=0,level=1){
+   hit(1460,.145,.016*level,delay);
+   hit(2360,.085,.005*level,delay+.007);
+  }
+  function softMove(material,delay=0,level=1){
+   if(material==='tape'){hiss(4200,.062,.017*level,delay,.95,.013);return;}
+   if(material==='paper'){hiss(3600,.065,.014*level,delay,1.05,.018);return;}
+   if(material==='bubble'){hiss(3000,.065,.011*level,delay,1.3,.018);return;}
+   if(material==='foam'){hiss(560,.066,.011*level,delay,1.2,.017);return;}
+   if(material==='glass'){return;}  // a raised glass does not grind
+   if(material==='wood'){hit(145,.040,.012*level,delay);return;}
+   hiss(580,.070,.016*level,delay,1.15,.021);
+  }
+  function grasp(material){
+   softMove(material,0,.45);
+   if(material==='glass')glass(0,.26);
+   else if(material==='cardboard')hit(115,.051,.015);
+  }
+  function settle(material,delay=0){
+   if(material==='glass'){hit(290,.054,.015,delay);glass(delay+.009,.75);}
+   else if(material==='bubble'){bubble(delay,.65);hit(105,.060,.009,delay+.058);}
+   else if(material==='paper'){paper(delay,.72);hit(113,.044,.007,delay+.048);}
+   else if(material==='foam')foam(delay,.8);
+   else {hit(132,.088,.043,delay,'triangle');hiss(650,.038,.012,delay+.016,1.15);}
+  }
+  function doneSound(delay=0){
+   // Two small, unforced confirmation notes, distinct from the object sounds.
+   hit(510,.18,.032,delay);hit(765,.29,.035,delay+.105);
+  }
+  // Audio policy: muted is authoritative. No forced autoplay; the browser unlocks on touch.
+  function touch(id,stage){
+   if(!audioOn||!id)return;
+   const now=performance.now();if(now-lastTouchAt<42)return;lastTouchAt=now;
+   grasp(classify(id,stage));
+  }
+  // Preserve SFX12's single-stream gesture implementation. Paper/bubble/glass
+  // do NOT use a sustained scraping noise. Their physical movement is a short
+  // touch/rustle then an action-specific sound as the fold or placement finishes.
+  const rubParams={
+   tape:[4350,1.05,.041],cardboard:[510,1.10,.026],foam:[570,1.15,.010]
+  };
+  function endMotion(){
+   if(!moving)return;
+   const m=moving;moving=null;
+   if(!m.source)return; // silent/material event: no loop was created
+   try{
+    const t=context.currentTime;
+    m.gain.gain.cancelScheduledValues(t);
+    m.gain.gain.setTargetAtTime(0,t,.022);
+    m.source.stop(t+.13);
+   }catch{}
+  }
+  function motion(id,stage,travel){
+   if(!audioOn||!id||travel<2.5)return;
+   const a=awake();if(!a||!noise)return;
+   const material=classify(id,stage),t=a.currentTime;
+   if(moving&&(moving.id!==id||moving.material!==material))endMotion();
+   if(!moving){
+    // Short, tactile cues are heard at contact and action completion.
+    // Making continuous scratch noises for these materials sounds like machinery.
+    if(!rubParams[material]){
+     moving={id,material,source:null,gain:null,lastAt:performance.now()};
+     return;
+    }
+    try{
+     const source=a.createBufferSource(),filter=a.createBiquadFilter(),gain=a.createGain();
+     const [hz,Q]=rubParams[material];
+     source.buffer=noise;source.loop=true;source.playbackRate.value=.92;
+     filter.type='bandpass';filter.frequency.value=hz;filter.Q.value=Q;
+     gain.gain.value=0;
+     source.connect(filter);filter.connect(gain);gain.connect(master);trackVoice(source,gain,filter);source.start(t,Math.random()*.6);
+     moving={id,material,source,filter,gain,lastAt:performance.now()};
+    }catch{return;}
+   }
+   const m=moving,now=performance.now(),elapsed=Math.max(18,now-m.lastAt);
+   m.lastAt=now;
+   if(!m.source)return;
+   const speed=Math.min(1.1,travel/elapsed*6.5);
+   const power=rubParams[material][2];
+   const target=power*Math.max(.18,Math.min(.95,speed));
+   try{
+    m.gain.gain.cancelScheduledValues(t);
+    m.gain.gain.setTargetAtTime(target,t,.035);
+    // Stops without relying on further pointer events.
+    m.gain.gain.setTargetAtTime(0,t+.07,.042);
+   }catch{}
+  }
+  function auto(id,stage){
+   if(!audioOn)return;
+   // Tap alternative: a brief material motion, not an artificial repeating drag sound.
+   softMove(classify(id,stage),0,.64);
+  }
+  function ui(kind){
+   if(!audioOn)return;
+   if(kind==='on'){hit(540,.12,.038);hit(810,.18,.03,.08);}
+   else if(kind==='next'){hiss(1250,.12,.023);hit(175,.11,.025,.07);}
+   else if(kind==='reset')boardFlex(0,.65);
+  }
+  function action(kind,id,stage,previous,current,completed=false){
+   if(!audioOn)return;
+   const material=classify(id,stage),s=previous||{},p=current||{};
+   // A blocked action sounds damped, never like a rewarded correct move.
+   if(kind==='strain'||kind==='reject'||kind==='blocked'||kind==='repel'){
+    softMove(material,0,.32);hit(95,.075,.014,.015);return;
+   }
+   if(kind==='return'){softMove(material,0,.52);settle(material,.065);return;}
+   switch(kind){
+    case 'select':grasp(material);break;
+    case 'peel':adhesive();break;
+    case 'flap':
+     if(material==='paper'){paper();hiss(1250,.05,.024,.14);}
+     else boardFlex();break;
+    case 'turn':
+     if(material==='paper')paper(0,1.1);else if(material==='bubble')bubble(0,.82);else boardFlex(0,.65);break;
+    case 'unfold':
+     if(material==='bubble')bubble(0,1.05);else paper(0,1.1);break;
+    case 'smooth':paper(0,.54);hiss(3100,.07,.011,.06,1.4,.015);break;
+    case 'wrap':bubble(0,1.0);break;
+    case 'support':foam();break;
+    case 'release':paper();hiss(700,.08,.015,.12);break;
+    case 'unwrap':paper(0,.9);paper(.105,.58);break;
+    case 'observe':hit(340,.035,.006);break;
+    case 'inspect':glass(.04,.76);break;
+    case 'view':hit(460,.041,.010);break;
+    case 'place':
+     // Items kept through several deliveries retain their own contact character.
+     settle(id==='glass'?'glass':id==='bundle'?'bubble':id==='sheet'?'bubble':material);break;
+    case 'extract':
+     softMove(material,0,.9);settle(id==='sheet'?'bubble':'cardboard',.12);break;
+    case 'mat':bubble();break;
+    case 'pack':paper();settle('bubble',.115);break;
+    case 'send':adhesive();boardFlex(.21,.70);break;
+    case 'stamp':settle('cardboard');hit(260,.09,.022,.13);break;
+    default:
+     // Explicit fallback for a novel stage action; tactile silence isn't mistaken for a bug.
+     softMove(material,0,.62);break;
+   }
+   if(completed)doneSound(kind==='send'?.46:kind==='peel'?.17:.21);
+  }
+  // SFX15: a small, warm book-of-memories sound motif, NOT ambient music.
+  // Previous scene cues layered three 2.5s pure-tone drones; on a phone that
+  // sounded like horror ambience. We keep the material foley and replace those
+  // sustained chords with short dry page-turns and soft wood/mallet notes.
+  // Every voice ends within 0.7s; no low pad, dissonant chord or continuous loop.
+  let endingVoices=[];
+  function stopEnding(){
+   if(!endingVoices.length)return;
+   const old=endingVoices;endingVoices=[];
+   if(!context)return;
+   const now=context.currentTime;
+   for(const voice of old){
+    try{
+     voice.gain.gain.cancelScheduledValues(now);
+     voice.gain.gain.setTargetAtTime(.0001,now,.013);
+     voice.osc.stop(now+.09);
+    }catch{}
+   }
+  }
+  // Compact wooden/music-box-like taps: immediate attack, quick warm decay.
+  // The small second partial gives a tactile timbre, not a floating sine pad.
+  function friendlyTap(freq,delay=.0,duration=.29,volume=.035){
+   const a=awake();if(!a)return;
+   const when=a.currentTime+Math.max(0,delay);
+   try{
+    const osc=a.createOscillator(),g=a.createGain(),low=a.createBiquadFilter();
+    osc.type='triangle';osc.frequency.value=freq;
+    low.type='lowpass';low.frequency.value=1850;low.Q.value=.55;
+    const end=when+duration;
+    g.gain.setValueAtTime(.0001,when);
+    g.gain.linearRampToValueAtTime(volume,when+.008);
+    g.gain.exponentialRampToValueAtTime(Math.max(.0001,volume*.24),when+.095);
+    g.gain.exponentialRampToValueAtTime(.0001,end);
+    osc.connect(low);low.connect(g);g.connect(master);trackVoice(osc,g,low);osc.start(when);osc.stop(end+.014);
+    const voice={osc,gain:g};endingVoices.push(voice);
+    osc.addEventListener('ended',()=>{const ix=endingVoices.indexOf(voice);if(ix>=0)endingVoices.splice(ix,1);},{once:true});
+   }catch{}
+  }
+  function endingCue(index){
+   stopEnding();
+   if(!audioOn||document.hidden)return;
+   const i=Math.min(3,Math.max(0,index));
+   // The recap feels like turning a page through the deliveries, not a dream.
+   // Short paper rustle under the notes; no sustained sliding noise.
+   paper(0,.50);
+   if(i===0){friendlyTap(523.25,.10,.25,.034);}
+   else if(i===1){friendlyTap(587.33,.10,.26,.031);}
+   else if(i===2){friendlyTap(659.25,.10,.28,.032);}
+   else {friendlyTap(587.33,.10,.27,.031);friendlyTap(783.99,.33,.32,.026);}
+  }
+  function endingFinal(){
+   stopEnding();
+   if(!audioOn||document.hidden)return;
+   // Gentle 'finished the day's work' lift, then silence and the unopened box.
+   // Short ascending consonant notes, played separately (not a dark held chord).
+   friendlyTap(523.25,.03,.31,.038);
+   friendlyTap(659.25,.19,.35,.034);
+   friendlyTap(783.99,.40,.48,.033);
+  }
+  return {touch,motion,endMotion,auto,action,ui,unlock:awake,classify,endingCue,endingFinal,stopEnding,stopAll};
+ })();
+ function syncSoundButtons(){
+  for(const id of ['sound','gameSound','endingSound']){
+   const b=$(id);if(!b)continue;
+   b.textContent=(id==='sound'?'効果音 ':'♪ ')+(audioOn?'ON':'OFF');
+   b.setAttribute('aria-pressed',String(audioOn));
+   b.setAttribute('aria-label',audioOn?'効果音をオフにする':'効果音をオンにする');
+   b.title=audioOn?'作業の効果音を消す':'作業の効果音を鳴らす';
+  }
+ }
+ function toggleSound(){
+  audioOn=!audioOn;
+  try{localStorage.setItem('konpo2.receiving8.sound.pref',audioOn?'1':'0');}catch{}
+  syncSoundButtons();
+  if(!audioOn)SFX.stopAll();
+  else{
+   SFX.unlock();
+   if(screen==='ending'){
+    if(!$('endingRecap').hidden)SFX.endingCue(Math.max(0,recapBeat));
+    else SFX.endingFinal();
+   }else SFX.ui('on');
+  }
+ }
+ function perform(kind,operation,id,options={}){
+  if(!running()||tween)return;
+  commitClock();if(!options.counted)s.current[kind==='drag'?'drags':'taps']++;
+  const previous=G.clone(s.p),result=operation(s.p);let finished=false;
+  if(s.p.done)finished=G.commit(s);
+  if(finished&&s.stage===7){last=G.clone(s);last.mode='report';write(LAST,G.saveData(last));}
+  draw({...result,id,previous});
+  if(options.release&&['return','strain'].includes(result.kind)&&!motion.matches){
+   const base=G.pos(s.p,id),node=board.querySelector(`[data-id="${id}"] .visual`);
+   if(base&&node){const a=document.createElementNS('http://www.w3.org/2000/svg','animateTransform');a.setAttribute('attributeName','transform');a.setAttribute('type','translate');a.setAttribute('from',`${options.release.x-base.x} ${options.release.y-base.y}`);a.setAttribute('to','0 0');a.setAttribute('dur','.20s');a.setAttribute('fill','freeze');node.appendChild(a);}
+  }
+  const endpoint={"tape-tab":"peel","inspect-surface":"inspect-surface-end","inspect-edge":"inspect-edge-end","band-tip":"band-tip-end","band-loop":"band-loop-end"}[s.p.selected];
+  if(endpoint)board.querySelector(`[data-id="${endpoint}"]`)?.focus({preventScroll:true});
+  save();syncClock();SFX.action(result.kind,options.sfxId||id||'',s.stage,previous,s.p,finished);
+  $('work').classList.remove('feedback','refused');void $('work').offsetWidth;
+  if(!motion.matches)$('work').classList.add(result.ok?'feedback':'refused');
+  // Every stage announces success immediately. Stage 06/08 scene animations
+  // may finish visually while the next-stage action remains unmistakably visible.
+ }
+ // A completed input is counted once; the same connected geometry continues to settle.
+ function cancelTween(){if(!tween)return;tween=null;board.setAttribute('aria-busy','false');if(screen==='game')draw({keepMessage:true});}
+ function animateInput(kind,id,operation,from=0,to=1){
+  if(!running()||tween)return;
+  commitClock();s.current[kind==='drag'?'drags':'taps']++;save();syncClock();
+  const amount=G.mechanism(s.p,id)?.amount||100;
+  tween={kind,id,operation,from,to,ms:0,duration:motion.matches?140:kind==='drag'?Math.max(150,Math.abs(to-from)*280):id.startsWith('inspect-')?850:560,amount};
+  board.setAttribute('aria-busy','true');motionTick=performance.now();SFX.auto(id,s.stage);paintTween(from);
+ }
+ function paintTween(q){
+  if(!tween)return;const m=G.mechanism(s.p,tween.id);if(!m)return;
+  const v=(m.dir||1)*m.amount*q;
+  board.innerHTML=A.scene(s.p,{drag:{id:tween.id,dx:m.axis==='x'?v:0,dy:m.axis==='y'?v:0,inspectionQ:idIsScan(tween.id)?q:undefined}});
+ }
+ const idIsScan=id=>id==='inspect-surface'||id==='inspect-edge';
+ const pathSources=new Set(['tape-tab','inspect-surface','inspect-edge','band-tip','band-loop']);
+ const pathEnds={'peel':'tape-tab','inspect-surface-end':'inspect-surface','inspect-edge-end':'inspect-edge','band-tip-end':'band-tip','band-loop-end':'band-loop'};
+ function tapInput(id,x=null,y=null){
+  if(!running()||tween)return;
+  const physical=pathEnds[id]||id,m=G.mechanism(s.p,physical);
+  const operation=p=>G.act(p,id,x,y);
+  if(pathEnds[id]&&s.p.selected===physical&&m?.allowed)return animateInput('tap',physical,operation,idIsScan(physical)?G.scanCursor(s.p,physical):0);
+  if(m?.allowed&&!pathSources.has(id))return animateInput('tap',id,operation);
+  perform('tap',operation,id);
+ }
+ function dragInput(d){
+  const m=G.mechanism(s.p,d.id),operation=p=>G.gesture(p,d.id,d.dx,d.dy,d.x,d.y);
+  if(m){
+   const position=G.progress(s.p,d.id,d.dx,d.dy);
+   const reached=idIsScan(d.id)?Math.max(G.scanValue(s.p,d.id),d.maxInspection||0,position):position;
+   const good=m.allowed&&reached>=G.threshold(d.id);
+   if(idIsScan(d.id))return perform('drag',p=>good&&!(d.id==='inspect-surface'&&p.surfaceSeen)?G.inspection(p,d.id==='inspect-surface'?'surface':'edge',position):G.scanPartial(p,d.id,position,reached),d.id);
+   const q=reached;
+   if(q>.001&&(q<.995||!good))return animateInput('drag',d.id,operation,q,good?1:0);
+   return perform('drag',operation,null,{sfxId:d.id});
+  }
+  perform('drag',operation,d.id,{release:d});
+ }
+  function pt(ev){const b=board.getBoundingClientRect();return {x:(ev.clientX-b.left)*420/b.width,y:(ev.clientY-b.top)*540/b.height};}
+  // Manipulating the object that was actually touched avoids rebuilding the entire SVG
+  // on every pointermove. Free goods keep this exact node-following path from 05.
+  // New hinged closures render their connected geometry while the board retains capture.
+  const physicalControls=new Set(['tape-tab','lidL','lidR','flip-envelope','envelope-seal','envelope-flap','sheet-open','sheet-smooth','case-seal','case-lid','foamL','foamR','paperL','paperR','sheet-turn','inspect-surface','inspect-edge','wrap-left','wrap-right','wrap-top','wrap-bottom','outer-seal','outer-lid','insert','flip-box','band-front','band-tip','band-loop','inner-lid','front-label','sleeve-flap']);
+  function dragThreshold(d){
+   // Press-to-confirm items must not mistake slight finger wobble for moving an item.
+   if(s.p.n===0&&d.id==='start'&&s.p.buttonOnMat)return 12;
+   return d.origin||physicalControls.has(d.id)?5:8;
+  }
+  function previewDrag(d){
+   if(G.mechanism(s.p,d.id)){board.innerHTML=A.scene(s.p,{drag:idIsScan(d.id)?{...d,inspectionQ:G.progress(s.p,d.id,d.dx,d.dy)}:d});return;}
+   const node=d.node;if(!node?.isConnected)return;
+   const liftable=!!d.origin&&G.movable(s.p,d.id);
+   let dx=d.dx,dy=d.dy;
+   if(d.id==='tape-tab'&&s.p.n===0&&!s.p.tapeOff){
+    // Keep the tape stuck to the box while it physically peels under the finger.
+    // Sliding the whole group (previous version) looks like dragging a label.
+    const pull=G.clamp(dx,0,202),g=node.querySelector('g');
+    if(!g)return;
+    const rs=g.querySelectorAll('rect'),labels=g.querySelectorAll('text');
+    if(rs.length>=2){
+     rs[0].setAttribute('x',String(-117+pull));
+     rs[0].setAttribute('width',String(Math.max(1,234-pull)));
+     rs[1].setAttribute('x',String(-126+pull));
+    }
+    if(labels[0])labels[0].setAttribute('x',String(-106+pull));
+    if(labels[1])labels[1].setAttribute('opacity',pull>3?'0':'1');
+    return;
+   }
+   if(liftable){
+    // Follow every millimeter, regardless of the separate tap-vs-drag threshold.
+    const x=G.clamp(d.baseX+dx,18,402),y=G.clamp(d.baseY+dy,50,510);
+    dx=x-d.baseX;dy=y-d.baseY;
+   }else if(physicalControls.has(d.id)){
+    const signs={
+     'lidL':[-1,0],'lidR':[1,0],'cornerL':[-1,-1],'cornerR':[1,-1],
+     'envelope-flap':[0,-1],'latchL':[-1,0],'latchR':[1,0],
+     'braceL':[-1,0],'braceR':[1,0],'paper-lock':[0,1],
+     'paperL':[-1,0],'paperR':[1,0],'fold-left':[1,0],'fold-right':[-1,0],
+     'tabL':[-1,0],'tabR':[1,0],'outer-lid':[0,-1],
+     'insert':[0,-1],'band-front':[0,-1],'band-lock':[0,-1],'inner-lid':[0,-1],
+     'front-label':[0,1]
+    };
+    const [sx,sy]=signs[d.id]||[0,0];
+    const max=['lidL','lidR','paperL','paperR','fold-left','fold-right','outer-lid','inner-lid'].includes(d.id)?96:68;
+    const dir=(v,sign)=>sign?G.clamp(v*sign,-9,max)*sign:G.clamp(v,-9,9);
+    dx=dir(dx,sx);dy=dir(dy,sy);
+    if(d.id==='band-front')dy=G.clamp(dy,-12,8);
+    if(d.id==='front-label')dy=G.clamp(dy,-10,10);
+   }else if(d.origin){
+    dx=G.clamp(dx*.14,-12,12);dy=G.clamp(dy*.14,-12,12);
+   }else return;
+   if(!d.raised){board.appendChild(node);d.raised=true;}
+   node.setAttribute('transform',`translate(${d.baseX+dx} ${d.baseY+dy})`);
+  }
+ function cancelDrag(){SFX.endMotion();if(!drag)return;const pointer=drag.pointer;drag=null;try{if(board.hasPointerCapture(pointer))board.releasePointerCapture(pointer);}catch{}$('work').classList.remove('dragging');if(screen==='game')draw({keepMessage:true});}
+ board.addEventListener('pointerdown',ev=>{
+  if(!running()||tween||drag||ev.isPrimary===false||(ev.pointerType==='mouse'&&ev.button!==0))return;
+  const a=pt(ev),id=ev.target.closest?.('[data-id]')?.getAttribute('data-id')||'',origin=G.pos(s.p,id);
+  const node=id?ev.target.closest?.('[data-id]'):null;
+   if(node)node.classList.add('gripped');
+   const m=node?.getAttribute('transform')?.match(/translate\(\s*([-\d.]+)[ ,]+([-\d.]+)\s*\)/);
+   drag={id,pointer:ev.pointerId,start:a,previous:a,sx:ev.clientX,sy:ev.clientY,origin,x:origin?.x??a.x,y:origin?.y??a.y,dx:0,dy:0,moved:false,node,baseX:origin?.x??(m?Number(m[1]):a.x),baseY:origin?.y??(m?Number(m[2]):a.y),raised:false,previousClientY:ev.clientY,scrolled:false,soundX:ev.clientX,soundY:ev.clientY};
+  if(id){SFX.unlock();SFX.touch(id,s.stage);startClock();ev.preventDefault();}try{board.setPointerCapture(ev.pointerId);}catch{}
+ });
+ board.addEventListener('pointermove',ev=>{
+  if(!drag||drag.pointer!==ev.pointerId)return;const a=pt(ev);
+  drag.dx=a.x-drag.start.x;drag.dy=a.y-drag.start.y;
+   if(Math.hypot(ev.clientX-drag.sx,ev.clientY-drag.sy)>=dragThreshold(drag))drag.moved=true;
+  if(!drag.id){
+   if(ev.pointerType==='touch'&&drag.moved){ev.preventDefault();window.scrollBy(0,drag.previousClientY-ev.clientY);drag.scrolled=true;}
+   drag.previousClientY=ev.clientY;return;
+  }
+  ev.preventDefault();
+  // Visual response starts at sub-threshold motion; a 1px exploratory tug is visible.
+  if(Math.hypot(ev.clientX-drag.sx,ev.clientY-drag.sy)<1)return;
+  const soundTravel=Math.hypot(ev.clientX-drag.soundX,ev.clientY-drag.soundY);
+  if(drag.moved&&soundTravel>=2.5){
+   SFX.motion(drag.id,s.stage,soundTravel);
+   drag.soundX=ev.clientX;drag.soundY=ev.clientY;
+  }
+  if(idIsScan(drag.id))drag.maxInspection=Math.max(drag.maxInspection||G.scanValue(s.p,drag.id),G.progress(s.p,drag.id,drag.dx,drag.dy));
+  drag.x=G.clamp((drag.origin?.x??drag.start.x)+drag.dx,18,402);drag.y=G.clamp((drag.origin?.y??drag.start.y)+drag.dy,50,510);
+  $('work').classList.add('dragging');previewDrag(drag);
+ });
+ board.addEventListener('pointerup',ev=>{
+  if(!drag||drag.pointer!==ev.pointerId)return;SFX.endMotion();const a=pt(ev),d=drag;drag=null;
+  if(d.id)ev.preventDefault();d.dx=a.x-d.start.x;d.dy=a.y-d.start.y;d.moved=d.moved||Math.hypot(ev.clientX-d.sx,ev.clientY-d.sy)>=dragThreshold(d);
+  d.x=G.clamp((d.origin?.x??d.start.x)+d.dx,18,402);d.y=G.clamp((d.origin?.y??d.start.y)+d.dy,50,510);
+  if(idIsScan(d.id))d.maxInspection=Math.max(d.maxInspection||G.scanValue(s.p,d.id),G.progress(s.p,d.id,d.dx,d.dy));
+  try{if(board.hasPointerCapture(ev.pointerId))board.releasePointerCapture(ev.pointerId);}catch{}$('work').classList.remove('dragging');
+  if(d.scrolled||!d.id)return;
+  if(d.moved)dragInput(d);else tapInput(d.id,a.x,a.y);
+ });
+ board.addEventListener('pointercancel',ev=>{if(drag?.pointer===ev.pointerId)cancelDrag();});
+ board.addEventListener('lostpointercapture',ev=>{if(drag?.pointer===ev.pointerId)cancelDrag();});
+ board.addEventListener('keydown',ev=>{
+  if(arrivalTimer!==null){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();}return;}
+  const id=ev.target.closest?.('[data-id]')?.getAttribute('data-id');
+  if(id&&(ev.key==='Enter'||ev.key===' ')&&!ev.repeat){ev.preventDefault();SFX.unlock();SFX.touch(id,s.stage);startClock();tapInput(id);}
+  if(ev.key==='Escape'){ev.preventDefault();cancelTween();cancelDrag();s.p.selected=null;draw();}
+ });
+ board.addEventListener('click',ev=>{if(arrivalTimer!==null)return;if(ev.detail===0){const id=ev.target.closest?.('[data-id]')?.getAttribute('data-id');if(id){SFX.unlock();SFX.touch(id,s.stage);startClock();tapInput(id);}}});
+ function openDialog(id,reason){stop(reason);$(id).showModal();}
+ function closeDialog(id){$(id).close();}
+ $('resume').addEventListener('click',showGame);
+ // 09.5: the opening, fresh envelope and new cartons enter from the rear. Continued objects remain in place.
+ const isNewDelivery=n=>[0,1,3,6].includes(n);
+ // 09.2: The title signals a delivery; the first real parcel enters ONLY on the game board.
+ // Prevent interacting with an in-flight box. This wait is NOT counted by the timer.
+ let arrivalTimer=null;
+ function cancelArrival(){if(arrivalTimer!==null){clearTimeout(arrivalTimer);arrivalTimer=null;}board.style.pointerEvents='';}
+ function enterArrival(){
+  cancelArrival();
+  if(motion.matches||screen!=='game'||!isNewDelivery(s.stage)||s.mode!=='playing')return;
+  board.style.pointerEvents='none';
+  arrivalTimer=setTimeout(()=>{arrivalTimer=null;board.style.pointerEvents='';},900);
+ }
+ $('liveToggle').addEventListener('click',()=>{const show=!$('gameScreen').classList.contains('show-live-metrics');$('gameScreen').classList.toggle('show-live-metrics',show);$('liveToggle').setAttribute('aria-pressed',String(show));$('liveToggle').textContent='作業中の記録 '+(show?'表示':'非表示');});
+ function restartRequest(){if(s){openDialog('restartDialog','restart');}else begin();}
+ $('startNew').addEventListener('click',restartRequest);$('restartAll').addEventListener('click',()=>{closeDialog('helpDialog');restartRequest();});$('reportAgain').addEventListener('click',restartRequest);
+ $('restartYes').addEventListener('click',()=>{closeDialog('restartDialog');pauses.delete('restart');begin();});$('restartNo').addEventListener('click',()=>closeDialog('restartDialog'));
+ $('reset').addEventListener('click',()=>{if(s?.mode!=='playing')return;SFX.stopAll();SFX.ui('reset');cancelTween();cancelDrag();commitClock();s.current.retries++;s.p=G.state(s.stage,s.carry);clockStarted=false;hintIndex=0;draw({message:'この便を最初から。ここまでの時間と操作数は残ります。'});save();syncClock();});
+ // A touch that finishes work can synthesize a click on the new overlay.
+ // Require a pointer press on Next itself; keyboard/assistive clicks keep working.
+ let centerNextPressed=false;
+ document.addEventListener('pointerdown',ev=>{centerNextPressed=Boolean(ev.target.closest?.('#centerNext'));},true);
+ document.addEventListener('pointercancel',()=>{centerNextPressed=false;},true);
+ $('centerNext').addEventListener('click',ev=>{
+  const allowed=ev.detail===0||centerNextPressed;centerNextPressed=false;
+  if(allowed)$('next').click();
+ });
+ $('next').addEventListener('click',()=>{if(!s||!G.next(s))return;SFX.stopAll();SFX.ui('next');if(completionTimer!==null){clearTimeout(completionTimer);completionTimer=null;}hintIndex=0;clockStarted=false;save();if(s.mode==='report')return showEnding();const incoming=isNewDelivery(s.stage),intro=needsStageIntro();cancelStageIntro();draw({arrival:incoming});fit();syncClock();top();$('stageTitle').focus({preventScroll:true});if(incoming)enterArrival();else cancelArrival();if(intro)showStageIntro();});
+ $('hint').addEventListener('click',()=>{if(s?.mode!=='playing')return;hintIndex=0;hint();openDialog('hintDialog','hint');});
+ function hint(){const list=G.LEVELS[s.stage].hints;$('hintTitle').textContent=`第${s.stage+1}便のヒント`;$('hintText').textContent=list[Math.min(hintIndex,list.length-1)];$('hintMore').textContent=hintIndex>=list.length-1?'このヒントを読む':'もう少し見る';}
+ $('hintMore').addEventListener('click',()=>{hintIndex=Math.min(hintIndex+1,2);hint();});
+ $('help').addEventListener('click',()=>openDialog('helpDialog','help'));$('titleHelp').addEventListener('click',()=>openDialog('helpDialog','help'));
+ $('sound').addEventListener('click',toggleSound);$('gameSound').addEventListener('click',toggleSound);$('endingSound').addEventListener('click',toggleSound);
+ function openChapters(){
+  if(!s)return;
+  $('chapterList').innerHTML='';
+  G.LEVELS.forEach((v,n)=>{const button=document.createElement('button'),allowed=!!s.records[n]||n===s.stage;button.type='button';button.className='chapter';button.disabled=!allowed;button.textContent=`${String(n+1).padStart(2,'0')} ${allowed?v.name:'未到達'}${s.records[n]?`　✓\n${G.time(s.records[n].ms)} ／ タップ ${s.records[n].taps} ／ ドラッグ ${s.records[n].drags} ／ やり直し ${s.records[n].retries}`:''}`;
+   button.addEventListener('click',()=>{if(!allowed)return;closeDialog('chapterDialog');commitClock();if(completionTimer!==null){clearTimeout(completionTimer);completionTimer=null;}s.stage=n;s.p=G.state(n,s.carry);s.current=G.metric();s.mode='playing';clockStarted=false;delete s.needsRestart;hintIndex=0;showGame();});$('chapterList').appendChild(button);});
+  openDialog('chapterDialog','chapters');
+ }
+ $('chapters').addEventListener('click',openChapters);$('reportChapters').addEventListener('click',openChapters);
+ for(const [id,reason]of [['helpDialog','help'],['hintDialog','hint'],['chapterDialog','chapters'],['restartDialog','restart']])$(id).addEventListener('close',()=>unstop(reason));
+ document.querySelectorAll('[data-close]').forEach(v=>v.addEventListener('click',()=>closeDialog(v.getAttribute('data-close'))));
+ function cover(){cancelTween();cancelDrag();commitClock();save();title();}
+ $('backTitle').addEventListener('click',()=>{if(window.location.hash==='#work')window.history.back();else cover();});
+ $('reportTitle').addEventListener('click',()=>{if(window.location.hash==='#work')window.history.back();else cover();});
+ window.addEventListener('popstate',()=>{for(const id of ['helpDialog','hintDialog','chapterDialog','restartDialog'])if($(id).open)$(id).close();cover();});
+ $('lastReport').addEventListener('click',()=>{if(last)report(last);});
+ function resetImage(){imageGeneration++;if(imageURL)URL.revokeObjectURL(imageURL);imageURL=null;imageBlob=null;$('imageBox').hidden=true;$('shareImage').hidden=true;$('shareStatus').textContent='';$('imageSave').disabled=false;$('imageSave').textContent='報告書をPNGで保存';}
+ // This recap is only an ending presentation. It never mutates the saved run,
+ // times, stage count, completion flags or user input history.
+ const recapBeats=[
+  {label:'01 / 08　はじまりの箱',caption:'最初に届いたのは、「✓ はじめた」。',detail:'箱を開けて、前の持ち主からの小さなものを受け取った。'},
+  {label:'02–03 / 08　封筒とシート',caption:'封筒の中には、一枚の気泡シート。',detail:'広げたその一枚が、次に届く割れものの敷物になった。'},
+  {label:'04–06 / 08　ガラスの「OK」',caption:'確かめた「OK」を、もう一度包んだ。',detail:'傷を調べ、同じシートを保護材にして、次の場所へ送り出した。'},
+  {label:'07–08 / 08　箱の中の箱',caption:'最後に受け取ったのは、まだ封のある「荷物」。',detail:'開けた箱の奥には、次の物語が眠っている。'}
+ ];
+ const recapDuration=5250;
+ let recapFrame=0,recapElapsed=0,recapLast=0,recapBeat=-1;
+ function stopRecap(){if(recapFrame)cancelAnimationFrame(recapFrame);recapFrame=0;recapLast=0;SFX.stopAll();}
+ function renderRecapBeat(i){
+  if(recapBeat===i)return;recapBeat=i;SFX.endingCue(i);
+  document.querySelectorAll('[data-recap-scene]').forEach((node,j)=>{
+   const active=i===j;node.classList.toggle('is-active',active);node.setAttribute('aria-hidden',String(!active));
+  });
+  $('recapLabel').textContent=recapBeats[i].label;
+  $('recapCount').textContent=String(i+1).padStart(2,'0')+' / 04';
+  $('recapCaption').textContent=recapBeats[i].caption;
+  $('recapDetail').textContent=recapBeats[i].detail;
+ }
+ function renderRecapProgress(){
+  const i=Math.min(3,Math.floor(recapElapsed/recapDuration)),partial=Math.max(0,Math.min(1,(recapElapsed-i*recapDuration)/recapDuration));
+  $('recapProgress').querySelectorAll('span').forEach((node,j)=>{
+   node.classList.toggle('is-done',j<i);node.classList.toggle('is-playing',j===i);
+   node.style.setProperty('--fill',j===i?partial.toFixed(3):j<i?'1':'0');
+  });
+ }
+ function recapTick(now){
+  if(screen!=='ending'||$('endingRecap').hidden){stopRecap();return;}
+  if(!document.hidden){if(recapLast)recapElapsed+=Math.max(0,now-recapLast);recapLast=now;}else recapLast=0;
+  if(recapElapsed>=recapDuration*recapBeats.length){showEndingFinal();return;}
+  renderRecapBeat(Math.floor(recapElapsed/recapDuration));renderRecapProgress();
+  recapFrame=requestAnimationFrame(recapTick);
+ }
+ function showEndingFinal(){
+  stopRecap();$('endingRecap').hidden=true;$('endingFinal').hidden=false;SFX.endingFinal();
+  $('endingHeading').focus({preventScroll:true});
+ }
+ function playEndingRecap(){
+  stopRecap();recapElapsed=0;recapBeat=-1;
+  $('endingFinal').hidden=true;$('endingRecap').hidden=false;
+  if(motion.matches){showEndingFinal();return;}
+  SFX.unlock();renderRecapBeat(0);renderRecapProgress();
+  $('endingRecapTitle').focus({preventScroll:true});
+  recapFrame=requestAnimationFrame(recapTick);
+ }
+ function showEnding(){
+  if(!s||s.records.some(v=>!v))return report(s||last);
+  cancelArrival();cancelTween();cancelDrag();showComplete(false);
+  display('ending');top();playEndingRecap();
+ }
+ $('recapSkip').addEventListener('click',showEndingFinal);
+ $('endingReplay').addEventListener('click',playEndingRecap);
+ $('endingReport').addEventListener('click',()=>{stopRecap();if(s?.mode==='report')report(s);else if(last)report(last);});
+ document.addEventListener('visibilitychange',()=>{
+  $('endingScreen').classList.toggle('is-hidden-page',document.hidden);
+  if(document.hidden)SFX.stopEnding();
+ });
+ function report(data){
+  if(data.records.some(v=>!v)){if(s){display('game');draw({message:'まだ、受け取っていない便があります。'});}return;}
+  shownReport=G.clone(data);display('report');resetImage();$('reportChapters').hidden=s?.mode!=='report';const z=G.totals(data);
+  $('totalTime').textContent=G.time(z.ms);$('totalTap').textContent=z.taps;$('totalDrag').textContent=z.drags;$('totalRetry').textContent=z.retries;
+  $('reportRows').innerHTML=data.records.map((v,n)=>`<tr><th scope="row"><small>${String(n+1).padStart(2,'0')}</small> ${G.esc(G.LEVELS[n].name)}</th><td>${G.time(v.ms)}</td><td>${v.taps}</td><td>${v.drags}</td><td>${v.retries}</td></tr>`).join('');
+  $('reportTotals').innerHTML=`<tr><th scope="row">合計</th><td>${G.time(z.ms)}</td><td>${z.taps}</td><td>${z.drags}</td><td>${z.retries}</td></tr>`;
+  const text=G.share(data);$('shareText').value=text;$('shareX').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(text);top();$('reportHeading').focus({preventScroll:true});
+ }
+ async function makeImage(data){
+  if(document.fonts?.ready)await document.fonts.ready;
+  const blob=new Blob([A.report(data)],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob);
+  try{const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url;});const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1600;const context=canvas.getContext('2d');if(!context)throw new Error('canvas');context.drawImage(img,0,0);const result=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!result)throw new Error('png');return result;}finally{URL.revokeObjectURL(url);}
+ }
+ $('imageSave').addEventListener('click',async()=>{
+  if(!shownReport||imageBusy)return;imageBusy=true;const version=imageGeneration;$('imageSave').disabled=true;$('imageSave').textContent='画像を作っています…';
+  try{const b=imageBlob||await makeImage(shownReport);if(version!==imageGeneration)return;imageBlob=b;if(!imageURL)imageURL=URL.createObjectURL(b);$('reportImage').src=imageURL;$('download').href=imageURL;$('imageBox').hidden=false;
+   let can=false;try{can=!!(navigator.canShare&&typeof File==='function'&&navigator.canShare({files:[new File([b],'梱包中2_先行8便_作業報告書.png',{type:'image/png'})]}));}catch{}$('shareImage').hidden=!can;
+   $('download').click();$('shareStatus').textContent='PNGを用意しました。保存されない場合は、下のボタンか画像の長押しで保存できます。';
+  }catch{if(version===imageGeneration)$('shareStatus').textContent='この環境では画像を作れませんでした。詳細表と共有文章はそのまま利用できます。';}
+  finally{imageBusy=false;if(version===imageGeneration){$('imageSave').disabled=false;$('imageSave').textContent=imageBlob?'PNGをもう一度保存':'報告書をPNGで保存';}}
+ });
+ $('copy').addEventListener('click',async()=>{const v=$('shareText');try{if(!navigator.clipboard?.writeText)throw new Error();await navigator.clipboard.writeText(v.value);$('shareStatus').textContent='共有文章をコピーしました。';}catch{v.focus();v.select();let copied=false;try{copied=document.execCommand('copy');}catch{}$('shareStatus').textContent=copied?'共有文章をコピーしました。':'文章を選択しました。コピーしてお使いください。';}});
+ $('shareImage').addEventListener('click',async()=>{if(!imageBlob||!navigator.share)return;try{await navigator.share({files:[new File([imageBlob],'梱包中2_先行8便_作業報告書.png',{type:'image/png'})],title:'梱包中。2',text:G.share(shownReport)});}catch(error){if(error.name!=='AbortError')$('shareStatus').textContent='共有メニューを開けませんでした。PNGとして保存できます。';}});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop('hidden');else unstop('hidden');});
+ window.addEventListener('pagehide',()=>{stop('pagehide');save();});window.addEventListener('pageshow',()=>unstop('pagehide'));
+ window.addEventListener('resize',fit);window.visualViewport?.addEventListener('resize',fit);window.addEventListener('blur',()=>{if(drag)cancelDrag();});
+ setInterval(()=>{
+  const now=performance.now(),dt=now-motionTick;motionTick=now;
+  if(!tween||!running())return;
+  tween.ms+=Math.max(0,dt);const t=G.clamp(tween.ms/tween.duration,0,1),ease=t*t*(3-2*t);
+  paintTween(tween.from+(tween.to-tween.from)*ease);
+  if(t===1){const ended=tween;tween=null;board.setAttribute('aria-busy','false');perform(ended.kind,ended.operation,null,{counted:true,sfxId:ended.id});}
+ },20);
+ setInterval(()=>{if(screen==='game')metrics();},100);fit();title();
+})();
+
+
+
+
+</script>
+</body>
+</html>
